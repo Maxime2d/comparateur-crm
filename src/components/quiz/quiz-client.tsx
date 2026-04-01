@@ -55,8 +55,15 @@ const stepIcons = {
 
 export function QuizClient() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState<Partial<QuizAnswers>>({
+  const [answers, setAnswers] = useState<QuizAnswers>({
+    companySize: null,
+    userCount: null,
+    salesProcess: null,
+    needsEmailMarketing: null,
     existingTools: [],
+    budget: null,
+    sector: null,
+    digitalComfort: null,
   });
   const [results, setResults] = useState<QuizResult[] | null>(null);
 
@@ -81,7 +88,7 @@ export function QuizClient() {
   };
 
   const handleEmailMarketing = (need: string) => {
-    setAnswers((prev) => ({ ...prev, needsEmailMarketing: need }));
+    setAnswers((prev) => ({ ...prev, needsEmailMarketing: need as "essential" | "nice-to-have" | "no" }));
     nextStep();
   };
 
@@ -130,7 +137,7 @@ export function QuizClient() {
 
   const resetQuiz = () => {
     setCurrentStep(0);
-    setAnswers({ existingTools: [] });
+    setAnswers({ companySize: null, userCount: null, salesProcess: null, needsEmailMarketing: null, existingTools: [], budget: null, sector: null, digitalComfort: null });
     setResults(null);
   };
 
@@ -168,30 +175,30 @@ export function QuizClient() {
               transition={{ duration: 0.3 }}
             >
               {currentStep === 0 && (
-                <Step0CompanySize selected={answers.companySize} onSelect={handleCompanySize} />
+                <Step0CompanySize selected={answers.companySize ?? undefined} onSelect={handleCompanySize} />
               )}
-              {currentStep === 1 && <Step1Sector selected={answers.sector} onSelect={handleSector} />}
+              {currentStep === 1 && <Step1Sector selected={answers.sector ?? undefined} onSelect={handleSector} />}
               {currentStep === 2 && (
-                <Step2UserCount selected={answers.userCount} onSelect={handleUserCount} />
+                <Step2UserCount selected={answers.userCount ?? undefined} onSelect={handleUserCount} />
               )}
               {currentStep === 3 && (
-                <Step3SalesProcess selected={answers.salesProcess} onSelect={handleSalesProcess} />
+                <Step3SalesProcess selected={answers.salesProcess ?? undefined} onSelect={handleSalesProcess} />
               )}
               {currentStep === 4 && (
-                <Step4EmailMarketing selected={answers.needsEmailMarketing} onSelect={handleEmailMarketing} />
+                <Step4EmailMarketing selected={answers.needsEmailMarketing ?? undefined} onSelect={handleEmailMarketing} />
               )}
               {currentStep === 5 && (
                 <Step5ExistingTools selected={answers.existingTools || []} onToggle={handleToolToggle} onNext={handleToolsNext} />
               )}
               {currentStep === 6 && (
                 <Step6Budget
-                  selected={answers.budget}
-                  companySize={answers.companySize}
+                  selected={answers.budget ?? undefined}
+                  companySize={answers.companySize ?? undefined}
                   onSelect={handleBudget}
                 />
               )}
               {currentStep === 7 && (
-                <Step7DigitalComfort selected={answers.digitalComfort} onSelect={handleDigitalComfort} />
+                <Step7DigitalComfort selected={answers.digitalComfort ?? undefined} onSelect={handleDigitalComfort} />
               )}
             </motion.div>
           </AnimatePresence>
@@ -244,7 +251,6 @@ function Step0CompanySize({
           <Card
             key={size.value}
             label={size.label}
-            description={size.description}
             icon={Building2}
             isSelected={selected === size.value}
             onClick={() => onSelect(size.value as CompanySize)}
@@ -271,7 +277,6 @@ function Step1Sector({
           <Card
             key={sector.value}
             label={sector.label}
-            description={sector.description}
             icon={Target}
             isSelected={selected === sector.value}
             onClick={() => onSelect(sector.value as Sector)}
@@ -381,7 +386,6 @@ function Step5ExistingTools({
           <ToggleCard
             key={option.value}
             label={option.label}
-            description={option.description}
             icon={Wrench}
             isSelected={selected.includes(option.value)}
             onClick={() => onToggle(option.value)}
@@ -418,7 +422,6 @@ function Step6Budget({
           <Card
             key={option.value}
             label={option.label}
-            description={option.description}
             icon={Wallet}
             isSelected={selected === option.value}
             onClick={() => onSelect(option.value)}

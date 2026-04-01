@@ -38,7 +38,7 @@ export function ComparateurClient() {
         (p) =>
           p.name.toLowerCase().includes(query) ||
           p.shortDescription.toLowerCase().includes(query) ||
-          p.tags?.some((t) => t.toLowerCase().includes(query))
+          p.badges?.some((t) => t.toLowerCase().includes(query))
       );
     }
 

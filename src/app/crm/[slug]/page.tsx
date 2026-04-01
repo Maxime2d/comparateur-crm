@@ -79,7 +79,7 @@ export async function generateMetadata({
     keywords: [
       platform.name,
       "CRM",
-      ...platform.tags,
+      ...platform.badges,
     ],
     robots: {
       index: true,
@@ -124,11 +124,11 @@ export default async function PlatformDetailPage({
   return (
     <>
       <PlatformJsonLd platform={platform} />
-      <FAQJsonLd platform={platform} />
+      <FAQJsonLd faqs={platform.faq} />
       <BreadcrumbJsonLd items={[
-        { name: "Accueil", url: SITE_URL },
-        { name: "Comparateur", url: `${SITE_URL}/comparateur` },
-        { name: platform.name, url: `${SITE_URL}/crm/${platform.slug}` },
+        { name: "Accueil", href: "/" },
+        { name: "Comparateur", href: "/comparateur" },
+        { name: platform.name, href: `/crm/${platform.slug}` },
       ]} />
 
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -140,6 +140,7 @@ export default async function PlatformDetailPage({
                 <div className="mb-6">
                   <PlatformLogo
                     website={platform.website}
+                    name={platform.name}
                     size={64}
                     className="rounded-lg"
                   />
@@ -151,7 +152,7 @@ export default async function PlatformDetailPage({
                   {platform.shortDescription}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {platform.tags?.slice(0, 4).map((tag) => (
+                  {platform.badges?.slice(0, 4).map((tag) => (
                     <Badge key={tag} variant="secondary">
                       {tag}
                     </Badge>
@@ -311,7 +312,7 @@ export default async function PlatformDetailPage({
                   Avantages
                 </h3>
                 <ul className="space-y-3">
-                  {(platform.pros || []).map((pro, i) => (
+                  {(platform.prosAndCons.pros || []).map((pro, i) => (
                     <li key={i} className="flex gap-3 text-gray-700">
                       <span className="text-green-600 mt-1">+</span>
                       <span>{pro}</span>
@@ -326,7 +327,7 @@ export default async function PlatformDetailPage({
                   Inconvénients
                 </h3>
                 <ul className="space-y-3">
-                  {(platform.cons || []).map((con, i) => (
+                  {(platform.prosAndCons.cons || []).map((con, i) => (
                     <li key={i} className="flex gap-3 text-gray-700">
                       <span className="text-red-600 mt-1">-</span>
                       <span>{con}</span>
@@ -379,6 +380,7 @@ export default async function PlatformDetailPage({
                   <div className="mb-4">
                     <PlatformLogo
                       website={alt.website}
+                      name={alt.name}
                       size={40}
                       className="rounded"
                     />
@@ -423,7 +425,7 @@ export default async function PlatformDetailPage({
                 source="detail-cta"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
               >
-                {getCtaLabel(platform.pricing.hasFreePlan)}
+                {getCtaLabel(platform.pricing)}
                 <ArrowRight size={18} />
               </AffiliateLink>
               <a
