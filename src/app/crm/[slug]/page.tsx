@@ -47,9 +47,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const platform = getPlatformBySlug(params.slug);
+  const { slug } = await params;
+  const platform = getPlatformBySlug(slug);
 
   if (!platform) {
     return {
@@ -87,12 +88,13 @@ export async function generateMetadata({
   };
 }
 
-export default function PlatformDetailPage({
+export default async function PlatformDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const platform = getPlatformBySlug(params.slug);
+  const { slug } = await params;
+  const platform = getPlatformBySlug(slug);
 
   if (!platform) {
     return (
