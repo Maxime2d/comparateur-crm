@@ -264,7 +264,7 @@ function Step1Sector({
 }) {
   return (
     <div>
-      <h2 className="text-2xl font-bold text-gray-900 mb-2">Quel est votre secteur d'activité?</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-2">Quel est votre secteur d&apos;activité?</h2>
       <p className="text-gray-600 mb-6">Nous pourrons identifier les solutions spécialisées dans votre domaine.</p>
       <div className="grid grid-cols-2 gap-4">
         {SECTORS.map((sector) => (
@@ -291,7 +291,7 @@ function Step2UserCount({
 }) {
   return (
     <div>
-      <h2 className="text-2xl font-bold text-gray-900 mb-2">Combien d'utilisateurs aurez-vous?</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-2">Combien d&apos;utilisateurs aurez-vous?</h2>
       <p className="text-gray-600 mb-6">Cela détermine la scalabilité et les tarifs nécessaires.</p>
       <div className="grid grid-cols-2 gap-4">
         {USER_COUNT_OPTIONS.map((option) => (
@@ -345,8 +345,8 @@ function Step4EmailMarketing({
 }) {
   return (
     <div>
-      <h2 className="text-2xl font-bold text-gray-900 mb-2">Avez-vous besoin d'emailing?</h2>
-      <p className="text-gray-600 mb-6">Certains CRM intègrent des fonctionnalités d'email marketing.</p>
+      <h2 className="text-2xl font-bold text-gray-900 mb-2">Avez-vous besoin d&apos;emailing?</h2>
+      <p className="text-gray-600 mb-6">Certains CRM intègrent des fonctionnalités d&apos;email marketing.</p>
       <div className="grid grid-cols-2 gap-4">
         {EMAIL_MARKETING_OPTIONS.map((option) => (
           <Card

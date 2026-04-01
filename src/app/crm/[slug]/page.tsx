@@ -54,7 +54,7 @@ export async function generateMetadata({
   if (!platform) {
     return {
       title: "CRM non trouvé",
-      description: "Le CRM que vous recherchez n'existe pas.",
+      description: "Le CRM que vous recherchez n&apos;existe pas.",
     };
   }
 
@@ -102,7 +102,7 @@ export default function PlatformDetailPage({
             CRM non trouvé
           </h1>
           <p className="text-gray-600 mb-6">
-            Le CRM que vous recherchez n'existe pas.
+            Le CRM que vous recherchez n&apos;existe pas.
           </p>
           <a
             href="/comparateur"
@@ -428,7 +428,7 @@ export default function PlatformDetailPage({
                 href="/comparateur"
                 className="inline-flex items-center gap-2 px-6 py-3 border border-gray-300 text-gray-900 rounded-lg hover:bg-gray-50 font-medium"
               >
-                Comparer d'autres CRM
+                Comparer d&apos;autres CRM
                 <ArrowRight size={18} />
               </a>
             </div>
