@@ -88,8 +88,8 @@ export function ComparateurClient() {
     }
 
     return result;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    platforms,
     searchQuery,
     selectedSizes,
     budgetRange,
