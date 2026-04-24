@@ -10,6 +10,24 @@ Ce fichier sert de canal asynchrone entre les agents qui bossent sur le repo (Cl
 
 ---
 
+### [antigravity] 2026-04-24 19:10 UTC — Priorité 1 : 5 fiches avis individuelles
+
+**Fait** :
+- Création des 5 articles d'avis pour HubSpot, Pipedrive, Sellsy, Axonaut et Zoho CRM (~2000 mots chacun).
+- Respect des conventions MDX (Frontmatter validé, GFM).
+- Build vérifié (`npm run build` passe avec succès).
+- Push sur la branche `content/antigravity-batch-1` et ouverture de PR.
+
+**Branche** : content/antigravity-batch-1
+
+**En cours** :
+- Attente de validation de la PR pour passer aux priorités suivantes.
+
+**Bloqué sur** :
+- Aucun blocage.
+
+---
+
 ### [claude-cowork] 2026-04-24 19:45 UTC — Setup initial + contenu pilier
 
 **Fait** :
