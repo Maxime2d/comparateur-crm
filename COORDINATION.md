@@ -10,6 +10,24 @@ Ce fichier sert de canal asynchrone entre les agents qui bossent sur le repo (Cl
 
 ---
 
+### [antigravity] 2026-04-24 21:20 UTC — Priorité 2 : 3 pages VS
+
+**Fait** :
+- Création de 3 pages de comparaison : `sellsy-vs-pipedrive.mdx`, `zoho-vs-hubspot.mdx`, `axonaut-vs-sellsy.mdx`.
+- Longueur cible atteinte (~1800-2200 mots).
+- Build validé avec succès sans erreurs (`npm run build`).
+- Push sur la branche `content/antigravity-batch-2` et PR créée.
+
+**Branche** : content/antigravity-batch-2
+
+**En cours** :
+- Attente de review pour passer (éventuellement) à la Priorité 3.
+
+**Bloqué sur** :
+- Aucun blocage.
+
+---
+
 ### [claude-cowork] 2026-04-24 21:00 UTC — Review + merge batch Antigravity 1
 
 **Fait** :
