@@ -51,6 +51,26 @@ export function Footer() {
           </div>
         </div>
 
+        <div className="py-8 border-t border-slate-800">
+          <div className="text-center mb-6">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-400 mb-3">
+              Nos autres comparateurs
+            </h3>
+            <p className="text-sm text-slate-400 max-w-xl mx-auto mb-4">
+              Notre équipe édite plusieurs guides indépendants pour aider les TPE et PME françaises à choisir leurs outils métier.
+            </p>
+            <a
+              href="https://comparateur-efacturation.fr"
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white border border-slate-700 hover:border-slate-500 rounded-lg px-4 py-2 transition-colors"
+            >
+              Comparateur Facturation Électronique
+              <ArrowRight size={14} />
+            </a>
+          </div>
+        </div>
+
         <div className="py-6 border-t border-slate-800 text-center text-sm text-slate-500">
           <p>&copy; {new Date().getFullYear()} {SITE_NAME}. Tous droits réservés.</p>
         </div>

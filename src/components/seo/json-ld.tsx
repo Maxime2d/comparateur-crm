@@ -26,7 +26,7 @@ export function BreadcrumbJsonLd({ items }: { items: { name: string; href: strin
 }
 
 export function OrganizationJsonLd() {
-  return <JsonLd data={{ "@context": "https://schema.org", "@type": "Organization", name: SITE_NAME, url: SITE_URL, description: "Comparateur indépendant des meilleurs logiciels CRM en France." }} />;
+  return <JsonLd data={{ "@context": "https://schema.org", "@type": "Organization", name: SITE_NAME, url: SITE_URL, description: "Comparateur indépendant des meilleurs logiciels CRM en France.", sameAs: ["https://comparateur-efacturation.fr"] }} />;
 }
 
 export function ItemListJsonLd({ platforms }: { platforms: Platform[] }) {
