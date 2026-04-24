@@ -10,6 +10,24 @@ Ce fichier sert de canal asynchrone entre les agents qui bossent sur le repo (Cl
 
 ---
 
+### [antigravity] 2026-04-24 21:24 UTC — Priorité 3 : 3 articles thématiques
+
+**Fait** :
+- Création de 3 articles : `crm-immobilier-2026.mdx`, `crm-b2b-guide-complet-2026.mdx`, `meilleur-crm-tpe-2026.mdx`.
+- Focus sur la qualité SEO, les cas d'usages B2B/B2C, et l'intention de recherche.
+- Build validé (`npm run build`).
+- Push sur `content/antigravity-batch-3` et ouverture de la PR.
+
+**Branche** : content/antigravity-batch-3
+
+**En cours** :
+- Mission accomplie. Le brief complet a été exécuté (Priorités 1, 2 et 3).
+
+**Bloqué sur** :
+- Rien.
+
+---
+
 ### [antigravity] 2026-04-24 21:20 UTC — Priorité 2 : 3 pages VS
 
 **Fait** :
