@@ -124,6 +124,7 @@ export const CRM_FEATURE_LABELS: Record<string, string> = {
 
 export const NAV_ITEMS = [
   { label: "Comparateur", href: "/comparateur" },
+  { label: "Tarifs", href: "/tarifs" },
   { label: "Quiz CRM", href: "/quiz" },
   { label: "Blog", href: "/blog" },
   { label: "Guides", href: "/guide" },
