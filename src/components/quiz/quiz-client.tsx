@@ -150,7 +150,7 @@ export function QuizClient() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-slate-50 py-12 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <div className="mb-8">
@@ -162,7 +162,7 @@ export function QuizClient() {
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
               <motion.div
-                className="bg-blue-600 h-2 rounded-full"
+                className="bg-violet-600 h-2 rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${((currentStep + 1) / STEPS.length) * 100}%` }}
                 transition={{ duration: 0.3 }}
@@ -217,7 +217,7 @@ export function QuizClient() {
               <ArrowLeft size={18} />
               Précédent
             </Button>
-            <div className="text-sm text-gray-500 flex items-center">
+            <div className="text-sm font-medium text-slate-500 flex items-center">
               {STEPS[currentStep]}
             </div>
             {currentStep < STEPS.length - 1 && (
@@ -480,13 +480,13 @@ function Card({ label, description, icon: Icon, isSelected, onClick, fullWidth }
     <motion.button
       onClick={onClick}
       className={`p-4 rounded-lg border-2 transition-all text-left ${
-        isSelected ? "border-blue-600 bg-blue-50" : "border-gray-200 bg-white hover:border-blue-300"
+        isSelected ? "border-violet-600 bg-violet-50" : "border-gray-200 bg-white hover:border-violet-300"
       } ${fullWidth ? "col-span-1" : ""}`}
       whileHover={{ y: -2 }}
       whileTap={{ y: 0 }}
     >
       <div className="flex items-start gap-3">
-        <Icon className={`w-6 h-6 mt-1 flex-shrink-0 ${isSelected ? "text-blue-600" : "text-gray-400"}`} />
+        <Icon className={`w-6 h-6 mt-1 flex-shrink-0 ${isSelected ? "text-violet-600" : "text-gray-400"}`} />
         <div className="flex-1">
           <h3 className="font-semibold text-gray-900">{label}</h3>
           {description && <p className="text-xs text-gray-600 mt-1">{description}</p>}
@@ -502,8 +502,8 @@ function ToggleCard({ label, description, icon: Icon, isSelected, onClick }: Car
       onClick={onClick}
       className={`p-4 rounded-lg border-2 transition-all text-left ${
         isSelected
-          ? "border-blue-600 bg-blue-50 ring-2 ring-blue-200"
-          : "border-gray-200 bg-white hover:border-blue-300"
+          ? "border-violet-600 bg-violet-50 ring-2 ring-violet-200"
+          : "border-gray-200 bg-white hover:border-violet-300"
       }`}
       whileHover={{ y: -2 }}
       whileTap={{ y: 0 }}
@@ -511,7 +511,7 @@ function ToggleCard({ label, description, icon: Icon, isSelected, onClick }: Car
       <div className="flex items-start gap-3">
         <div
           className={`w-5 h-5 rounded border-2 mt-0.5 flex-shrink-0 flex items-center justify-center ${
-            isSelected ? "border-blue-600 bg-blue-600" : "border-gray-300"
+            isSelected ? "border-violet-600 bg-violet-600" : "border-gray-300"
           }`}
         >
           {isSelected && <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20" />}
@@ -531,7 +531,7 @@ function ResultsView({ results, onReset }: { results: QuizResult[]; onReset: () 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-slate-50 py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Vos recommandations</h1>

@@ -176,7 +176,7 @@ export function ComparateurClient() {
                 onClick={() => handleSizeToggle(size.value as CompanySize)}
                 className={`cursor-pointer transition-all ${
                   selectedSizes.includes(size.value as CompanySize)
-                    ? "bg-blue-600 text-white"
+                    ? "bg-violet-600 text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
                 variant={
@@ -197,7 +197,7 @@ export function ComparateurClient() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-violet-500"
             >
               <option value="score">Classement</option>
               <option value="price">Prix</option>
@@ -218,7 +218,7 @@ export function ComparateurClient() {
             {hasActiveFilters && (
               <button
                 onClick={handleReset}
-                className="flex items-center gap-1 ml-4 px-3 py-1 text-blue-600 hover:text-blue-700 font-medium"
+                className="flex items-center gap-1 ml-4 px-3 py-1 text-violet-600 hover:text-violet-700 font-medium"
               >
                 <RotateCcw size={16} />
                 Réinitialiser

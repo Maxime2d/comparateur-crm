@@ -33,11 +33,11 @@ interface AffiliateLinkProps {
 const VARIANTS: Record<Variant, string> = {
   text: "text-violet-600 hover:text-violet-700 underline-offset-2 hover:underline inline-flex items-center gap-1.5",
   "button-primary":
-    "inline-flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 active:bg-violet-800 text-white font-semibold rounded-xl shadow-md shadow-violet-600/20 hover:shadow-lg hover:shadow-violet-600/30 transition-all duration-200",
+    "inline-flex items-center justify-center gap-2 bg-gradient-to-br from-violet-600 to-violet-700 hover:from-violet-700 hover:to-violet-800 active:scale-[0.98] text-white font-semibold rounded-xl shadow-md shadow-violet-600/25 hover:shadow-lg hover:shadow-violet-600/35 transition-all duration-200",
   "button-secondary":
-    "inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-violet-700 font-semibold rounded-xl border border-violet-200 hover:border-violet-400 transition-all duration-200",
+    "inline-flex items-center justify-center gap-2 bg-white hover:bg-violet-50 text-violet-700 font-semibold rounded-xl border border-violet-200 hover:border-violet-400 hover:shadow-sm transition-all duration-200",
   "button-outline":
-    "inline-flex items-center justify-center gap-2 bg-transparent hover:bg-violet-50 text-violet-700 font-semibold rounded-xl border-2 border-violet-600 transition-all duration-200",
+    "inline-flex items-center justify-center gap-2 bg-transparent hover:bg-violet-50 text-violet-700 font-semibold rounded-xl border-2 border-violet-600 hover:border-violet-700 transition-all duration-200",
   unstyled: "",
 };
 
