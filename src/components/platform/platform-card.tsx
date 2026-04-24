@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { Platform } from "@/types/platform";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { ScoreBadge } from "@/components/ui/score-badge";
 import { PlatformLogo } from "@/components/shared/platform-logo";
 import { AffiliateLink } from "@/components/shared/affiliate-link";
 import { formatPrice, getCtaLabel } from "@/lib/utils";
-import { ExternalLink, Star, ArrowRight } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 
 interface PlatformCardProps {
   platform: Platform;
@@ -61,10 +60,16 @@ export function PlatformCard({ platform, rank }: PlatformCardProps) {
         <Link href={`/crm/${platform.slug}`} className="text-sm font-semibold text-violet-600 hover:text-violet-700 flex items-center gap-1">
           Voir le détail <ArrowRight className="h-4 w-4" />
         </Link>
-        <AffiliateLink href={platform.affiliateUrl} platformName={platform.name} platformSlug={platform.slug} source="comparateur" variant="button-secondary">
-          <Button size="sm" className="bg-violet-600 hover:bg-violet-700 text-white">
-            {getCtaLabel(platform.pricing)} <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
-          </Button>
+        <AffiliateLink
+          href={platform.affiliateUrl}
+          platformName={platform.name}
+          platformSlug={platform.slug}
+          source="comparateur"
+          variant="button-primary"
+          size="sm"
+        >
+          {getCtaLabel(platform.pricing)}
+          <ExternalLink className="h-3.5 w-3.5" />
         </AffiliateLink>
       </div>
     </div>

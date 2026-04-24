@@ -22,9 +22,32 @@ const nextConfig: NextConfig = {
           { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
         ],
       },
+      // HTML pages — browser cache 10min, CDN stale-while-revalidate 24h
+      // Reduces ISR reads on Vercel.
+      {
+        source: "/((?!api|_next).*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=86400, stale-while-revalidate=86400",
+          },
+        ],
+      },
       {
         source: "/_next/static/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      {
+        source: "/images/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      {
+        source: "/logos/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      {
+        source: "/favicon.svg",
+        headers: [{ key: "Cache-Control", value: "public, max-age=604800" }],
       },
     ];
   },

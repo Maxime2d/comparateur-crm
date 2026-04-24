@@ -37,6 +37,7 @@ import { formatPrice, getCtaLabel } from "@/lib/utils";
 import { PlatformLogo } from "@/components/shared/platform-logo";
 import { ScoreBadge } from "@/components/ui/score-badge";
 import { AffiliateLink } from "@/components/shared/affiliate-link";
+import { trackQuizCompletion } from "@/lib/affiliate";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -121,6 +122,9 @@ export function QuizClient() {
     const allAnswers = { ...answers, digitalComfort: comfort } as QuizAnswers;
     const quizResults = calculateQuizResults(allAnswers);
     setResults(quizResults);
+    if (quizResults.length > 0 && allAnswers.companySize) {
+      trackQuizCompletion(allAnswers.companySize, quizResults[0].platform.slug);
+    }
   };
 
   const nextStep = () => {
@@ -600,7 +604,7 @@ function ResultsView({ results, onReset }: { results: QuizResult[]; onReset: () 
                       <div className="space-y-2 mb-6 text-left">
                         {result.reasons.map((reason, i) => (
                           <div key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                            <span className="text-blue-600 mt-1">✓</span>
+                            <span className="text-violet-600 mt-1">✓</span>
                             <span>{reason}</span>
                           </div>
                         ))}
@@ -617,19 +621,21 @@ function ResultsView({ results, onReset }: { results: QuizResult[]; onReset: () 
 
                     <div className="p-6 flex flex-col gap-3 flex-grow justify-end border-t">
                       <AffiliateLink
-                        href={result.platform.website}
+                        href={result.platform.affiliateUrl}
                         platformName={result.platform.name}
                         platformSlug={result.platform.slug}
-                        source="quiz"
-                        className="w-full"
+                        source={displayIndex === 0 ? "quiz-podium" : "quiz-details"}
+                        variant="button-primary"
+                        size="md"
+                        fullWidth
                       >
-                        Visiter {result.platform.name}
+                        Essayer {result.platform.name}
                         <ExternalLink size={16} />
                       </AffiliateLink>
 
                       <a
                         href={`/crm/${result.platform.slug}`}
-                        className="block text-center px-4 py-2 text-blue-600 font-medium hover:text-blue-700 border border-blue-200 rounded-lg transition-colors"
+                        className="block text-center px-4 py-2 text-violet-600 font-medium hover:text-violet-700 border border-violet-200 rounded-lg transition-colors"
                       >
                         Voir les détails
                         <ArrowRight className="inline ml-2" size={16} />
@@ -644,11 +650,11 @@ function ResultsView({ results, onReset }: { results: QuizResult[]; onReset: () 
 
         <div className="text-center">
           <p className="text-gray-600 mb-4">
-            Ces recommandations ne vous conviennent pas?
+            Ces recommandations ne vous conviennent pas ?
           </p>
           <a
             href="/comparateur"
-            className="text-blue-600 font-medium hover:text-blue-700 inline-flex items-center gap-2"
+            className="text-violet-600 font-medium hover:text-violet-700 inline-flex items-center gap-2"
           >
             Voir tous les CRM
             <ArrowRight size={16} />
