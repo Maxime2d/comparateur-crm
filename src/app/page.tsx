@@ -15,6 +15,8 @@ import { PlatformLogo } from "@/components/shared/platform-logo";
 import { platforms } from "@/lib/platforms";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { LampEffect } from "@/components/ui/lamp-effect";
+import { FlowDiagram } from "@/components/home/flow-diagram";
+import { HeroParallax } from "@/components/ui/hero-parallax";
 
 export const metadata: Metadata = {
   title: `${SITE_NAME} - Comparez les meilleurs logiciels CRM en 2026`,
@@ -229,45 +231,49 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* How It Works — 3 cards avec halo coloré chacune */}
-        <section className="relative bg-white py-20 sm:py-28 overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-violet-100/40 rounded-full filter blur-[80px] pointer-events-none" aria-hidden="true" />
+        {/* How It Works — diagramme animé + texte 3 étapes */}
+        <section className="relative bg-[#0a0a0f] py-20 sm:py-28 overflow-hidden">
+          <div className="absolute -top-32 left-1/4 w-[500px] h-[300px] bg-violet-600/25 rounded-full filter blur-[100px] pointer-events-none" aria-hidden="true" />
+          <div className="absolute -bottom-32 right-1/4 w-[500px] h-[300px] bg-fuchsia-500/20 rounded-full filter blur-[100px] pointer-events-none" aria-hidden="true" />
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <AnimatedSection>
-              <div className="text-center mb-14">
-                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tight">
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/30 bg-violet-500/10 backdrop-blur-sm text-violet-300 text-xs font-semibold px-4 py-1.5 mb-4">
+                  <Sparkles size={12} />
                   Comment ça marche
-                </h2>
-                <p className="text-lg text-slate-600">Trouvez votre CRM idéal en 3 étapes simples</p>
-              </div>
-              <StaggerContainer>
-                <div className="grid md:grid-cols-3 gap-6">
-                  {howItWorks.map((item, idx) => {
-                    const halos = [
-                      "from-violet-500/20 to-fuchsia-500/20",
-                      "from-fuchsia-500/20 to-pink-500/20",
-                      "from-pink-500/20 to-violet-500/20",
-                    ];
-                    return (
-                      <StaggerItem key={item.step}>
-                        <div className="relative h-full rounded-3xl bg-white border border-slate-200/80 p-8 overflow-hidden group hover:border-violet-300 transition-colors">
-                          <div
-                            className={`absolute -top-20 -right-20 w-48 h-48 bg-gradient-to-br ${halos[idx]} rounded-full filter blur-3xl opacity-60 group-hover:opacity-100 transition-opacity`}
-                            aria-hidden="true"
-                          />
-                          <div className="relative">
-                            <div className="flex items-center justify-center h-12 w-12 rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white font-black text-lg shadow-lg shadow-violet-500/30 mb-5">
-                              {item.step}
-                            </div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h3>
-                            <p className="text-slate-600 leading-relaxed text-sm">{item.description}</p>
-                          </div>
-                        </div>
-                      </StaggerItem>
-                    );
-                  })}
                 </div>
-              </StaggerContainer>
+                <h2 className="text-4xl sm:text-5xl font-black text-white mb-4 tracking-tight">
+                  De l&apos;idée au CRM en{" "}
+                  <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
+                    moins de 10 minutes
+                  </span>
+                </h2>
+                <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+                  Notre méthode en 4 étapes pour trouver et déployer le CRM
+                  qui correspond vraiment à votre activité.
+                </p>
+              </div>
+
+              <FlowDiagram />
+
+              <div className="grid md:grid-cols-3 gap-5 mt-8 max-w-5xl mx-auto">
+                {howItWorks.map((item, idx) => (
+                  <div
+                    key={item.step}
+                    className="rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-6 hover:bg-white/10 transition-colors"
+                  >
+                    <div className="text-xs font-bold uppercase tracking-wider text-violet-300 mb-2">
+                      Étape {String(idx + 1).padStart(2, "0")}
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-400 text-sm leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </AnimatedSection>
           </div>
         </section>
@@ -421,41 +427,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Features — cards avec icônes en gradient */}
-        <section className="relative bg-[#fafaff] py-20 sm:py-28 overflow-hidden">
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <AnimatedSection>
-              <div className="text-center mb-14">
-                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tight">
-                  Les fonctionnalités essentielles
-                </h2>
-                <p className="text-lg text-slate-600">Ce qu&apos;un bon CRM doit savoir faire</p>
-              </div>
-              <StaggerContainer>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {features.map((feature) => {
-                    const Icon = feature.icon;
-                    return (
-                      <StaggerItem key={feature.title}>
-                        <div className="rounded-3xl border border-slate-200/80 bg-white p-6 hover:border-violet-300 hover:shadow-lg hover:shadow-violet-500/5 transition-all duration-300 hover:-translate-y-0.5">
-                          <div className="flex items-start gap-4">
-                            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white flex items-center justify-center shadow-md shadow-violet-500/20">
-                              <Icon className="h-6 w-6" />
-                            </div>
-                            <div className="flex-1">
-                              <h3 className="font-bold text-lg text-slate-900 mb-2">{feature.title}</h3>
-                              <p className="text-slate-600 text-sm leading-relaxed">{feature.description}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </StaggerItem>
-                    );
-                  })}
-                </div>
-              </StaggerContainer>
-            </AnimatedSection>
-          </div>
-        </section>
+        {/* Hero Parallax — défilement 3D des CRMs */}
+        <HeroParallax platforms={platforms} />
 
         {/* CTA — Lamp Effect immersif */}
         <LampEffect minHeight="80vh">
