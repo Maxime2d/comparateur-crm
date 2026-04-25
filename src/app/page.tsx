@@ -17,6 +17,7 @@ import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { LampEffect } from "@/components/ui/lamp-effect";
 import { FlowDiagram } from "@/components/home/flow-diagram";
 import { HeroParallax } from "@/components/ui/hero-parallax";
+import { HoverCardGrid } from "@/components/ui/hover-card-grid";
 
 export const metadata: Metadata = {
   title: `${SITE_NAME} - Comparez les meilleurs logiciels CRM en 2026`,
@@ -218,15 +219,16 @@ export default function HomePage() {
                   Notre classement éditorial indépendant, basé sur 27 logiciels analysés selon notre méthodologie publique.
                 </p>
               </div>
-              <StaggerContainer>
-                <div className="space-y-4">
-                  {topPlatforms.map((platform, index) => (
-                    <StaggerItem key={platform.slug}>
-                      <PlatformCard platform={platform} rank={index + 1} />
-                    </StaggerItem>
-                  ))}
-                </div>
-              </StaggerContainer>
+              <HoverCardGrid
+                layout="list"
+                hoverColor="violet"
+                groupId="top5"
+                bare
+                items={topPlatforms.map((platform, index) => ({
+                  id: platform.slug,
+                  content: <PlatformCard platform={platform} rank={index + 1} />,
+                }))}
+              />
             </AnimatedSection>
           </div>
         </section>
@@ -294,27 +296,24 @@ export default function HomePage() {
                 </h2>
                 <p className="text-lg text-slate-600">6 sélections curées pour chaque type de structure</p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                {[
-                  { href: "/crm-francais", label: "CRM Français", Icon: Flag, gradient: "from-blue-500 to-indigo-500", glow: "from-blue-400/20 to-violet-400/20" },
-                  { href: "/crm-gratuit", label: "CRM Gratuit", Icon: Gift, gradient: "from-emerald-500 to-teal-500", glow: "from-emerald-400/20 to-teal-400/20" },
-                  { href: "/crm-tpe", label: "CRM TPE", Icon: Store, gradient: "from-amber-500 to-orange-500", glow: "from-amber-400/20 to-orange-400/20" },
-                  { href: "/crm-startup", label: "CRM Startup", Icon: Rocket, gradient: "from-fuchsia-500 to-pink-500", glow: "from-fuchsia-400/20 to-pink-400/20" },
-                  { href: "/crm-freelance", label: "CRM Freelance", Icon: User, gradient: "from-violet-500 to-purple-500", glow: "from-violet-400/20 to-purple-400/20" },
-                  { href: "/crm-open-source", label: "Open Source", Icon: Code, gradient: "from-slate-500 to-zinc-500", glow: "from-slate-400/20 to-zinc-400/20" },
+              <HoverCardGrid
+                columns={6}
+                hoverColor="fuchsia"
+                groupId="hubs"
+                items={[
+                  { href: "/crm-francais", label: "CRM Français", Icon: Flag, gradient: "from-blue-500 to-indigo-500" },
+                  { href: "/crm-gratuit", label: "CRM Gratuit", Icon: Gift, gradient: "from-emerald-500 to-teal-500" },
+                  { href: "/crm-tpe", label: "CRM TPE", Icon: Store, gradient: "from-amber-500 to-orange-500" },
+                  { href: "/crm-startup", label: "CRM Startup", Icon: Rocket, gradient: "from-fuchsia-500 to-pink-500" },
+                  { href: "/crm-freelance", label: "CRM Freelance", Icon: User, gradient: "from-violet-500 to-purple-500" },
+                  { href: "/crm-open-source", label: "Open Source", Icon: Code, gradient: "from-slate-500 to-zinc-500" },
                 ].map((s) => {
                   const SegIcon = s.Icon;
-                  return (
-                    <Link
-                      key={s.href}
-                      href={s.href}
-                      className="group relative bg-white rounded-2xl border border-slate-200/80 p-6 text-center hover:border-violet-300 transition-all overflow-hidden"
-                    >
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-br ${s.glow} opacity-0 group-hover:opacity-100 transition-opacity`}
-                        aria-hidden="true"
-                      />
-                      <div className="relative">
+                  return {
+                    id: s.href,
+                    href: s.href,
+                    content: (
+                      <div className="text-center py-2">
                         <div className={`mx-auto mb-3 w-12 h-12 rounded-xl bg-gradient-to-br ${s.gradient} text-white flex items-center justify-center shadow-md group-hover:scale-110 transition-transform`}>
                           <SegIcon size={22} />
                         </div>
@@ -322,10 +321,10 @@ export default function HomePage() {
                           {s.label}
                         </div>
                       </div>
-                    </Link>
-                  );
+                    ),
+                  };
                 })}
-              </div>
+              />
             </AnimatedSection>
           </div>
         </section>

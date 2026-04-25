@@ -15,17 +15,24 @@ interface HoverCardItem {
 
 interface HoverCardGridProps {
   items: HoverCardItem[];
-  /** Nombre de colonnes (par défaut : 3 desktop / 1 mobile). */
-  columns?: 2 | 3 | 4;
+  /** Nombre de colonnes en mode grid (par défaut : 3 desktop / 1 mobile). */
+  columns?: 2 | 3 | 4 | 6;
+  /** Layout : grid (par défaut) ou list (vertical). */
+  layout?: "grid" | "list";
   /** Couleur du blob qui suit le curseur. */
   hoverColor?: "violet" | "fuchsia" | "indigo";
+  /** Identifiant unique du groupe layoutId pour éviter les collisions entre instances. */
+  groupId?: string;
+  /** Si true, le content est rendu sans wrapper interne (utile si l'item fournit déjà sa card). */
+  bare?: boolean;
   className?: string;
 }
 
 const colMap: Record<number, string> = {
-  2: "grid-cols-1 md:grid-cols-2",
-  3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
-  4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+  2: "grid grid-cols-1 md:grid-cols-2",
+  3: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+  4: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+  6: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6",
 };
 
 const blobMap: Record<string, string> = {
@@ -41,23 +48,34 @@ const blobMap: Record<string, string> = {
 export function HoverCardGrid({
   items,
   columns = 3,
+  layout = "grid",
   hoverColor = "violet",
+  groupId,
+  bare = false,
   className = "",
 }: HoverCardGridProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  // layoutId stable pour cette instance (évite les collisions entre plusieurs grids)
+  const blobId = groupId
+    ? `hoverCardBlob-${groupId}`
+    : "hoverCardBlob";
+
+  const containerClasses =
+    layout === "list"
+      ? "flex flex-col gap-2"
+      : `gap-4 ${colMap[columns]}`;
 
   return (
-    <div className={`grid gap-4 ${colMap[columns]} ${className}`}>
+    <div className={`${containerClasses} ${className}`}>
       {items.map((item, idx) => {
-        const inner = (
-          <div
-            className="relative h-full rounded-2xl bg-white border border-slate-200 p-5 group-hover:border-violet-300 transition-colors"
-          >
+        const inner = bare ? (
+          item.content
+        ) : (
+          <div className="relative h-full rounded-2xl bg-white border border-slate-200 p-5 group-hover:border-violet-300 transition-colors">
             {item.content}
           </div>
         );
-        const wrapperClasses =
-          "relative group block h-full p-2";
+        const wrapperClasses = "relative group block h-full p-2";
 
         return (
           <div
@@ -76,10 +94,13 @@ export function HoverCardGrid({
                         ? "shadow-[0_0_40px_rgba(217,70,239,0.25)]"
                         : "shadow-[0_0_40px_rgba(99,102,241,0.25)]"
                   }`}
-                  layoutId="hoverCardBlob"
+                  layoutId={blobId}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1, transition: { duration: 0.15 } }}
-                  exit={{ opacity: 0, transition: { duration: 0.15, delay: 0.1 } }}
+                  exit={{
+                    opacity: 0,
+                    transition: { duration: 0.15, delay: 0.1 },
+                  }}
                 />
               )}
             </AnimatePresence>
