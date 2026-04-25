@@ -8,7 +8,8 @@ import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { ItemListJsonLd, HowToJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { getTopPlatforms } from "@/lib/platforms";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
-import { ArrowRight, CheckCircle2, Zap, BarChart3, Smartphone, Mail, Workflow, MessageSquare } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, BarChart3, Smartphone, Mail, Workflow, MessageSquare, Sparkles } from "lucide-react";
+import { TypewriterText } from "@/components/ui/typewriter-text";
 
 export const metadata: Metadata = {
   title: `${SITE_NAME} - Comparez les meilleurs logiciels CRM en 2026`,
@@ -48,30 +49,91 @@ export default function HomePage() {
       <HowToJsonLd name="Comment trouver le meilleur CRM" description="Trouvez le CRM idéal pour votre entreprise en 3 étapes simples." steps={howItWorks.map((s) => ({ name: s.title, text: s.description }))} />
 
       <main className="min-h-screen flex flex-col">
-        {/* Hero */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-violet-50 via-white to-white pt-20 pb-32 sm:pt-32 sm:pb-48">
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-violet-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
-            <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/3 w-96 h-96 bg-violet-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
+        {/* Hero — dark mode avec halos et typewriter */}
+        <section className="relative overflow-hidden bg-[#0a0a0f] pt-24 pb-28 sm:pt-32 sm:pb-40">
+          {/* Halos colorés en arrière-plan */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+            <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-violet-600/30 rounded-full filter blur-[120px]" style={{ animation: "pulse-slow 8s ease-in-out infinite" }} />
+            <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-fuchsia-500/20 rounded-full filter blur-[100px]" style={{ animation: "float-slow 12s ease-in-out infinite" }} />
+            <div className="absolute bottom-0 left-10 w-[450px] h-[450px] bg-indigo-500/20 rounded-full filter blur-[100px]" style={{ animation: "float-slow 14s ease-in-out infinite reverse" }} />
+            <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] bg-pink-500/10 rounded-full filter blur-[80px]" />
           </div>
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+
+          {/* Grid pattern subtil */}
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" aria-hidden="true" style={{
+            backgroundImage: "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            backgroundSize: "60px 60px"
+          }} />
+
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <AnimatedSection>
               <div className="text-center">
-                <Badge className="mb-4 bg-violet-100 text-violet-700 hover:bg-violet-100">Trouvez votre CRM parfait</Badge>
-                <h1 className="text-5xl sm:text-6xl font-black text-slate-900 mb-6 leading-tight">Comparez les meilleurs logiciels CRM</h1>
-                <p className="text-xl text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto">Analysez 24+ solutions CRM, comparez leurs fonctionnalités et trouvez celle qui correspond parfaitement à vos besoins commerciaux en 2 minutes.</p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                  <Button size="lg" asChild className="bg-violet-600 hover:bg-violet-700"><Link href="/quiz">Démarrer le quiz <ArrowRight className="h-5 w-5 ml-2" /></Link></Button>
-                  <Button size="lg" variant="outline" asChild><Link href="/comparateur">Comparer directement <ArrowRight className="h-5 w-5 ml-2" /></Link></Button>
+                <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/30 bg-violet-500/10 backdrop-blur-sm text-violet-300 text-xs font-semibold px-4 py-1.5 mb-8">
+                  <Sparkles size={12} className="text-violet-300" />
+                  Édition 2026 · 27 logiciels CRM analysés
                 </div>
-                <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-600">
-                  <div className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-emerald-600" /><span>100% gratuit</span></div>
-                  <div className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-emerald-600" /><span>Aucun email requis</span></div>
-                  <div className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-emerald-600" /><span>Recommandations personnalisées</span></div>
+
+                <h1 className="text-5xl sm:text-6xl md:text-7xl font-black text-white mb-6 leading-[1.1] tracking-tight">
+                  <span className="block">Trouvez le meilleur CRM</span>
+                  <span className="block mt-2">
+                    pour{" "}
+                    <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
+                      <TypewriterText
+                        phrases={[
+                          "votre TPE",
+                          "vos commerciaux",
+                          "votre PME",
+                          "votre startup",
+                          "votre e-commerce",
+                          "votre cabinet",
+                        ]}
+                        cursorClassName="bg-violet-300"
+                      />
+                    </span>
+                  </span>
+                </h1>
+
+                <p className="text-lg sm:text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto">
+                  Comparez 27 logiciels CRM en 2 minutes. Tarifs, fonctionnalités, avis vérifiés. Recommandation personnalisée gratuite.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+                  <Link
+                    href="/quiz"
+                    className="group inline-flex items-center justify-center gap-2 bg-gradient-to-br from-violet-500 to-fuchsia-500 hover:from-violet-400 hover:to-fuchsia-400 text-white font-semibold px-7 py-3.5 rounded-2xl shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40 transition-all duration-200 active:scale-[0.98]"
+                  >
+                    Démarrer le quiz
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
+                  <Link
+                    href="/comparateur"
+                    className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/15 hover:border-white/25 text-white font-semibold px-7 py-3.5 rounded-2xl transition-all duration-200"
+                  >
+                    Comparer directement
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+
+                <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-slate-400">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <span>100 % gratuit</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <span>Sans email requis</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <span>Méthodologie publique</span>
+                  </div>
                 </div>
               </div>
             </AnimatedSection>
           </div>
+
+          {/* Fade vers la section suivante */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white pointer-events-none" aria-hidden="true" />
         </section>
 
         {/* Top 5 */}
