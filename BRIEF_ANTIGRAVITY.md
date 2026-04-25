@@ -17,7 +17,7 @@ Tu rejoins un projet bien avancé. Lis ce brief en entier avant d'agir. La major
 
 Pour chacun de ces 19 CRM, créer un fichier MDX dans `content/blog/{slug}-avis-tarifs-test-complet-2026.mdx`.
 
-**Liste des 19 slugs (qui doivent matcher exactement ceux dans `src/lib/platforms.ts`)** :
+**Liste des 22 slugs (qui doivent matcher exactement ceux dans `src/lib/platforms.ts`)** :
 
 1. salesforce
 2. monday-sales-crm
@@ -38,6 +38,9 @@ Pour chacun de ces 19 CRM, créer un fichier MDX dans `content/blog/{slug}-avis-
 17. youday-crm
 18. initiative-crm
 19. divalto-weavy
+20. activecampaign
+21. bitrix24
+22. odoo-crm
 
 **Format de nom de fichier** : `{slug}-avis-tarifs-test-complet-2026.mdx`
 
