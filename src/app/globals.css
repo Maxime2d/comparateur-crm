@@ -55,6 +55,16 @@ h1, h2, h3, h4, h5, h6 {
   50% { transform: translate(20px, -20px); }
 }
 
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes shimmer-slide {
+  to { transform: translateX(calc(100cqw - 100%)); }
+}
+
 .animate-fade-in {
   animation: fade-in 0.5s ease-out forwards;
 }

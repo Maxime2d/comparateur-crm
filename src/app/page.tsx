@@ -4,13 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PlatformCard } from "@/components/platform/platform-card";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/animated-section";
-import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { NumberTicker } from "@/components/ui/number-ticker";
 import { ItemListJsonLd, HowToJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { getTopPlatforms } from "@/lib/platforms";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
 import { ArrowRight, CheckCircle2, Zap, BarChart3, Smartphone, Mail, Workflow, MessageSquare, Sparkles, Flag, Gift, Store, Rocket, User, Code, Calculator, Target, Euro } from "lucide-react";
 import { TypewriterText } from "@/components/ui/typewriter-text";
 import { GlowCard } from "@/components/ui/spotlight-card";
+import { Marquee } from "@/components/ui/marquee";
+import { PlatformLogo } from "@/components/shared/platform-logo";
+import { platforms } from "@/lib/platforms";
 
 export const metadata: Metadata = {
   title: `${SITE_NAME} - Comparez les meilleurs logiciels CRM en 2026`,
@@ -153,8 +156,11 @@ export default function HomePage() {
                     className="text-center bg-white/60 backdrop-blur-sm rounded-2xl border border-violet-100 p-6"
                   >
                     <div className="text-4xl sm:text-5xl font-black mb-2 bg-gradient-to-br from-violet-600 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent">
-                      <AnimatedCounter end={s.value} decimals={s.decimals} />
-                      {s.suffix}
+                      <NumberTicker
+                        value={s.value}
+                        decimals={s.decimals}
+                        suffix={s.suffix}
+                      />
                     </div>
                     <p className="text-slate-600 font-medium text-sm">{s.label}</p>
                   </div>
@@ -162,6 +168,32 @@ export default function HomePage() {
               </div>
             </AnimatedSection>
           </div>
+        </section>
+
+        {/* Marquee logos CRM — preuve sociale */}
+        <section className="relative bg-[#fafaff] py-10 border-y border-violet-100/50 overflow-hidden">
+          <p className="text-center text-xs font-semibold uppercase tracking-widest text-slate-500 mb-6">
+            Les logiciels CRM analysés sur cette plateforme
+          </p>
+          <Marquee duration={50} gap={48} pauseOnHover fadeEdges>
+            {platforms.map((p) => (
+              <div
+                key={p.slug}
+                className="flex items-center gap-2.5 opacity-70 hover:opacity-100 transition-opacity"
+                title={p.name}
+              >
+                <PlatformLogo
+                  website={p.website}
+                  name={p.name}
+                  size={26}
+                  className="grayscale hover:grayscale-0 transition-all"
+                />
+                <span className="text-sm font-semibold text-slate-700 whitespace-nowrap">
+                  {p.name}
+                </span>
+              </div>
+            ))}
+          </Marquee>
         </section>
 
         {/* Top 5 — fond pastel avec halo */}
