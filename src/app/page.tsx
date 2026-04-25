@@ -401,7 +401,7 @@ export default function HomePage() {
                   href="/glossaire-crm"
                   icon={BarChart3}
                   title="Glossaire CRM 2026"
-                  description="30+ termes essentiels expliqués clairement (lead scoring, pipeline, MQL, churn…)"
+                  description="30+ termes essentiels : lead scoring, pipeline, MQL, churn…"
                   ctaLabel="Parcourir le lexique"
                   colSpan={3}
                   rowSpan={1}

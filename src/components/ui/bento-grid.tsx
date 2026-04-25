@@ -14,7 +14,7 @@ interface BentoGridProps {
 export function BentoGrid({ children, className = "" }: BentoGridProps) {
   return (
     <div
-      className={`grid grid-cols-1 md:grid-cols-6 auto-rows-[14rem] md:auto-rows-[12rem] gap-4 ${className}`}
+      className={`grid grid-cols-1 md:grid-cols-6 auto-rows-[14rem] md:auto-rows-[13rem] gap-4 ${className}`}
     >
       {children}
     </div>
@@ -194,7 +194,7 @@ export function BentoCard({
         )}
 
         <h3
-          className={`text-lg sm:text-xl font-bold mb-1.5 leading-tight tracking-tight ${
+          className={`text-lg sm:text-xl font-bold mb-1.5 leading-tight tracking-tight line-clamp-2 ${
             isDark || isGradient ? "text-white" : "text-slate-900"
           }`}
         >
@@ -202,7 +202,7 @@ export function BentoCard({
         </h3>
 
         <p
-          className={`text-sm leading-relaxed mb-3 ${
+          className={`text-sm leading-snug mb-3 line-clamp-3 ${
             isDark
               ? "text-slate-400"
               : isGradient
