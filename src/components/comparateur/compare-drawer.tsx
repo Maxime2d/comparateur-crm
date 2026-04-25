@@ -20,6 +20,8 @@ import { CRM_FEATURE_LABELS } from "@/lib/constants";
 import { PlatformLogo } from "@/components/shared/platform-logo";
 import { AffiliateLink } from "@/components/shared/affiliate-link";
 import { ScoreBadge } from "@/components/ui/score-badge";
+import { RadarChart } from "@/components/ui/radar-chart";
+import { ComparisonBarsSection } from "@/components/ui/animated-comparison-bars";
 import { formatPrice, getCtaLabel } from "@/lib/utils";
 
 interface CompareDrawerProps {
@@ -242,6 +244,14 @@ export function CompareDrawer({
                     );
                   })}
                 </div>
+
+                {/* Visualisations animées : radar + barres */}
+                {platforms.length >= 2 && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                    <RadarChart platforms={platforms} />
+                    <ComparisonBarsSection platforms={platforms} />
+                  </div>
+                )}
 
                 {/* Section : Tarification */}
                 <Section title="Tarification">
