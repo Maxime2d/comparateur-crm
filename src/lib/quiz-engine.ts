@@ -77,11 +77,29 @@ export function calculateQuizResults(answers: QuizAnswers): QuizResult[] {
     }
 
     if (score > 0) {
-      results.push({ platform, compatibilityScore: Math.min(100, score), reasons: reasons.slice(0, 3) });
+      // Mixe le matching (max 100) avec la qualité globale du CRM pour
+      // différencier deux CRMs qui matchent autant le profil. Plafonné à 99
+      // (un score de 100% sonne faux — il y a toujours une part d'incertitude).
+      const matchPart = Math.min(100, score) * 0.7;
+      const qualityPart = (platform.scores.overall || 7) * 3;
+      const blended = Math.min(99, Math.round(matchPart + qualityPart));
+      results.push({
+        platform,
+        compatibilityScore: blended,
+        reasons: reasons.slice(0, 3),
+      });
     }
   }
 
-  return results.sort((a, b) => b.compatibilityScore - a.compatibilityScore).slice(0, 3);
+  return results
+    .sort((a, b) => {
+      // Tie-breaker : si même score, on classe par note globale du CRM
+      if (b.compatibilityScore !== a.compatibilityScore) {
+        return b.compatibilityScore - a.compatibilityScore;
+      }
+      return (b.platform.scores.overall || 0) - (a.platform.scores.overall || 0);
+    })
+    .slice(0, 3);
 }
 
 function calculateBudgetScore(budget: string, platform: Platform): number {

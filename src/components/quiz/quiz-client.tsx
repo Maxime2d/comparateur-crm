@@ -527,155 +527,311 @@ function ToggleCard({ label, description, icon: Icon, isSelected, onClick }: Car
 
 // Results View
 
-function ResultsView({ results, onReset }: { results: QuizResult[]; onReset: () => void }) {
+const podiumStyles = [
+  // 0 = #1 (gagnant)
+  {
+    cardBorder: "border-violet-300 ring-2 ring-violet-200/50",
+    cardBg: "bg-white",
+    accentBg: "bg-gradient-to-br from-violet-600 via-fuchsia-500 to-pink-500",
+    accentText: "text-white",
+    icon: Trophy,
+    iconBg: "bg-amber-400/20",
+    iconColor: "text-amber-300",
+    label: "Notre recommandation",
+    pillBg: "bg-violet-100 text-violet-700",
+    scoreBadge: "bg-white/15 text-white border-white/25",
+  },
+  // 1 = #2
+  {
+    cardBorder: "border-slate-200",
+    cardBg: "bg-white",
+    accentBg: "bg-gradient-to-br from-slate-50 to-violet-50",
+    accentText: "text-slate-900",
+    icon: Medal,
+    iconBg: "bg-violet-100",
+    iconColor: "text-violet-600",
+    label: "Excellente alternative",
+    pillBg: "bg-violet-100 text-violet-700",
+    scoreBadge: "bg-violet-100 text-violet-700 border-violet-200",
+  },
+  // 2 = #3
+  {
+    cardBorder: "border-slate-200",
+    cardBg: "bg-white",
+    accentBg: "bg-gradient-to-br from-slate-50 to-emerald-50",
+    accentText: "text-slate-900",
+    icon: Award,
+    iconBg: "bg-emerald-100",
+    iconColor: "text-emerald-600",
+    label: "À envisager aussi",
+    pillBg: "bg-emerald-100 text-emerald-700",
+    scoreBadge: "bg-emerald-100 text-emerald-700 border-emerald-200",
+  },
+];
+
+function ResultsView({
+  results,
+  onReset,
+}: {
+  results: QuizResult[];
+  onReset: () => void;
+}) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-slate-50 py-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Vos recommandations</h1>
-          <p className="text-lg text-gray-600 mb-8">Basées sur vos réponses, voici les 3 meilleurs CRM pour vous</p>
-          <Button onClick={onReset} variant="outline" className="inline-flex items-center gap-2">
-            <RotateCcw size={18} />
-            Recommencer le quiz
-          </Button>
+    <div className="min-h-screen flex flex-col">
+      {/* Hero dark cohérent avec le reste du site */}
+      <section className="relative overflow-hidden bg-[#0a0a0f] pt-16 pb-12 sm:pt-24 sm:pb-16">
+        <div
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+          aria-hidden="true"
+        >
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-violet-600/30 rounded-full filter blur-[100px]" />
+          <div className="absolute top-0 right-10 w-[400px] h-[300px] bg-fuchsia-500/20 rounded-full filter blur-[90px]" />
+          <div className="absolute bottom-0 left-10 w-[400px] h-[300px] bg-indigo-500/20 rounded-full filter blur-[90px]" />
         </div>
+        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/30 bg-violet-500/10 backdrop-blur-sm text-violet-300 text-xs font-semibold px-4 py-1.5 mb-6">
+            <Trophy size={12} />
+            Vos résultats personnalisés
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 leading-[1.1] tracking-tight">
+            Vos{" "}
+            <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
+              3 CRM idéaux
+            </span>
+          </h1>
+          <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-6">
+            Basés sur vos réponses, voici les CRM les plus adaptés à votre
+            profil, classés par compatibilité.
+          </p>
+          <button
+            onClick={onReset}
+            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/15 hover:border-white/25 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
+          >
+            <RotateCcw size={16} />
+            Recommencer le quiz
+          </button>
+        </div>
+        <div
+          className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#0a0a0f]/60 to-[#fafaff] pointer-events-none"
+          aria-hidden="true"
+        />
+      </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          {results.map((result, index) => {
-            const podiumPositions = [1, 0, 2]; // Display order: 2nd, 1st (larger), 3rd
-            const displayIndex = podiumPositions[index];
+      {/* Body pastel avec halo */}
+      <section className="relative bg-[#fafaff] flex-1 pt-8 pb-20 overflow-hidden">
+        <div
+          className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-violet-200/25 rounded-full filter blur-[100px] pointer-events-none"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute top-1/2 -right-32 w-[500px] h-[500px] bg-fuchsia-200/20 rounded-full filter blur-[100px] pointer-events-none"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
+            {results.map((result, index) => {
+              // displayIndex : 0 = #1 au centre, 1 = #2 à gauche, 2 = #3 à droite
+              const podiumPositions = [1, 0, 2];
+              const displayIndex = podiumPositions[index] ?? index;
+              const style = podiumStyles[displayIndex];
+              const Icon = style.icon;
+              const isWinner = displayIndex === 0;
 
-            return (
-              <motion.div
-                key={result.platform.slug}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                onHoverStart={() => setHoveredIndex(index)}
-                onHoverEnd={() => setHoveredIndex(null)}
-                className={`relative ${displayIndex === 0 ? "lg:row-span-1 lg:transform lg:scale-105" : ""}`}
-              >
+              const priceLabel = result.platform.pricing.onQuote
+                ? "Sur devis"
+                : result.platform.pricing.startsAt === 0
+                  ? "Gratuit"
+                  : `${result.platform.pricing.startsAt}€/mois`;
+
+              return (
                 <motion.div
-                  animate={{
-                    y: hoveredIndex === index ? -8 : 0,
+                  key={result.platform.slug}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  onHoverStart={() => setHoveredIndex(index)}
+                  onHoverEnd={() => setHoveredIndex(null)}
+                  className={`relative order-${displayIndex} lg:order-${displayIndex} ${
+                    isWinner ? "lg:scale-[1.04] lg:z-10" : ""
+                  }`}
+                  style={{
+                    order:
+                      typeof window !== "undefined" &&
+                      window.matchMedia &&
+                      window.matchMedia("(min-width: 1024px)").matches
+                        ? displayIndex
+                        : index,
                   }}
-                  transition={{ duration: 0.2 }}
-                  className="h-full"
                 >
-                  <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col hover:shadow-2xl transition-shadow">
-                    <div className={`p-8 text-center ${getPodiumBackground(displayIndex)}`}>
-                      <div className="flex justify-center mb-4">
+                  <motion.div
+                    animate={{ y: hoveredIndex === index ? -8 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className={`h-full rounded-3xl overflow-hidden flex flex-col shadow-xl hover:shadow-2xl transition-shadow border-2 ${style.cardBorder} ${style.cardBg}`}
+                  >
+                    {/* Header avec icône + label */}
+                    <div
+                      className={`relative px-6 py-5 ${style.accentBg} ${style.accentText} text-center overflow-hidden`}
+                    >
+                      {isWinner && (
+                        <>
+                          <div
+                            className="absolute -top-10 left-1/2 -translate-x-1/2 w-[300px] h-[150px] bg-white/20 rounded-full filter blur-3xl"
+                            aria-hidden="true"
+                          />
+                          <div
+                            className="absolute -bottom-10 right-0 w-[200px] h-[150px] bg-fuchsia-300/30 rounded-full filter blur-3xl"
+                            aria-hidden="true"
+                          />
+                        </>
+                      )}
+                      <div className="relative z-10 flex items-center justify-center gap-2">
+                        <span
+                          className={`inline-flex items-center justify-center w-8 h-8 rounded-lg ${style.iconBg} ${style.iconColor}`}
+                        >
+                          <Icon size={16} />
+                        </span>
+                        <span
+                          className={`text-xs font-bold uppercase tracking-wider ${
+                            isWinner ? "text-white/90" : "text-slate-600"
+                          }`}
+                        >
+                          #{displayIndex + 1} · {style.label}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Body card */}
+                    <div className="flex-1 p-6 flex flex-col">
+                      <div className="flex items-start gap-3 mb-3">
                         <PlatformLogo
                           website={result.platform.website}
                           name={result.platform.name}
-                          size={48}
-                          className="rounded-lg"
+                          size={44}
+                          className="rounded-xl flex-shrink-0"
                         />
+                        <div className="min-w-0 flex-1">
+                          <h2 className="text-xl font-black text-slate-900 leading-tight">
+                            {result.platform.name}
+                          </h2>
+                          <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                            {result.platform.shortDescription}
+                          </p>
+                        </div>
                       </div>
 
-                      <div className="mb-4">
-                        {displayIndex === 0 && (
-                          <Trophy className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
-                        )}
-                        {displayIndex === 1 && (
-                          <Medal className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        )}
-                        {displayIndex === 2 && (
-                          <Award className="w-8 h-8 text-orange-500 mx-auto mb-2" />
-                        )}
-                      </div>
-
-                      <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                        {result.platform.name}
-                      </h2>
-
-                      <p className="text-gray-600 text-sm mb-4">
-                        {result.platform.shortDescription}
-                      </p>
-
-                      <ScoreBadge score={result.compatibilityScore} className="mx-auto mb-4" />
-
-                      <p className="text-lg font-semibold text-gray-900 mb-4">
-                        {formatPrice(result.platform.pricing.startsAt)}/mois
-                      </p>
-
-                      <div className="space-y-2 mb-6 text-left">
-                        {result.reasons.map((reason, i) => (
-                          <div key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                            <span className="text-violet-600 mt-1">✓</span>
-                            <span>{reason}</span>
+                      {/* Compatibilité + prix sur une ligne */}
+                      <div className="grid grid-cols-2 gap-3 my-4">
+                        <div
+                          className={`rounded-xl border px-3 py-2.5 text-center ${style.scoreBadge}`}
+                        >
+                          <div className="text-[10px] font-bold uppercase tracking-wider opacity-80">
+                            Compatibilité
                           </div>
-                        ))}
+                          <div className="text-2xl font-black tabular-nums">
+                            {result.compatibilityScore}
+                            <span className="text-base">%</span>
+                          </div>
+                        </div>
+                        <div className="rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-center">
+                          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            À partir de
+                          </div>
+                          <div className="text-2xl font-black tabular-nums text-slate-900">
+                            {priceLabel}
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="flex flex-wrap gap-2 mb-6 justify-center">
-                        {result.platform.badges?.slice(0, 3).map((tag) => (
-                          <Badge key={tag} variant="secondary" className="text-xs">
-                            {tag}
-                          </Badge>
+                      {/* Raisons */}
+                      <ul className="space-y-2 mb-5 flex-1">
+                        {result.reasons.map((reason, i) => (
+                          <li
+                            key={i}
+                            className="flex items-start gap-2 text-sm text-slate-700"
+                          >
+                            <span className="flex-shrink-0 mt-0.5 w-4 h-4 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center">
+                              <svg
+                                className="w-2.5 h-2.5"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M5 13l4 4L19 7"
+                                />
+                              </svg>
+                            </span>
+                            <span>{reason}</span>
+                          </li>
                         ))}
+                      </ul>
+
+                      {/* Badges */}
+                      {result.platform.badges &&
+                        result.platform.badges.length > 0 && (
+                          <div className="flex flex-wrap gap-1.5 mb-5">
+                            {result.platform.badges.slice(0, 3).map((tag) => (
+                              <span
+                                key={tag}
+                                className={`text-[10px] font-semibold px-2 py-1 rounded-full ${style.pillBg}`}
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+
+                      {/* CTAs */}
+                      <div className="space-y-2 mt-auto">
+                        <AffiliateLink
+                          href={result.platform.affiliateUrl}
+                          platformName={result.platform.name}
+                          platformSlug={result.platform.slug}
+                          source={isWinner ? "quiz-podium" : "quiz-details"}
+                          variant="button-primary"
+                          size="md"
+                          fullWidth
+                        >
+                          {getCtaLabel(result.platform.pricing)}
+                          <ExternalLink size={14} />
+                        </AffiliateLink>
+                        <a
+                          href={`/crm/${result.platform.slug}`}
+                          className="block text-center px-4 py-2 text-sm text-violet-700 font-semibold hover:text-violet-800 hover:bg-violet-50 rounded-xl transition-colors"
+                        >
+                          Voir la fiche complète
+                          <ArrowRight className="inline ml-1" size={14} />
+                        </a>
                       </div>
                     </div>
-
-                    <div className="p-6 flex flex-col gap-3 flex-grow justify-end border-t">
-                      <AffiliateLink
-                        href={result.platform.affiliateUrl}
-                        platformName={result.platform.name}
-                        platformSlug={result.platform.slug}
-                        source={displayIndex === 0 ? "quiz-podium" : "quiz-details"}
-                        variant="button-primary"
-                        size="md"
-                        fullWidth
-                      >
-                        Essayer {result.platform.name}
-                        <ExternalLink size={16} />
-                      </AffiliateLink>
-
-                      <a
-                        href={`/crm/${result.platform.slug}`}
-                        className="block text-center px-4 py-2 text-violet-600 font-medium hover:text-violet-700 border border-violet-200 rounded-lg transition-colors"
-                      >
-                        Voir les détails
-                        <ArrowRight className="inline ml-2" size={16} />
-                      </a>
-                    </div>
-                  </div>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
 
-        <div className="text-center">
-          <p className="text-gray-600 mb-4">
-            Ces recommandations ne vous conviennent pas ?
-          </p>
-          <a
-            href="/comparateur"
-            className="text-violet-600 font-medium hover:text-violet-700 inline-flex items-center gap-2"
-          >
-            Voir tous les CRM
-            <ArrowRight size={16} />
-          </a>
+          {/* Footer */}
+          <div className="text-center bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 max-w-2xl mx-auto">
+            <p className="text-slate-600 mb-3">
+              Ces recommandations ne vous conviennent pas ?
+            </p>
+            <a
+              href="/comparateur"
+              className="inline-flex items-center gap-2 text-violet-600 hover:text-violet-700 font-semibold"
+            >
+              Explorer les 27 CRM du comparateur
+              <ArrowRight size={16} />
+            </a>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
-}
-
-function getPodiumBackground(position: number): string {
-  switch (position) {
-    case 0:
-      return "bg-gradient-to-br from-yellow-50 to-yellow-100 border-2 border-yellow-200";
-    case 1:
-      return "bg-gradient-to-br from-gray-100 to-gray-200 border-2 border-gray-300";
-    case 2:
-      return "bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-200";
-    default:
-      return "bg-white";
-  }
 }
 
 // Helper function to validate if step is complete
