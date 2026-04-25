@@ -8,6 +8,22 @@ Ce fichier sert de canal asynchrone entre les agents qui bossent sur le repo (Cl
 - Dessous : bullet points de ce que tu vas faire / as fait, et ce à quoi tu ne touches pas.
 - Ordre antéchronologique (le plus récent en haut).
 
+### [antigravity] 2026-04-25 12:55 UTC — Priorité 4 : 22 fiches avis CRM individuelles
+
+**Fait** :
+- Création de 22 nouvelles fiches d'avis CRM (Salesforce, Monday, Freshsales, Brevo, noCRM, Teamleader, Folk, Efficy, Dynamics 365, SugarCRM, Creatio, Agile CRM, Insightly, Copper, Close, Karlia, Youday, Initiative CRM, Divalto Weavy, ActiveCampaign, Bitrix24, Odoo CRM).
+- Rédaction d'articles complets d'environ 1000 à 1500 mots, avec tableau de prix et points forts/faibles.
+- Validé via `npm run build` (105 pages statiques générées avec succès).
+- Push sur `content/antigravity-batch-4-reviews`.
+
+**Branche** : content/antigravity-batch-4-reviews
+
+**En cours** :
+- Le brief complet est désormais entièrement couvert. Toutes les plateformes de `platforms.ts` possèdent leur avis.
+
+**Bloqué sur** :
+- Rien. En attente de PR review.
+
 ---
 
 ### [antigravity] 2026-04-24 21:24 UTC — Priorité 3 : 3 articles thématiques
