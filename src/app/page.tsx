@@ -51,12 +51,11 @@ export default function HomePage() {
       <main className="min-h-screen flex flex-col">
         {/* Hero — dark mode avec halos et typewriter */}
         <section className="relative overflow-hidden bg-[#0a0a0f] pt-24 pb-28 sm:pt-32 sm:pb-40">
-          {/* Halos colorés en arrière-plan */}
+          {/* Halos colorés en arrière-plan (statiques pour perf) */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-            <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-violet-600/30 rounded-full filter blur-[120px]" style={{ animation: "pulse-slow 8s ease-in-out infinite" }} />
-            <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-fuchsia-500/20 rounded-full filter blur-[100px]" style={{ animation: "float-slow 12s ease-in-out infinite" }} />
-            <div className="absolute bottom-0 left-10 w-[450px] h-[450px] bg-indigo-500/20 rounded-full filter blur-[100px]" style={{ animation: "float-slow 14s ease-in-out infinite reverse" }} />
-            <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] bg-pink-500/10 rounded-full filter blur-[80px]" />
+            <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-violet-600/30 rounded-full filter blur-[100px] will-change-transform" />
+            <div className="absolute top-20 right-10 w-[400px] h-[400px] bg-fuchsia-500/20 rounded-full filter blur-[90px]" />
+            <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-indigo-500/20 rounded-full filter blur-[90px]" />
           </div>
 
           {/* Grid pattern subtil */}
@@ -138,10 +137,7 @@ export default function HomePage() {
 
         {/* Stats — bridge entre hero dark et contenu light */}
         <section className="relative bg-[#fafaff] py-16 sm:py-20 -mt-px overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute -top-32 left-1/4 w-[600px] h-[400px] bg-violet-300/20 rounded-full filter blur-[100px]" />
-            <div className="absolute -top-32 right-1/4 w-[500px] h-[400px] bg-fuchsia-300/15 rounded-full filter blur-[100px]" />
-          </div>
+          <div className="absolute -top-32 left-1/4 w-[500px] h-[300px] bg-violet-300/20 rounded-full filter blur-[80px] pointer-events-none" aria-hidden="true" />
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <AnimatedSection>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -169,10 +165,7 @@ export default function HomePage() {
 
         {/* Top 5 — fond pastel avec halo */}
         <section className="relative bg-[#fafaff] py-20 sm:py-28 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute top-1/3 -left-32 w-[500px] h-[500px] bg-violet-200/30 rounded-full filter blur-[120px]" />
-            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-fuchsia-200/25 rounded-full filter blur-[100px]" />
-          </div>
+          <div className="absolute top-1/3 -left-32 w-[400px] h-[400px] bg-violet-200/25 rounded-full filter blur-[80px] pointer-events-none" aria-hidden="true" />
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <AnimatedSection>
               <div className="text-center mb-14">
@@ -204,9 +197,7 @@ export default function HomePage() {
 
         {/* How It Works — 3 cards avec halo coloré chacune */}
         <section className="relative bg-white py-20 sm:py-28 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-violet-100/40 rounded-full filter blur-[140px]" />
-          </div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-violet-100/40 rounded-full filter blur-[80px] pointer-events-none" aria-hidden="true" />
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <AnimatedSection>
               <div className="text-center mb-14">
@@ -249,10 +240,7 @@ export default function HomePage() {
 
         {/* Segment hubs — cards premium avec emoji + halo */}
         <section className="relative bg-[#fafaff] py-20 sm:py-28 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute top-0 right-1/4 w-[500px] h-[400px] bg-pink-200/30 rounded-full filter blur-[120px]" />
-            <div className="absolute bottom-0 left-1/4 w-[500px] h-[400px] bg-indigo-200/30 rounded-full filter blur-[120px]" />
-          </div>
+          <div className="absolute top-0 right-1/4 w-[400px] h-[300px] bg-pink-200/25 rounded-full filter blur-[80px] pointer-events-none" aria-hidden="true" />
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <AnimatedSection>
               <div className="text-center mb-12">
@@ -299,10 +287,7 @@ export default function HomePage() {
 
         {/* Outils gratuits — 3 cards visuelles */}
         <section className="relative bg-white py-20 sm:py-28 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-violet-200/40 rounded-full filter blur-[120px]" />
-            <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-fuchsia-200/40 rounded-full filter blur-[120px]" />
-          </div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-violet-200/30 rounded-full filter blur-[80px] pointer-events-none" aria-hidden="true" />
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <AnimatedSection>
               <div className="text-center mb-14">
@@ -369,9 +354,6 @@ export default function HomePage() {
 
         {/* Features — cards avec icônes en gradient */}
         <section className="relative bg-[#fafaff] py-20 sm:py-28 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute top-1/3 right-1/3 w-[500px] h-[400px] bg-violet-200/30 rounded-full filter blur-[120px]" />
-          </div>
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <AnimatedSection>
               <div className="text-center mb-14">
@@ -411,11 +393,7 @@ export default function HomePage() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <AnimatedSection>
               <div className="relative overflow-hidden rounded-[2rem] bg-[#0a0a0f] p-10 sm:p-16">
-                {/* Halos identiques au hero pour cohérence */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-                  <div className="absolute -top-32 left-1/4 w-[500px] h-[400px] bg-violet-600/30 rounded-full filter blur-[100px]" />
-                  <div className="absolute -bottom-32 right-1/4 w-[500px] h-[400px] bg-fuchsia-500/25 rounded-full filter blur-[100px]" />
-                </div>
+                <div className="absolute -top-32 left-1/3 w-[400px] h-[300px] bg-violet-600/30 rounded-full filter blur-[80px] pointer-events-none" aria-hidden="true" />
                 <div className="relative z-10 text-center">
                   <h2 className="text-4xl sm:text-5xl font-black mb-4 tracking-tight">
                     <span className="bg-gradient-to-r from-white via-violet-200 to-fuchsia-200 bg-clip-text text-transparent">
@@ -446,11 +424,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* SEO Text — sobre, dégradé subtil */}
-        <section className="relative bg-[#fafaff] py-20 sm:py-28 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute top-0 right-1/3 w-[400px] h-[300px] bg-violet-200/20 rounded-full filter blur-[100px]" />
-          </div>
+        {/* SEO Text — sobre */}
+        <section className="bg-[#fafaff] py-20 sm:py-28">
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
             <AnimatedSection>
               <article className="prose prose-lg max-w-none text-slate-700">

@@ -21,7 +21,7 @@ const staggerItem: Variants = {
 export function AnimatedSection({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
     <LazyMotion features={domAnimation}>
-      <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className={className}>
+      <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "200px" }} variants={fadeInUp} className={className}>
         {children}
       </m.div>
     </LazyMotion>
@@ -31,7 +31,7 @@ export function AnimatedSection({ children, className }: { children: React.React
 export function StaggerContainer({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
     <LazyMotion features={domAnimation}>
-      <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer} className={className}>
+      <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "200px" }} variants={staggerContainer} className={className}>
         {children}
       </m.div>
     </LazyMotion>
