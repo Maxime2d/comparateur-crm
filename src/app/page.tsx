@@ -10,6 +10,7 @@ import { getTopPlatforms } from "@/lib/platforms";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
 import { ArrowRight, CheckCircle2, Zap, BarChart3, Smartphone, Mail, Workflow, MessageSquare, Sparkles, Flag, Gift, Store, Rocket, User, Code, Calculator, Target, Euro } from "lucide-react";
 import { TypewriterText } from "@/components/ui/typewriter-text";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 export const metadata: Metadata = {
   title: `${SITE_NAME} - Comparez les meilleurs logiciels CRM en 2026`,
@@ -305,56 +306,56 @@ export default function HomePage() {
                 <p className="text-lg text-slate-600">Calculateur ROI, quiz personnalisé, comparateur de tarifs</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[
-                  {
-                    href: "/outils/calculateur-roi-crm",
-                    Icon: Calculator,
-                    title: "Calculateur ROI",
-                    description: "Estimez en 30 secondes le gain de CA et le break-even d'un projet CRM.",
-                    gradient: "from-violet-500 to-fuchsia-500",
-                    glow: "from-violet-500/20 to-fuchsia-500/20",
-                  },
-                  {
-                    href: "/quiz",
-                    Icon: Target,
-                    title: "Quiz CRM",
-                    description: "8 questions, 3 CRM recommandés pour votre profil en 2 minutes.",
-                    gradient: "from-fuchsia-500 to-pink-500",
-                    glow: "from-fuchsia-500/20 to-pink-500/20",
-                  },
-                  {
-                    href: "/tarifs",
-                    Icon: Euro,
-                    title: "Comparateur de tarifs",
-                    description: "Tableau interactif des prix de 27 CRM, filtrable par plan gratuit.",
-                    gradient: "from-pink-500 to-violet-500",
-                    glow: "from-pink-500/20 to-violet-500/20",
-                  },
-                ].map((t) => {
+                {(
+                  [
+                    {
+                      href: "/outils/calculateur-roi-crm",
+                      Icon: Calculator,
+                      title: "Calculateur ROI",
+                      description: "Estimez en 30 secondes le gain de CA et le break-even d'un projet CRM.",
+                      gradient: "from-violet-500 to-fuchsia-500",
+                      glowColor: "violet" as const,
+                    },
+                    {
+                      href: "/quiz",
+                      Icon: Target,
+                      title: "Quiz CRM",
+                      description: "8 questions, 3 CRM recommandés pour votre profil en 2 minutes.",
+                      gradient: "from-fuchsia-500 to-pink-500",
+                      glowColor: "fuchsia" as const,
+                    },
+                    {
+                      href: "/tarifs",
+                      Icon: Euro,
+                      title: "Comparateur de tarifs",
+                      description: "Tableau interactif des prix de 27 CRM, filtrable par plan gratuit.",
+                      gradient: "from-pink-500 to-violet-500",
+                      glowColor: "pink" as const,
+                    },
+                  ]
+                ).map((t) => {
                   const ToolIcon = t.Icon;
                   return (
-                    <Link
-                      key={t.href}
-                      href={t.href}
-                      className="group relative bg-white rounded-3xl border border-slate-200/80 p-8 hover:border-violet-300 transition-all overflow-hidden"
-                    >
-                      <div
-                        className={`absolute -top-20 -right-20 w-56 h-56 bg-gradient-to-br ${t.glow} rounded-full filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity`}
-                        aria-hidden="true"
-                      />
-                      <div className="relative">
-                        <div className={`mb-5 w-14 h-14 rounded-2xl bg-gradient-to-br ${t.gradient} text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
+                    <Link key={t.href} href={t.href} className="group block">
+                      <GlowCard
+                        glowColor={t.glowColor}
+                        customSize
+                        className="!p-7 h-full !grid-rows-[auto_1fr_auto] !gap-3 transition-transform group-hover:-translate-y-0.5"
+                      >
+                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${t.gradient} text-white flex items-center justify-center shadow-lg`}>
                           <ToolIcon size={26} />
                         </div>
-                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-violet-700 mb-2 transition-colors">
-                          {t.title}
-                        </h3>
-                        <p className="text-slate-600 text-sm leading-relaxed mb-4">{t.description}</p>
+                        <div>
+                          <h3 className="text-xl font-bold text-slate-900 mb-2">
+                            {t.title}
+                          </h3>
+                          <p className="text-slate-600 text-sm leading-relaxed">{t.description}</p>
+                        </div>
                         <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-600 group-hover:gap-2.5 transition-all">
                           Y aller
                           <ArrowRight size={14} />
                         </div>
-                      </div>
+                      </GlowCard>
                     </Link>
                   );
                 })}
