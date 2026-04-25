@@ -16,6 +16,10 @@ import { COMPANY_SIZES, CRM_FEATURE_LABELS } from "@/lib/constants";
 import { CompanySize } from "@/types/platform";
 import { PlatformCard } from "@/components/platform/platform-card";
 import { Button } from "@/components/ui/button";
+import { CompareBar } from "./compare-bar";
+import { CompareDrawer } from "./compare-drawer";
+
+const MAX_COMPARE = 3;
 
 export function ComparateurClient() {
   // Filter states
@@ -30,6 +34,35 @@ export function ComparateurClient() {
   const [freeOnly, setFreeOnly] = useState(false);
   const [mobileApp, setMobileApp] = useState(false);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
+
+  // Compare states
+  const [compareSlugs, setCompareSlugs] = useState<string[]>([]);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const compareSelected = useMemo(
+    () =>
+      compareSlugs
+        .map((slug) => platforms.find((p) => p.slug === slug))
+        .filter((p): p is (typeof platforms)[number] => Boolean(p)),
+    [compareSlugs],
+  );
+
+  const toggleCompare = (slug: string) => {
+    setCompareSlugs((prev) => {
+      if (prev.includes(slug)) return prev.filter((s) => s !== slug);
+      if (prev.length >= MAX_COMPARE) return prev;
+      return [...prev, slug];
+    });
+  };
+
+  const removeFromCompare = (slug: string) => {
+    setCompareSlugs((prev) => prev.filter((s) => s !== slug));
+  };
+
+  const clearCompare = () => {
+    setCompareSlugs([]);
+    setDrawerOpen(false);
+  };
 
   const filteredPlatforms = useMemo(() => {
     let result = [...platforms];
@@ -164,7 +197,7 @@ export function ComparateurClient() {
       </section>
 
       {/* Body */}
-      <section className="relative bg-[#fafaff] flex-1 pt-8 pb-20 overflow-hidden">
+      <section className="relative bg-[#fafaff] flex-1 pt-8 pb-32 overflow-hidden">
         <div
           className="absolute top-1/2 -left-32 w-[400px] h-[400px] bg-violet-200/20 rounded-full filter blur-[80px] pointer-events-none"
           aria-hidden="true"
@@ -432,6 +465,10 @@ export function ComparateurClient() {
                   <PlatformCard
                     platform={platform}
                     rank={sortBy === "score" ? index + 1 : undefined}
+                    isSelectable
+                    isSelected={compareSlugs.includes(platform.slug)}
+                    selectionDisabled={compareSlugs.length >= MAX_COMPARE}
+                    onToggleSelect={toggleCompare}
                   />
                 </motion.div>
               ))}
@@ -456,6 +493,23 @@ export function ComparateurClient() {
           )}
         </div>
       </section>
+
+      {/* Sticky compare bar */}
+      <CompareBar
+        selected={compareSelected}
+        max={MAX_COMPARE}
+        onRemove={removeFromCompare}
+        onClear={clearCompare}
+        onOpen={() => setDrawerOpen(true)}
+      />
+
+      {/* Compare drawer */}
+      <CompareDrawer
+        platforms={compareSelected}
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        onRemove={removeFromCompare}
+      />
     </div>
   );
 }

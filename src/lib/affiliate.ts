@@ -33,7 +33,8 @@ export type AffiliateSource =
   | "guide-cta"
   | "vs-page"
   | "vs-verdict"
-  | "related-crm";
+  | "related-crm"
+  | "compare-drawer";
 
 // ─── Provider mapping ────────────────────────────────────────────────
 // Progressive enhancement: when a real affiliate ID becomes available
