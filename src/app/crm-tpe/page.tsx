@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Briefcase, Coins, Settings } from "lucide-react";
+import { Briefcase, Coins, Settings, Store } from "lucide-react";
 import { platforms } from "@/lib/platforms";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
@@ -57,10 +57,12 @@ export default function CrmTpePage() {
       />
 
       <SegmentHub
-        segmentLabel="Pour TPE 1-10 salariés"
+        segmentLabel="TPE"
+        segmentIcon={Store}
         breadcrumbName="CRM TPE"
         breadcrumbHref="/crm-tpe"
-        pageTitle={`Top ${tpePlatforms.length} CRM pour TPE et petites entreprises en 2026`}
+        pageTitle="Top 8 CRM pour TPE et petites entreprises en 2026"
+        highlight="TPE"
         intro="Notre sélection des CRM adaptés aux TPE françaises de 1 à 10 salariés : simples, abordables, opérationnels en 2 semaines, avec support en français."
         prosCards={[
           {

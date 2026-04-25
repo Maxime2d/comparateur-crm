@@ -4,6 +4,7 @@ import { ChevronRight, Calculator, Sparkles } from "lucide-react";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { RoiCalculator } from "@/components/outils/roi-calculator";
+import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
   title: "Calculateur ROI CRM gratuit 2026 : estimez le retour sur investissement",
@@ -42,7 +43,15 @@ export default function CalculateurRoiPage() {
         }}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pb-20">
+      <PageHero
+        eyebrow="Outil gratuit"
+        eyebrowIcon={Calculator}
+        title="Calculateur ROI CRM"
+        highlight="ROI CRM"
+        subtitle="Estimez en 30 secondes le retour sur investissement de votre projet CRM, sans inscription. Gain de chiffre d'affaires, ROI annuel, break-even."
+      />
+
+      <div className="bg-[#fafaff] pb-20">
         <div className="max-w-6xl mx-auto px-4 pt-6">
           <nav aria-label="Fil d'Ariane" className="text-sm text-slate-500 mb-6">
             <ol className="flex flex-wrap items-center gap-1.5">
@@ -61,21 +70,6 @@ export default function CalculateurRoiPage() {
               <li className="text-slate-900 font-medium">Calculateur ROI CRM</li>
             </ol>
           </nav>
-
-          <header className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 rounded-full bg-violet-100 text-violet-700 text-sm font-semibold px-4 py-1.5 mb-4">
-              <Calculator size={14} />
-              Outil gratuit
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
-              Calculateur ROI CRM
-            </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Estimez en 30 secondes le retour sur investissement de votre projet
-              CRM, sans inscription. Gain de chiffre d&apos;affaires, ROI annuel,
-              break-even.
-            </p>
-          </header>
 
           <RoiCalculator />
 

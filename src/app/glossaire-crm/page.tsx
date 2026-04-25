@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ChevronRight, BookOpen } from "lucide-react";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
+import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
   title: "Glossaire CRM 2026 : tous les termes expliqués simplement",
@@ -221,7 +222,15 @@ export default function GlossairePage() {
         }}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pb-20">
+      <PageHero
+        eyebrow="Glossaire"
+        eyebrowIcon={BookOpen}
+        title="Glossaire CRM 2026"
+        highlight="2026"
+        subtitle="Le dictionnaire complet des termes de la gestion de la relation client. Définitions claires, exemples concrets, et lien vers les CRM concernés."
+      />
+
+      <div className="bg-[#fafaff] pb-20">
         <div className="max-w-4xl mx-auto px-4 pt-6">
           <nav aria-label="Fil d'Ariane" className="text-sm text-slate-500 mb-6">
             <ol className="flex flex-wrap items-center gap-1.5">
@@ -234,20 +243,6 @@ export default function GlossairePage() {
               <li className="text-slate-900 font-medium">Glossaire CRM</li>
             </ol>
           </nav>
-
-          <header className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 rounded-full bg-violet-100 text-violet-700 text-sm font-semibold px-4 py-1.5 mb-4">
-              <BookOpen size={14} />
-              {terms.length} termes décodés
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
-              Glossaire CRM 2026
-            </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Le dictionnaire complet des termes de la gestion de la relation client.
-              Définitions claires, exemples concrets, et lien vers les CRM concernés.
-            </p>
-          </header>
 
           {/* Index alphabétique */}
           <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-8">

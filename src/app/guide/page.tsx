@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Clock, ArrowRight, BookOpen } from "lucide-react";
 import { getAllGuidesFrontmatter } from "@/lib/mdx";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
+import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
   title: "Guides CRM : méthodes, bonnes pratiques et tutoriels",
@@ -22,21 +23,17 @@ export default function GuidesIndexPage() {
   const guides = getAllGuidesFrontmatter();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12">
-      <div className="max-w-5xl mx-auto px-4">
-        <header className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full bg-violet-100 text-violet-700 text-sm font-semibold px-4 py-1.5 mb-4">
-            <BookOpen size={14} />
-            Guides pratiques
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
-            Tout comprendre aux logiciels CRM
-          </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Guides complets pour choisir, déployer et réussir l&apos;adoption de
-            votre CRM.
-          </p>
-        </header>
+    <>
+      <PageHero
+        eyebrow="Guide complet"
+        eyebrowIcon={BookOpen}
+        title="Tout comprendre aux logiciels CRM"
+        highlight="logiciels CRM"
+        subtitle="Guides complets pour choisir, déployer et réussir l'adoption de votre CRM."
+      />
+
+      <div className="bg-[#fafaff] py-12">
+        <div className="max-w-5xl mx-auto px-4">
 
         {guides.length === 0 ? (
           <p className="text-center text-slate-500">
@@ -76,7 +73,8 @@ export default function GuidesIndexPage() {
             ))}
           </div>
         )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

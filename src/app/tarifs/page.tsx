@@ -4,6 +4,7 @@ import { ChevronRight, Euro, Info } from "lucide-react";
 import { platforms } from "@/lib/platforms";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
+import { PageHero } from "@/components/layout/page-hero";
 import { TarifsClient } from "@/components/tarifs/tarifs-client";
 
 export const metadata: Metadata = {
@@ -73,7 +74,15 @@ export default function TarifsPage() {
         }}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pb-20">
+      <PageHero
+        eyebrow="Édition 2026"
+        eyebrowIcon={Euro}
+        title="Tarifs CRM : comparez les prix de tous les logiciels"
+        highlight="comparez les prix"
+        subtitle="Prix d'entrée, plans gratuits, essais : trouvez le CRM qui correspond à votre budget. Tarifs publics mis à jour en 2026."
+      />
+
+      <div className="bg-[#fafaff] pb-20">
         <div className="max-w-6xl mx-auto px-4 pt-6">
           <nav aria-label="Fil d'Ariane" className="text-sm text-slate-500 mb-6">
             <ol className="flex flex-wrap items-center gap-1.5">
@@ -86,21 +95,6 @@ export default function TarifsPage() {
               <li className="text-slate-900 font-medium">Tarifs</li>
             </ol>
           </nav>
-
-          {/* Hero */}
-          <header className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 rounded-full bg-violet-100 text-violet-700 text-sm font-semibold px-4 py-1.5 mb-4">
-              <Euro size={14} />
-              Prix à jour avril 2026
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
-              Tarifs CRM : comparez les prix de {platforms.length} logiciels
-            </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Prix d&apos;entrée, plans gratuits, essais : trouvez le CRM qui
-              correspond à votre budget. Tarifs publics mis à jour en 2026.
-            </p>
-          </header>
 
           {/* Key stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">

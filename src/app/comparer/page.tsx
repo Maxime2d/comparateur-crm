@@ -4,6 +4,7 @@ import { ArrowRight, Scale } from "lucide-react";
 import { getAllComparisonsFrontmatter } from "@/lib/mdx";
 import { getPlatformBySlug } from "@/lib/platforms";
 import { SITE_URL } from "@/lib/constants";
+import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
   title: "Comparaisons CRM : comparatifs 1:1 entre logiciels CRM",
@@ -16,21 +17,17 @@ export default function ComparisonsIndexPage() {
   const comparisons = getAllComparisonsFrontmatter();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12">
-      <div className="max-w-5xl mx-auto px-4">
-        <header className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full bg-violet-100 text-violet-700 text-sm font-semibold px-4 py-1.5 mb-4">
-            <Scale size={14} />
-            Comparaisons 1:1
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
-            Quel CRM choisir ? Nos comparatifs face-à-face
-          </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Feature par feature, prix par prix. Nos comparatifs pour trancher
-            entre deux logiciels CRM.
-          </p>
-        </header>
+    <>
+      <PageHero
+        eyebrow="Face-à-face"
+        eyebrowIcon={Scale}
+        title="Quel CRM choisir ? Nos comparatifs face-à-face"
+        highlight="face-à-face"
+        subtitle="Feature par feature, prix par prix. Nos comparatifs pour trancher entre deux logiciels CRM."
+      />
+
+      <div className="bg-[#fafaff] py-12">
+        <div className="max-w-5xl mx-auto px-4">
 
         {comparisons.length === 0 ? (
           <p className="text-center text-slate-500">
@@ -74,7 +71,8 @@ export default function ComparisonsIndexPage() {
             })}
           </div>
         )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

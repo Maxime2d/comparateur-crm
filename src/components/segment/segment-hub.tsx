@@ -1,15 +1,19 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import type { Platform } from "@/types/platform";
+import type { ElementType } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ScoreBadge } from "@/components/ui/score-badge";
 import { PlatformLogo } from "@/components/shared/platform-logo";
 import { AffiliateLink } from "@/components/shared/affiliate-link";
 import { formatPrice, getCtaLabel } from "@/lib/utils";
+import { PageHero } from "@/components/layout/page-hero";
 
 interface SegmentHubProps {
   segmentLabel: string;
+  segmentIcon?: ElementType;
   pageTitle: string;
+  highlight?: string;
   intro: string;
   prosCards: { icon: React.ReactNode; title: string; text: string }[];
   platforms: Platform[];
@@ -24,7 +28,9 @@ interface SegmentHubProps {
  */
 export function SegmentHub({
   segmentLabel,
+  segmentIcon,
   pageTitle,
+  highlight,
   intro,
   prosCards,
   platforms,
@@ -32,32 +38,31 @@ export function SegmentHub({
   breadcrumbName,
 }: SegmentHubProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pb-20">
-      <div className="max-w-5xl mx-auto px-4 pt-6">
-        <nav aria-label="Fil d'Ariane" className="text-sm text-slate-500 mb-6">
-          <ol className="flex flex-wrap items-center gap-1.5">
-            <li>
-              <Link href="/" className="hover:text-violet-600">
-                Accueil
-              </Link>
-            </li>
-            <ChevronRight size={14} className="text-slate-400" />
-            <li className="text-slate-900 font-medium">{breadcrumbName}</li>
-          </ol>
-        </nav>
+    <>
+      <PageHero
+        eyebrow={segmentLabel}
+        eyebrowIcon={segmentIcon}
+        title={pageTitle}
+        highlight={highlight}
+        subtitle={intro}
+      />
 
-        <header className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full bg-violet-100 text-violet-700 text-sm font-semibold px-4 py-1.5 mb-4">
-            {segmentLabel}
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
-            {pageTitle}
-          </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">{intro}</p>
-        </header>
+      <div className="bg-[#fafaff] pb-20">
+        <div className="max-w-5xl mx-auto px-4 pt-6">
+          <nav aria-label="Fil d'Ariane" className="text-sm text-slate-500 mb-6">
+            <ol className="flex flex-wrap items-center gap-1.5">
+              <li>
+                <Link href="/" className="hover:text-violet-600">
+                  Accueil
+                </Link>
+              </li>
+              <ChevronRight size={14} className="text-slate-400" />
+              <li className="text-slate-900 font-medium">{breadcrumbName}</li>
+            </ol>
+          </nav>
 
-        {prosCards.length > 0 && (
-          <section className="mb-12 grid grid-cols-1 md:grid-cols-3 gap-4">
+          {prosCards.length > 0 && (
+            <section className="mb-12 grid grid-cols-1 md:grid-cols-3 gap-4">
             {prosCards.map((c, i) => (
               <div
                 key={i}
@@ -70,10 +75,10 @@ export function SegmentHub({
                 </p>
               </div>
             ))}
-          </section>
-        )}
+            </section>
+          )}
 
-        <section className="space-y-4 mb-12">
+          <section className="space-y-4 mb-12">
           {platforms.map((p, i) => (
             <article
               key={p.slug}
@@ -147,13 +152,13 @@ export function SegmentHub({
               </div>
             </article>
           ))}
-        </section>
+          </section>
 
-        <section className="mb-12 bg-white rounded-2xl border border-slate-200 p-8">
+          <section className="mb-12 bg-white rounded-2xl border border-slate-200 p-8">
           {longProse}
-        </section>
+          </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Link
             href="/comparateur"
             className="group rounded-xl border border-slate-200 bg-white p-6 hover:border-violet-300 hover:shadow-md transition-all"
@@ -184,9 +189,10 @@ export function SegmentHub({
               Notre méthodologie
             </h3>
             <p className="text-sm text-slate-600">Comment nous notons.</p>
-          </Link>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

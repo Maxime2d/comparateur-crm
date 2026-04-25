@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ChevronRight, Users, Mail, Sparkles, Target } from "lucide-react";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
+import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
   title: "À propos : qui est derrière Comparateur CRM",
@@ -45,7 +46,15 @@ export default function AProposPage() {
         }}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pb-20">
+      <PageHero
+        eyebrow="Qui sommes-nous"
+        eyebrowIcon={Users}
+        title="L'équipe derrière Comparateur CRM"
+        highlight="Comparateur CRM"
+        subtitle="Un comparateur indépendant, pensé pour aider les TPE et PME françaises à choisir le bon logiciel CRM sans perdre des semaines en recherche."
+      />
+
+      <div className="bg-[#fafaff] pb-20">
         <div className="max-w-3xl mx-auto px-4 pt-6">
           <nav aria-label="Fil d'Ariane" className="text-sm text-slate-500 mb-6">
             <ol className="flex flex-wrap items-center gap-1.5">
@@ -58,20 +67,6 @@ export default function AProposPage() {
               <li className="text-slate-900 font-medium">À propos</li>
             </ol>
           </nav>
-
-          <header className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 rounded-full bg-violet-100 text-violet-700 text-sm font-semibold px-4 py-1.5 mb-4">
-              <Users size={14} />
-              Qui sommes-nous
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
-              L&apos;équipe derrière Comparateur CRM
-            </h1>
-            <p className="text-lg text-slate-600">
-              Un comparateur indépendant, pensé pour aider les TPE et PME françaises
-              à choisir le bon logiciel CRM sans perdre des semaines en recherche.
-            </p>
-          </header>
 
           <article className="bg-white rounded-2xl border border-slate-200 p-6 md:p-10 prose prose-slate max-w-none">
             <h2 className="text-2xl font-bold text-slate-900 mt-0 mb-4 flex items-center gap-2">

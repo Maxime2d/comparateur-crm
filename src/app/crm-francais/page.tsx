@@ -9,6 +9,7 @@ import { AffiliateLink } from "@/components/shared/affiliate-link";
 import { Badge } from "@/components/ui/badge";
 import { ScoreBadge } from "@/components/ui/score-badge";
 import { formatPrice, getCtaLabel } from "@/lib/utils";
+import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
   title: "Meilleur CRM français 2026 : Top 8 des logiciels CRM made in France",
@@ -71,7 +72,15 @@ export default function CrmFrancaisPage() {
         }}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pb-20">
+      <PageHero
+        eyebrow="Made in France"
+        eyebrowIcon={Flag}
+        title="Les meilleur CRM français"
+        highlight="CRM français"
+        subtitle="Hébergement en Union Européenne, support en français, équipes basées en France, conformité RGPD native. Notre sélection des logiciels CRM vraiment made in France."
+      />
+
+      <div className="bg-[#fafaff] pb-20">
         <div className="max-w-5xl mx-auto px-4 pt-6">
           <nav aria-label="Fil d'Ariane" className="text-sm text-slate-500 mb-6">
             <ol className="flex flex-wrap items-center gap-1.5">
@@ -84,21 +93,6 @@ export default function CrmFrancaisPage() {
               <li className="text-slate-900 font-medium">CRM Français</li>
             </ol>
           </nav>
-
-          <header className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 rounded-full bg-violet-100 text-violet-700 text-sm font-semibold px-4 py-1.5 mb-4">
-              <Flag size={14} />
-              Édition 2026
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
-              Les {frenchPlatforms.length} meilleurs CRM français en 2026
-            </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Hébergement en Union Européenne, support en français, équipes basées en
-              France, conformité RGPD native. Notre sélection des logiciels CRM
-              vraiment made in France.
-            </p>
-          </header>
 
           {/* Pourquoi choisir un CRM français */}
           <section className="mb-12 grid grid-cols-1 md:grid-cols-3 gap-4">

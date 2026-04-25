@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRight, Calculator, BookOpen, Scale } from "lucide-react";
+import { ChevronRight, Calculator, BookOpen, Scale, Wrench } from "lucide-react";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
+import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
   title: "Outils gratuits CRM 2026 : calculateurs et diagnostics",
@@ -54,7 +55,15 @@ export default function OutilsPage() {
         ]}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pb-20">
+      <PageHero
+        eyebrow="Outils gratuits"
+        eyebrowIcon={Wrench}
+        title="Outils gratuits pour choisir un CRM"
+        highlight="choisir un CRM"
+        subtitle="Calculateurs, diagnostics et comparateurs pour préparer votre choix. 100% gratuits, sans inscription ni email demandé."
+      />
+
+      <div className="bg-[#fafaff] pb-20">
         <div className="max-w-5xl mx-auto px-4 pt-6">
           <nav aria-label="Fil d'Ariane" className="text-sm text-slate-500 mb-6">
             <ol className="flex flex-wrap items-center gap-1.5">
@@ -67,16 +76,6 @@ export default function OutilsPage() {
               <li className="text-slate-900 font-medium">Outils</li>
             </ol>
           </nav>
-
-          <header className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
-              Outils gratuits pour votre projet CRM
-            </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Calculateurs, diagnostics et comparateurs pour préparer votre choix.
-              100% gratuits, sans inscription ni email demandé.
-            </p>
-          </header>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tools.map((t) => {

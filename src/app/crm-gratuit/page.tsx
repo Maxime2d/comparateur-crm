@@ -4,6 +4,7 @@ import { platforms } from "@/lib/platforms";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { SegmentHub } from "@/components/segment/segment-hub";
+import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
   title: "Meilleur CRM gratuit 2026 : Top des logiciels CRM 100% sans payer",
@@ -59,10 +60,12 @@ export default function CrmGratuitPage() {
       />
 
       <SegmentHub
-        segmentLabel="100% gratuit"
+        segmentLabel="Gratuit"
+        segmentIcon={Gift}
         breadcrumbName="CRM Gratuit"
         breadcrumbHref="/crm-gratuit"
-        pageTitle={`Les ${freePlatforms.length} meilleurs CRM gratuits en 2026`}
+        pageTitle="Les 6 meilleurs CRM gratuits en 2026"
+        highlight="CRM gratuits"
         intro="Plans gratuits permanents, sans carte bancaire, utilisables en production. Notre sélection des CRM qui ne facturent rien et restent puissants."
         prosCards={[
           {

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRight, ChevronDown } from "lucide-react";
+import { ChevronRight, ChevronDown, MessageCircleQuestion } from "lucide-react";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/json-ld";
+import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
   title: "FAQ : tout savoir sur les logiciels CRM en 2026",
@@ -92,7 +93,15 @@ export default function FAQPage() {
       />
       <FAQJsonLd faqs={faqs} />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pb-20">
+      <PageHero
+        eyebrow="Questions fréquentes"
+        eyebrowIcon={MessageCircleQuestion}
+        title="Questions fréquentes sur les logiciels CRM"
+        highlight="logiciels CRM"
+        subtitle="Les 12 questions les plus posées par les TPE et PME françaises sur le choix, le déploiement et l'usage d'un CRM en 2026."
+      />
+
+      <div className="bg-[#fafaff] pb-20">
         <div className="max-w-3xl mx-auto px-4 pt-6">
           <nav aria-label="Fil d'Ariane" className="text-sm text-slate-500 mb-6">
             <ol className="flex flex-wrap items-center gap-1.5">
@@ -105,16 +114,6 @@ export default function FAQPage() {
               <li className="text-slate-900 font-medium">FAQ</li>
             </ol>
           </nav>
-
-          <header className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
-              Questions fréquentes sur les logiciels CRM
-            </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Les 12 questions les plus posées par les TPE et PME françaises sur le
-              choix, le déploiement et l&apos;usage d&apos;un CRM en 2026.
-            </p>
-          </header>
 
           <div className="space-y-3">
             {faqs.map((faq, i) => (

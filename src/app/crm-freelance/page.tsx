@@ -61,10 +61,12 @@ export default function CrmFreelancePage() {
       />
 
       <SegmentHub
-        segmentLabel="Pour freelances & indépendants"
+        segmentLabel="Freelance"
+        segmentIcon={User}
         breadcrumbName="CRM Freelance"
         breadcrumbHref="/crm-freelance"
-        pageTitle={`Top ${freelancePlatforms.length} CRM pour freelances en 2026`}
+        pageTitle="Top 7 CRM pour freelances en 2026"
+        highlight="freelances"
         intro="Notre sélection des CRM pensés pour les freelances et indépendants : focus sur la relation longue, gestion de devis et facturation française, application mobile."
         prosCards={[
           {

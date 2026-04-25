@@ -62,10 +62,12 @@ export default function CrmStartupPage() {
       />
 
       <SegmentHub
-        segmentLabel="Pour startups & scale-ups"
+        segmentLabel="Startup"
+        segmentIcon={Rocket}
         breadcrumbName="CRM Startup"
         breadcrumbHref="/crm-startup"
-        pageTitle={`Top ${startupPlatforms.length} CRM pour startups en 2026`}
+        pageTitle="Top 7 CRM pour startups en 2026"
+        highlight="startups"
         intro="Sélection des CRM adaptés aux startups : modernes, scalables, abordables au démarrage, capables d'accompagner votre croissance jusqu'à 100+ utilisateurs."
         prosCards={[
           {

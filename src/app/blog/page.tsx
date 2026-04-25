@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { Calendar, Clock, ArrowRight, Newspaper } from "lucide-react";
 import { getAllBlogFrontmatter } from "@/lib/mdx";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";
+import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
   title: `Blog CRM : actualités, guides et comparatifs 2026`,
@@ -23,17 +24,17 @@ export default function BlogIndexPage() {
   const posts = getAllBlogFrontmatter();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12">
-      <div className="max-w-5xl mx-auto px-4">
-        <header className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
-            Le blog du Comparateur CRM
-          </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Guides pratiques, comparatifs, et actualités pour choisir, déployer
-            et tirer le maximum de votre logiciel CRM.
-          </p>
-        </header>
+    <>
+      <PageHero
+        eyebrow="Blog"
+        eyebrowIcon={Newspaper}
+        title="Le blog du Comparateur CRM"
+        highlight="Comparateur CRM"
+        subtitle="Guides pratiques, comparatifs, et actualités pour choisir, déployer et tirer le maximum de votre logiciel CRM."
+      />
+
+      <div className="bg-[#fafaff] py-12">
+        <div className="max-w-5xl mx-auto px-4">
 
         {posts.length === 0 ? (
           <p className="text-center text-slate-500">
@@ -85,7 +86,8 @@ export default function BlogIndexPage() {
             ))}
           </div>
         )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
