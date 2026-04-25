@@ -12,7 +12,9 @@ import {
   Smartphone,
   Gift,
   ShieldCheck,
+  Share2,
 } from "lucide-react";
+import { useState } from "react";
 import Link from "next/link";
 
 import { Platform } from "@/types/platform";
@@ -55,6 +57,39 @@ export function CompareDrawer({
   onClose,
   onRemove,
 }: CompareDrawerProps) {
+  const [shareLabel, setShareLabel] = useState<"idle" | "copied" | "error">(
+    "idle",
+  );
+
+  const handleShare = async () => {
+    const url =
+      typeof window !== "undefined"
+        ? `${window.location.origin}/comparateur?compare=${platforms
+            .map((p) => p.slug)
+            .join(",")}`
+        : "";
+    const title = `Comparaison ${platforms.map((p) => p.name).join(" vs ")}`;
+
+    // Web Share API si dispo (mobile)
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        return;
+      } catch {
+        // Utilisateur a annulé - on tombe dans le clipboard
+      }
+    }
+    // Fallback : copy to clipboard
+    try {
+      await navigator.clipboard.writeText(url);
+      setShareLabel("copied");
+      setTimeout(() => setShareLabel("idle"), 2200);
+    } catch {
+      setShareLabel("error");
+      setTimeout(() => setShareLabel("idle"), 2200);
+    }
+  };
+
   // Lock scroll quand ouvert + escape pour fermer
   useEffect(() => {
     if (!open) return;
@@ -126,13 +161,34 @@ export function CompareDrawer({
                   {platforms.length} CRM sélectionnés sur 3 max
                 </p>
               </div>
-              <button
-                onClick={onClose}
-                className="relative z-10 p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors"
-                aria-label="Fermer la comparaison"
-              >
-                <X size={20} />
-              </button>
+              <div className="relative z-10 flex items-center gap-2">
+                <button
+                  onClick={handleShare}
+                  disabled={platforms.length < 2}
+                  className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-semibold transition-all ${
+                    platforms.length >= 2
+                      ? "bg-white/10 hover:bg-white/20 text-white"
+                      : "bg-white/5 text-white/40 cursor-not-allowed"
+                  }`}
+                  aria-label="Partager la comparaison"
+                >
+                  <Share2 size={14} />
+                  <span className="hidden sm:inline">
+                    {shareLabel === "copied"
+                      ? "Lien copié !"
+                      : shareLabel === "error"
+                        ? "Échec"
+                        : "Partager"}
+                  </span>
+                </button>
+                <button
+                  onClick={onClose}
+                  className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors"
+                  aria-label="Fermer la comparaison"
+                >
+                  <X size={20} />
+                </button>
+              </div>
             </div>
 
             {/* Content scrollable */}

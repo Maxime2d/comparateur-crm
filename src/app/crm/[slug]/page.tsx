@@ -33,6 +33,7 @@ import { PlatformLogo } from "@/components/shared/platform-logo";
 import { AffiliateLink } from "@/components/shared/affiliate-link";
 import { formatPrice, getCtaLabel, getScoreColor } from "@/lib/utils";
 import { SCORE_WEIGHTS } from "@/types/platform";
+import { RecentlyViewedTracker } from "@/components/shared/recently-viewed";
 
 export async function generateStaticParams() {
   const slugs = getAllPlatformSlugs();
@@ -133,6 +134,7 @@ export default async function PlatformDetailPage({
           { name: platform.name, href: `/crm/${platform.slug}` },
         ]}
       />
+      <RecentlyViewedTracker slug={platform.slug} />
 
       <div className="min-h-screen bg-[#fafaff] pb-24 md:pb-0">
         {/* Breadcrumb */}

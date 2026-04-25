@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect, useRef, Suspense } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -22,22 +23,117 @@ import { CompareDrawer } from "./compare-drawer";
 const MAX_COMPARE = 3;
 
 export function ComparateurClient() {
+  return (
+    <Suspense fallback={null}>
+      <ComparateurClientInner />
+    </Suspense>
+  );
+}
+
+function ComparateurClientInner() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Hydrate filter state from URL on first mount
+  const initialSizes = useMemo(() => {
+    const raw = searchParams.get("size");
+    return raw
+      ? (raw.split(",").filter(Boolean) as CompanySize[])
+      : ([] as CompanySize[]);
+  }, [searchParams]);
+  const initialSort = useMemo(() => {
+    const raw = searchParams.get("sort");
+    if (raw === "price" || raw === "name" || raw === "score") return raw;
+    return "score" as const;
+  }, [searchParams]);
+  const initialBudget = useMemo<[number, number]>(() => {
+    const raw = searchParams.get("budget");
+    if (raw) {
+      const [a, b] = raw.split("-").map((n) => parseInt(n, 10));
+      if (!isNaN(a) && !isNaN(b)) return [a, b];
+    }
+    return [0, 500];
+  }, [searchParams]);
+  const initialMinScore = useMemo(() => {
+    const raw = searchParams.get("min");
+    const n = raw ? parseFloat(raw) : 0;
+    return isNaN(n) ? 0 : n;
+  }, [searchParams]);
+  const initialFree = searchParams.get("free") === "1";
+  const initialMobile = searchParams.get("mobile") === "1";
+  const initialFeatures = useMemo(() => {
+    const raw = searchParams.get("feat");
+    return raw ? raw.split(",").filter(Boolean) : [];
+  }, [searchParams]);
+  const initialSearch = searchParams.get("q") || "";
+  const initialCompare = useMemo(() => {
+    const raw = searchParams.get("compare");
+    return raw ? raw.split(",").filter(Boolean).slice(0, MAX_COMPARE) : [];
+  }, [searchParams]);
+
   // Filter states
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedSizes, setSelectedSizes] = useState<CompanySize[]>([]);
-  const [sortBy, setSortBy] = useState<"score" | "price" | "name">("score");
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
+  const [selectedSizes, setSelectedSizes] =
+    useState<CompanySize[]>(initialSizes);
+  const [sortBy, setSortBy] = useState<"score" | "price" | "name">(
+    initialSort,
+  );
   const [showAdvanced, setShowAdvanced] = useState(false);
 
   // Advanced filter states
-  const [budgetRange, setBudgetRange] = useState<[number, number]>([0, 500]);
-  const [minScore, setMinScore] = useState(0);
-  const [freeOnly, setFreeOnly] = useState(false);
-  const [mobileApp, setMobileApp] = useState(false);
-  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
+  const [budgetRange, setBudgetRange] = useState<[number, number]>(
+    initialBudget,
+  );
+  const [minScore, setMinScore] = useState(initialMinScore);
+  const [freeOnly, setFreeOnly] = useState(initialFree);
+  const [mobileApp, setMobileApp] = useState(initialMobile);
+  const [selectedFeatures, setSelectedFeatures] =
+    useState<string[]>(initialFeatures);
 
   // Compare states
-  const [compareSlugs, setCompareSlugs] = useState<string[]>([]);
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [compareSlugs, setCompareSlugs] = useState<string[]>(initialCompare);
+  const [drawerOpen, setDrawerOpen] = useState(initialCompare.length >= 2);
+
+  // Sync state to URL (debounced)
+  const isFirstRun = useRef(true);
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+    const params = new URLSearchParams();
+    if (searchQuery) params.set("q", searchQuery);
+    if (selectedSizes.length > 0) params.set("size", selectedSizes.join(","));
+    if (sortBy !== "score") params.set("sort", sortBy);
+    if (budgetRange[0] !== 0 || budgetRange[1] !== 500)
+      params.set("budget", `${budgetRange[0]}-${budgetRange[1]}`);
+    if (minScore > 0) params.set("min", String(minScore));
+    if (freeOnly) params.set("free", "1");
+    if (mobileApp) params.set("mobile", "1");
+    if (selectedFeatures.length > 0)
+      params.set("feat", selectedFeatures.join(","));
+    if (compareSlugs.length > 0)
+      params.set("compare", compareSlugs.join(","));
+    const qs = params.toString();
+    const url = qs ? `${pathname}?${qs}` : pathname;
+    const handle = setTimeout(() => {
+      router.replace(url, { scroll: false });
+    }, 150);
+    return () => clearTimeout(handle);
+  }, [
+    searchQuery,
+    selectedSizes,
+    sortBy,
+    budgetRange,
+    minScore,
+    freeOnly,
+    mobileApp,
+    selectedFeatures,
+    compareSlugs,
+    pathname,
+    router,
+  ]);
 
   const compareSelected = useMemo(
     () =>

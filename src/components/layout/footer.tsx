@@ -2,12 +2,17 @@ import Link from "next/link";
 import { SITE_NAME } from "@/lib/constants";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { NewsletterBlock } from "./newsletter-block";
 
 export function Footer() {
   return (
     <footer className="bg-slate-900 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <div className="py-12 border-b border-slate-800">
+        <div className="py-12">
+          <NewsletterBlock />
+        </div>
+
+        <div className="pb-12 border-b border-slate-800">
           <div className="text-center">
             <h2 className="text-2xl sm:text-3xl font-bold mb-4">Trouvez votre CRM en 2 minutes</h2>
             <p className="text-slate-400 mb-6 max-w-xl mx-auto">Répondez à quelques questions et recevez une recommandation personnalisée parmi les meilleurs logiciels CRM.</p>
