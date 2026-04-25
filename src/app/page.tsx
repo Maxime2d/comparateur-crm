@@ -10,10 +10,11 @@ import { getTopPlatforms } from "@/lib/platforms";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
 import { ArrowRight, CheckCircle2, Zap, BarChart3, Smartphone, Mail, Workflow, MessageSquare, Sparkles, Flag, Gift, Store, Rocket, User, Code, Calculator, Target, Euro } from "lucide-react";
 import { TypewriterText } from "@/components/ui/typewriter-text";
-import { GlowCard } from "@/components/ui/spotlight-card";
 import { Marquee } from "@/components/ui/marquee";
 import { PlatformLogo } from "@/components/shared/platform-logo";
 import { platforms } from "@/lib/platforms";
+import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
+import { LampEffect } from "@/components/ui/lamp-effect";
 
 export const metadata: Metadata = {
   title: `${SITE_NAME} - Comparez les meilleurs logiciels CRM en 2026`,
@@ -337,61 +338,85 @@ export default function HomePage() {
                 </h2>
                 <p className="text-lg text-slate-600">Calculateur ROI, quiz personnalisé, comparateur de tarifs</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {(
-                  [
-                    {
-                      href: "/outils/calculateur-roi-crm",
-                      Icon: Calculator,
-                      title: "Calculateur ROI",
-                      description: "Estimez en 30 secondes le gain de CA et le break-even d'un projet CRM.",
-                      gradient: "from-violet-500 to-fuchsia-500",
-                      glowColor: "violet" as const,
-                    },
-                    {
-                      href: "/quiz",
-                      Icon: Target,
-                      title: "Quiz CRM",
-                      description: "8 questions, 3 CRM recommandés pour votre profil en 2 minutes.",
-                      gradient: "from-fuchsia-500 to-pink-500",
-                      glowColor: "fuchsia" as const,
-                    },
-                    {
-                      href: "/tarifs",
-                      Icon: Euro,
-                      title: "Comparateur de tarifs",
-                      description: "Tableau interactif des prix de 27 CRM, filtrable par plan gratuit.",
-                      gradient: "from-pink-500 to-violet-500",
-                      glowColor: "pink" as const,
-                    },
-                  ]
-                ).map((t) => {
-                  const ToolIcon = t.Icon;
-                  return (
-                    <Link key={t.href} href={t.href} className="group block">
-                      <GlowCard
-                        glowColor={t.glowColor}
-                        customSize
-                        className="!p-7 h-full !grid-rows-[auto_1fr_auto] !gap-3 transition-transform group-hover:-translate-y-0.5"
-                      >
-                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${t.gradient} text-white flex items-center justify-center shadow-lg`}>
-                          <ToolIcon size={26} />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-slate-900 mb-2">
-                            {t.title}
-                          </h3>
-                          <p className="text-slate-600 text-sm leading-relaxed">{t.description}</p>
-                        </div>
-                        <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-600 group-hover:gap-2.5 transition-all">
-                          Y aller
-                          <ArrowRight size={14} />
-                        </div>
-                      </GlowCard>
-                    </Link>
-                  );
-                })}
-              </div>
+              <BentoGrid>
+                {/* Card vedette — calculateur ROI (4×2) */}
+                <BentoCard
+                  href="/outils/calculateur-roi-crm"
+                  icon={Calculator}
+                  title="Calculateur ROI CRM"
+                  description="Estimez en 30 secondes le gain de chiffre d'affaires et le break-even de votre projet. Notre formule prend en compte taille d'équipe, gains de productivité et durée d'amortissement."
+                  ctaLabel="Lancer le simulateur"
+                  colSpan={4}
+                  rowSpan={2}
+                  glow="violet"
+                  variant="dark"
+                  badge="Le + utilisé"
+                  visual={
+                    <div className="grid grid-cols-2 gap-3 w-full max-w-xs">
+                      <div className="rounded-xl bg-white/5 border border-white/10 p-3">
+                        <div className="text-[10px] uppercase tracking-wider text-slate-400 mb-1">ROI moyen</div>
+                        <div className="text-2xl font-black bg-gradient-to-br from-violet-300 to-fuchsia-400 bg-clip-text text-transparent">+212%</div>
+                      </div>
+                      <div className="rounded-xl bg-white/5 border border-white/10 p-3">
+                        <div className="text-[10px] uppercase tracking-wider text-slate-400 mb-1">Break-even</div>
+                        <div className="text-2xl font-black bg-gradient-to-br from-fuchsia-300 to-pink-400 bg-clip-text text-transparent">4,2 mois</div>
+                      </div>
+                    </div>
+                  }
+                />
+
+                {/* Quiz (2×1) */}
+                <BentoCard
+                  href="/quiz"
+                  icon={Target}
+                  title="Quiz CRM personnalisé"
+                  description="8 questions · 3 CRM recommandés en 2 min"
+                  ctaLabel="Démarrer"
+                  colSpan={2}
+                  rowSpan={1}
+                  glow="fuchsia"
+                  variant="default"
+                />
+
+                {/* Tarifs (2×1) */}
+                <BentoCard
+                  href="/tarifs"
+                  icon={Euro}
+                  title="Comparateur de tarifs"
+                  description="27 CRM, plans visibles en un clin d'œil"
+                  ctaLabel="Voir les tarifs"
+                  colSpan={2}
+                  rowSpan={1}
+                  glow="emerald"
+                  variant="default"
+                />
+
+                {/* Glossaire (3×1) */}
+                <BentoCard
+                  href="/glossaire-crm"
+                  icon={BarChart3}
+                  title="Glossaire CRM 2026"
+                  description="30+ termes essentiels expliqués clairement (lead scoring, pipeline, MQL, churn…)"
+                  ctaLabel="Parcourir le lexique"
+                  colSpan={3}
+                  rowSpan={1}
+                  glow="indigo"
+                  variant="default"
+                />
+
+                {/* Comparateur (3×1) gradient */}
+                <BentoCard
+                  href="/comparateur"
+                  icon={Sparkles}
+                  title="Comparateur interactif"
+                  description="Filtres avancés et comparaison de 3 CRM côte-à-côte"
+                  ctaLabel="Comparer maintenant"
+                  colSpan={3}
+                  rowSpan={1}
+                  variant="gradient"
+                  glow="fuchsia"
+                />
+              </BentoGrid>
             </AnimatedSection>
           </div>
         </section>
@@ -432,41 +457,30 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* CTA — bloc dark style hero pour fermer la boucle visuelle */}
-        <section className="bg-white py-20 sm:py-28">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-            <AnimatedSection>
-              <div className="relative overflow-hidden rounded-[2rem] bg-[#0a0a0f] p-10 sm:p-16">
-                <div className="absolute -top-32 left-1/3 w-[400px] h-[300px] bg-violet-600/30 rounded-full filter blur-[80px] pointer-events-none" aria-hidden="true" />
-                <div className="relative z-10 text-center">
-                  <h2 className="text-4xl sm:text-5xl font-black mb-4 tracking-tight">
-                    <span className="bg-gradient-to-r from-white via-violet-200 to-fuchsia-200 bg-clip-text text-transparent">
-                      Prêt à trouver votre CRM ?
-                    </span>
-                  </h2>
-                  <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
-                    En 2 minutes, recevez 3 recommandations personnalisées parmi 27 logiciels analysés.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <Link
-                      href="/quiz"
-                      className="group inline-flex items-center justify-center gap-2 bg-gradient-to-br from-violet-500 to-fuchsia-500 hover:from-violet-400 hover:to-fuchsia-400 text-white font-semibold px-7 py-3.5 rounded-2xl shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40 transition-all duration-200 active:scale-[0.98]"
-                    >
-                      Démarrer le quiz
-                      <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                    </Link>
-                    <Link
-                      href="/comparateur"
-                      className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/15 hover:border-white/25 text-white font-semibold px-7 py-3.5 rounded-2xl transition-all duration-200"
-                    >
-                      Voir le comparateur
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
+        {/* CTA — Lamp Effect immersif */}
+        <LampEffect minHeight="80vh">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black mb-5 tracking-tight bg-gradient-to-br from-white via-violet-200 to-fuchsia-200 bg-clip-text text-transparent leading-[1.05]">
+            Prêt à trouver votre CRM ?
+          </h2>
+          <p className="text-lg sm:text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+            En 2 minutes, recevez 3 recommandations personnalisées parmi 27 logiciels analysés selon notre méthodologie publique.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/quiz"
+              className="group inline-flex items-center justify-center gap-2 bg-gradient-to-br from-violet-500 to-fuchsia-500 hover:from-violet-400 hover:to-fuchsia-400 text-white font-semibold px-7 py-3.5 rounded-2xl shadow-lg shadow-violet-500/40 hover:shadow-xl hover:shadow-violet-500/60 transition-all duration-200 active:scale-[0.98]"
+            >
+              Démarrer le quiz
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+            <Link
+              href="/comparateur"
+              className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/15 hover:border-white/25 text-white font-semibold px-7 py-3.5 rounded-2xl transition-all duration-200"
+            >
+              Voir le comparateur
+            </Link>
           </div>
-        </section>
+        </LampEffect>
 
         {/* SEO Text — sobre */}
         <section className="bg-[#fafaff] py-20 sm:py-28">

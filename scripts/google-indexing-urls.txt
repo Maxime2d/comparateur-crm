@@ -1,0 +1,74 @@
+URLs prioritaires à soumettre dans Google Search Console
+=========================================================
+
+Ouvre Search Console (https://search.google.com/search-console),
+sélectionne la propriété "comparateurcrm.fr", puis pour chaque URL :
+
+  1. Colle l'URL dans la barre "Inspection de l'URL" en haut
+  2. Clique "Demander une indexation"
+  3. Attends ~1 minute la confirmation
+  4. Passe à la suivante
+
+⚠️ Quota Google : ~10 URLs/jour. Étale sur 4 jours.
+
+LIENS DIRECTS (clic = inspection URL ouverte dans Search Console)
+------------------------------------------------------------------
+
+Pour chaque URL ci-dessous, clique sur le lien correspondant :
+https://search.google.com/search-console/inspect?resource_id=sc-domain%3Acomparateurcrm.fr&id=<URL>
+
+Par ordre de priorité :
+
+JOUR 1 (les essentielles) :
+  https://comparateurcrm.fr/
+  https://comparateurcrm.fr/comparateur
+  https://comparateurcrm.fr/quiz
+  https://comparateurcrm.fr/tarifs
+  https://comparateurcrm.fr/blog
+  https://comparateurcrm.fr/guide
+  https://comparateurcrm.fr/comparer
+  https://comparateurcrm.fr/outils/calculateur-roi-crm
+  https://comparateurcrm.fr/methodologie
+  https://comparateurcrm.fr/glossaire-crm
+
+JOUR 2 (E-E-A-T + hubs segment) :
+  https://comparateurcrm.fr/a-propos
+  https://comparateurcrm.fr/faq
+  https://comparateurcrm.fr/mentions-legales
+  https://comparateurcrm.fr/crm-francais
+  https://comparateurcrm.fr/crm-gratuit
+  https://comparateurcrm.fr/crm-tpe
+  https://comparateurcrm.fr/crm-startup
+  https://comparateurcrm.fr/crm-freelance
+  https://comparateurcrm.fr/crm-open-source
+  https://comparateurcrm.fr/outils
+
+JOUR 3 (top fiches CRM) :
+  https://comparateurcrm.fr/crm/hubspot-crm
+  https://comparateurcrm.fr/crm/sellsy
+  https://comparateurcrm.fr/crm/pipedrive
+  https://comparateurcrm.fr/crm/salesforce
+  https://comparateurcrm.fr/crm/zoho-crm
+  https://comparateurcrm.fr/crm/axonaut
+  https://comparateurcrm.fr/crm/folk
+  https://comparateurcrm.fr/crm/monday-sales-crm
+  https://comparateurcrm.fr/crm/freshsales
+  https://comparateurcrm.fr/crm/microsoft-dynamics-365
+
+JOUR 4 (compléments + nouveaux) :
+  https://comparateurcrm.fr/crm/activecampaign
+  https://comparateurcrm.fr/crm/bitrix24
+  https://comparateurcrm.fr/crm/odoo-crm
+  https://comparateurcrm.fr/comparer/hubspot-vs-pipedrive
+  https://comparateurcrm.fr/comparer/sellsy-vs-axonaut
+  https://comparateurcrm.fr/comparer/brevo-vs-hubspot
+  https://comparateurcrm.fr/comparer/axonaut-vs-sellsy
+  https://comparateurcrm.fr/blog/sellsy-avis-tarifs-test-complet-2026
+  https://comparateurcrm.fr/blog/hubspot-crm-avis-tarifs-test-complet-2026
+  https://comparateurcrm.fr/blog/pipedrive-avis-tarifs-test-complet-2026
+
+EN COMPLÉMENT — Soumet aussi le sitemap dans Search Console :
+  Menu gauche → Sitemaps → "Ajouter un sitemap" → tape : sitemap.xml
+  Le sitemap contient 101 URLs et Google les crawlera progressivement.
+
+BING / YANDEX / etc — déjà fait automatiquement via IndexNow ✓

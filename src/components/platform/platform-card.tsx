@@ -87,7 +87,11 @@ export function PlatformCard({
             )}
           </div>
 
-          <ScoreBadge score={platform.scores.overall} />
+          <ScoreBadge
+            score={platform.scores.overall}
+            scores={platform.scores}
+            platformName={platform.name}
+          />
         </div>
       </div>
 

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRight, ScrollText, Scale, ShieldCheck, Calendar, Users, ClipboardCheck } from "lucide-react";
+import { ChevronRight, ScrollText, Scale, ShieldCheck, Calendar, Users, ClipboardCheck, FlaskConical, FileSearch, BarChart3, Trophy } from "lucide-react";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { PageHero } from "@/components/layout/page-hero";
+import { StickyScroll } from "@/components/ui/sticky-scroll";
 
 export const metadata: Metadata = {
   title: "Notre méthodologie : comment nous notons les CRM",
@@ -123,7 +124,7 @@ export default function MethodologiePage() {
       />
 
       <div className="bg-[#fafaff] pb-20">
-        <div className="max-w-4xl mx-auto px-4 pt-6">
+        <div className="max-w-6xl mx-auto px-4 pt-6">
           <nav aria-label="Fil d'Ariane" className="text-sm text-slate-500 mb-6">
             <ol className="flex flex-wrap items-center gap-1.5">
               <li>
@@ -135,6 +136,110 @@ export default function MethodologiePage() {
               <li className="text-slate-900 font-medium">Méthodologie</li>
             </ol>
           </nav>
+
+          {/* Sticky Scroll : Notre process en 4 étapes */}
+          <section className="mb-20">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3 tracking-tight">
+                Notre processus en{" "}
+                <span className="bg-gradient-to-br from-violet-700 via-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
+                  4 étapes
+                </span>
+              </h2>
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                Du test pratique à la note finale, voici comment chaque CRM est analysé pour entrer dans notre comparateur.
+              </p>
+            </div>
+
+            <StickyScroll
+              sections={[
+                {
+                  title: "Tests pratiques en conditions réelles",
+                  description: (
+                    <>
+                      <p className="mb-3">
+                        Chaque CRM est <strong>testé pendant 5 à 10 jours</strong> via son essai gratuit ou son plan free. On crée un compte, on importe 50 contacts fictifs, on construit un pipeline commercial complet et on configure au moins une automatisation.
+                      </p>
+                      <p>
+                        Cette étape génère les retours d&apos;expérience qui nourrissent les sections &quot;avantages&quot; et &quot;inconvénients&quot; de chaque fiche.
+                      </p>
+                    </>
+                  ),
+                  accent: "violet",
+                  visual: (
+                    <div className="text-center px-6">
+                      <FlaskConical size={72} className="mx-auto mb-4 opacity-90" />
+                      <div className="text-3xl font-black mb-2">5–10 jours</div>
+                      <div className="text-sm opacity-80">de test approfondi par CRM</div>
+                    </div>
+                  ),
+                },
+                {
+                  title: "Croisement avec les avis publics",
+                  description: (
+                    <>
+                      <p className="mb-3">
+                        Nos impressions sont systématiquement croisées avec les <strong>avis utilisateurs publics</strong> de G2, Capterra, GetApp et Trustpilot. On agrège la note moyenne pondérée par le nombre d&apos;avis.
+                      </p>
+                      <p>
+                        Cela nous permet de capter les angles morts d&apos;un test individuel : usage long-terme, scalabilité, qualité du support sur la durée.
+                      </p>
+                    </>
+                  ),
+                  accent: "fuchsia",
+                  visual: (
+                    <div className="text-center px-6">
+                      <FileSearch size={72} className="mx-auto mb-4 opacity-90" />
+                      <div className="text-3xl font-black mb-2">4 sources</div>
+                      <div className="text-sm opacity-80">G2 · Capterra · GetApp · Trustpilot</div>
+                    </div>
+                  ),
+                },
+                {
+                  title: "Notation pondérée sur 7 critères",
+                  description: (
+                    <>
+                      <p className="mb-3">
+                        Chaque CRM reçoit une note sur 10 sur <strong>7 dimensions</strong> : fonctionnalités (25 %), tarification (20 %), expérience utilisateur (15 %), intégrations (15 %), support (10 %), adaptation au marché français (10 %), pérennité (5 %).
+                      </p>
+                      <p>
+                        La note globale affichée sur les fiches est la moyenne pondérée, arrondie au dixième. Détails dans le tableau de pondération plus bas.
+                      </p>
+                    </>
+                  ),
+                  accent: "indigo",
+                  visual: (
+                    <div className="text-center px-6">
+                      <BarChart3 size={72} className="mx-auto mb-4 opacity-90" />
+                      <div className="text-3xl font-black mb-2">7 critères</div>
+                      <div className="text-sm opacity-80">pondérés selon leur impact business</div>
+                    </div>
+                  ),
+                },
+                {
+                  title: "Mise à jour trimestrielle + refonte annuelle",
+                  description: (
+                    <>
+                      <p className="mb-3">
+                        Tarifs, fonctionnalités et notes sont <strong>revus tous les 3 mois</strong> pour suivre les évolutions du marché. Une refonte complète a lieu en janvier de chaque année.
+                      </p>
+                      <p>
+                        La date de dernière mise à jour est toujours affichée en haut de chaque fiche. Vous pouvez auditer l&apos;historique de la méthodologie plus bas.
+                      </p>
+                    </>
+                  ),
+                  accent: "emerald",
+                  visual: (
+                    <div className="text-center px-6">
+                      <Trophy size={72} className="mx-auto mb-4 opacity-90" />
+                      <div className="text-3xl font-black mb-2">Tous les 3 mois</div>
+                      <div className="text-sm opacity-80">+ refonte annuelle en janvier</div>
+                    </div>
+                  ),
+                },
+              ]}
+            />
+          </section>
 
           {/* Principes */}
           <section className="mb-12">
