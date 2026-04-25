@@ -132,62 +132,68 @@ export default function HomePage() {
             </AnimatedSection>
           </div>
 
-          {/* Fade vers la section suivante */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white pointer-events-none" aria-hidden="true" />
+          {/* Fade vers la section suivante (transition longue et progressive) */}
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent via-[#0a0a0f]/60 to-[#fafaff] pointer-events-none" aria-hidden="true" />
         </section>
 
-        {/* Top 5 */}
-        <section className="py-20 sm:py-32 bg-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        {/* Stats — bridge entre hero dark et contenu light */}
+        <section className="relative bg-[#fafaff] py-16 sm:py-20 -mt-px overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute -top-32 left-1/4 w-[600px] h-[400px] bg-violet-300/20 rounded-full filter blur-[100px]" />
+            <div className="absolute -top-32 right-1/4 w-[500px] h-[400px] bg-fuchsia-300/15 rounded-full filter blur-[100px]" />
+          </div>
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <AnimatedSection>
-              <div className="text-center mb-16">
-                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4">Top 5 des meilleurs CRM</h2>
-                <p className="text-xl text-slate-600">Découvrez les solutions les plus populaires et performantes du marché</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {[
+                  { value: 27, suffix: "+", label: "CRM analysés", decimals: 0 },
+                  { value: 8.2, suffix: "/10", label: "Note moyenne", decimals: 1 },
+                  { value: 100, suffix: "%", label: "Indépendant", decimals: 0 },
+                  { value: 2, suffix: " min", label: "Quiz personnalisé", decimals: 0 },
+                ].map((s) => (
+                  <div
+                    key={s.label}
+                    className="text-center bg-white/60 backdrop-blur-sm rounded-2xl border border-violet-100 p-6"
+                  >
+                    <div className="text-4xl sm:text-5xl font-black mb-2 bg-gradient-to-br from-violet-600 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent">
+                      <AnimatedCounter end={s.value} decimals={s.decimals} />
+                      {s.suffix}
+                    </div>
+                    <p className="text-slate-600 font-medium text-sm">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* Top 5 — fond pastel avec halo */}
+        <section className="relative bg-[#fafaff] py-20 sm:py-28 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute top-1/3 -left-32 w-[500px] h-[500px] bg-violet-200/30 rounded-full filter blur-[120px]" />
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-fuchsia-200/25 rounded-full filter blur-[100px]" />
+          </div>
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <AnimatedSection>
+              <div className="text-center mb-14">
+                <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white text-violet-700 text-xs font-semibold px-4 py-1.5 mb-4">
+                  <Sparkles size={12} />
+                  Sélection 2026
+                </div>
+                <h2 className="text-4xl sm:text-5xl font-black mb-4 tracking-tight">
+                  <span className="bg-gradient-to-br from-slate-900 via-violet-700 to-fuchsia-600 bg-clip-text text-transparent">
+                    Top 5 des meilleurs CRM
+                  </span>
+                </h2>
+                <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                  Notre classement éditorial indépendant, basé sur 27 logiciels analysés selon notre méthodologie publique.
+                </p>
               </div>
               <StaggerContainer>
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {topPlatforms.map((platform, index) => (
-                    <StaggerItem key={platform.slug}><PlatformCard platform={platform} rank={index + 1} /></StaggerItem>
-                  ))}
-                </div>
-              </StaggerContainer>
-            </AnimatedSection>
-          </div>
-        </section>
-
-        {/* Stats */}
-        <section className="py-20 sm:py-32 bg-gradient-to-b from-violet-50 to-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <AnimatedSection>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div className="text-center"><div className="text-4xl sm:text-5xl font-black text-violet-600 mb-2"><AnimatedCounter end={24} />+</div><p className="text-slate-600 font-medium">CRM comparés</p></div>
-                <div className="text-center"><div className="text-4xl sm:text-5xl font-black text-violet-600 mb-2"><AnimatedCounter end={82} decimals={1} /></div><p className="text-slate-600 font-medium">Note moyenne</p></div>
-                <div className="text-center"><div className="text-4xl sm:text-5xl font-black text-violet-600 mb-2">100%</div><p className="text-slate-600 font-medium">Gratuit</p></div>
-                <div className="text-center"><div className="text-4xl sm:text-5xl font-black text-violet-600 mb-2">2 min</div><p className="text-slate-600 font-medium">Quiz</p></div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section className="py-20 sm:py-32 bg-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <AnimatedSection>
-              <div className="text-center mb-16">
-                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4">Comment ça marche</h2>
-                <p className="text-xl text-slate-600">Trouvez votre CRM idéal en 3 étapes simples</p>
-              </div>
-              <StaggerContainer>
-                <div className="grid md:grid-cols-3 gap-8">
-                  {howItWorks.map((item) => (
-                    <StaggerItem key={item.step}>
-                      <div className="relative">
-                        <div className="flex items-start gap-6">
-                          <div className="flex-shrink-0"><div className="flex items-center justify-center h-12 w-12 rounded-xl bg-gradient-to-br from-violet-600 to-violet-700 text-white font-black">{item.step}</div></div>
-                          <div className="flex-1"><h3 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h3><p className="text-slate-600 leading-relaxed">{item.description}</p></div>
-                        </div>
-                        {item.step < 3 && <div className="hidden md:block absolute top-12 -right-4 w-8 h-1 bg-gradient-to-r from-violet-200 to-transparent" />}
-                      </div>
+                    <StaggerItem key={platform.slug}>
+                      <PlatformCard platform={platform} rank={index + 1} />
                     </StaggerItem>
                   ))}
                 </div>
@@ -196,57 +202,93 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Features */}
-        <section className="py-20 sm:py-32 bg-gradient-to-b from-violet-50 to-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        {/* How It Works — 3 cards avec halo coloré chacune */}
+        <section className="relative bg-white py-20 sm:py-28 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-violet-100/40 rounded-full filter blur-[140px]" />
+          </div>
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <AnimatedSection>
-              <div className="text-center mb-16">
-                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4">Les fonctionnalités essentielles des CRM</h2>
-                <p className="text-xl text-slate-600">Découvrez les capacités clés pour transformer votre approche commerciale</p>
+              <div className="text-center mb-14">
+                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tight">
+                  Comment ça marche
+                </h2>
+                <p className="text-lg text-slate-600">Trouvez votre CRM idéal en 3 étapes simples</p>
               </div>
               <StaggerContainer>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {features.map((feature) => { const Icon = feature.icon; return (
-                    <StaggerItem key={feature.title}>
-                      <div className="rounded-2xl border border-slate-200 bg-white p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
-                        <div className="flex items-start gap-4">
-                          <div className="flex-shrink-0 p-3 bg-gradient-to-br from-violet-100 to-violet-50 rounded-xl"><Icon className="h-6 w-6 text-violet-600" /></div>
-                          <div className="flex-1"><h3 className="font-bold text-lg text-slate-900 mb-2">{feature.title}</h3><p className="text-slate-600 text-sm leading-relaxed">{feature.description}</p></div>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {howItWorks.map((item, idx) => {
+                    const halos = [
+                      "from-violet-500/20 to-fuchsia-500/20",
+                      "from-fuchsia-500/20 to-pink-500/20",
+                      "from-pink-500/20 to-violet-500/20",
+                    ];
+                    return (
+                      <StaggerItem key={item.step}>
+                        <div className="relative h-full rounded-3xl bg-white border border-slate-200/80 p-8 overflow-hidden group hover:border-violet-300 transition-colors">
+                          <div
+                            className={`absolute -top-20 -right-20 w-48 h-48 bg-gradient-to-br ${halos[idx]} rounded-full filter blur-3xl opacity-60 group-hover:opacity-100 transition-opacity`}
+                            aria-hidden="true"
+                          />
+                          <div className="relative">
+                            <div className="flex items-center justify-center h-12 w-12 rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white font-black text-lg shadow-lg shadow-violet-500/30 mb-5">
+                              {item.step}
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h3>
+                            <p className="text-slate-600 leading-relaxed text-sm">{item.description}</p>
+                          </div>
                         </div>
-                      </div>
-                    </StaggerItem>
-                  ); })}
+                      </StaggerItem>
+                    );
+                  })}
                 </div>
               </StaggerContainer>
             </AnimatedSection>
           </div>
         </section>
 
-        {/* Segment hubs */}
-        <section className="py-20 sm:py-32 bg-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        {/* Segment hubs — cards premium avec emoji + halo */}
+        <section className="relative bg-[#fafaff] py-20 sm:py-28 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute top-0 right-1/4 w-[500px] h-[400px] bg-pink-200/30 rounded-full filter blur-[120px]" />
+            <div className="absolute bottom-0 left-1/4 w-[500px] h-[400px] bg-indigo-200/30 rounded-full filter blur-[120px]" />
+          </div>
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <AnimatedSection>
               <div className="text-center mb-12">
-                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4">CRM par profil</h2>
-                <p className="text-xl text-slate-600">Trouvez le CRM adapté à votre situation</p>
+                <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white text-violet-700 text-xs font-semibold px-4 py-1.5 mb-4">
+                  Par profil
+                </div>
+                <h2 className="text-4xl sm:text-5xl font-black mb-4 tracking-tight">
+                  <span className="bg-gradient-to-br from-slate-900 via-violet-700 to-fuchsia-600 bg-clip-text text-transparent">
+                    Trouvez le CRM adapté à votre situation
+                  </span>
+                </h2>
+                <p className="text-lg text-slate-600">6 sélections curées pour chaque type de structure</p>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                 {[
-                  { href: "/crm-francais", label: "CRM Français", emoji: "🇫🇷" },
-                  { href: "/crm-gratuit", label: "CRM Gratuit", emoji: "🎁" },
-                  { href: "/crm-tpe", label: "CRM TPE", emoji: "🏪" },
-                  { href: "/crm-startup", label: "CRM Startup", emoji: "🚀" },
-                  { href: "/crm-freelance", label: "CRM Freelance", emoji: "👤" },
-                  { href: "/crm-open-source", label: "Open Source", emoji: "💻" },
+                  { href: "/crm-francais", label: "CRM Français", emoji: "🇫🇷", glow: "from-blue-400/20 to-violet-400/20" },
+                  { href: "/crm-gratuit", label: "CRM Gratuit", emoji: "🎁", glow: "from-emerald-400/20 to-teal-400/20" },
+                  { href: "/crm-tpe", label: "CRM TPE", emoji: "🏪", glow: "from-amber-400/20 to-orange-400/20" },
+                  { href: "/crm-startup", label: "CRM Startup", emoji: "🚀", glow: "from-fuchsia-400/20 to-pink-400/20" },
+                  { href: "/crm-freelance", label: "CRM Freelance", emoji: "👤", glow: "from-violet-400/20 to-purple-400/20" },
+                  { href: "/crm-open-source", label: "Open Source", emoji: "💻", glow: "from-slate-400/20 to-zinc-400/20" },
                 ].map((s) => (
                   <Link
                     key={s.href}
                     href={s.href}
-                    className="group bg-white rounded-2xl border border-slate-200 p-6 text-center hover:border-violet-300 hover:shadow-md transition-all"
+                    className="group relative bg-white rounded-2xl border border-slate-200/80 p-6 text-center hover:border-violet-300 transition-all overflow-hidden"
                   >
-                    <div className="text-3xl mb-2">{s.emoji}</div>
-                    <div className="font-semibold text-slate-900 group-hover:text-violet-700 text-sm">
-                      {s.label}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${s.glow} opacity-0 group-hover:opacity-100 transition-opacity`}
+                      aria-hidden="true"
+                    />
+                    <div className="relative">
+                      <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">{s.emoji}</div>
+                      <div className="font-semibold text-slate-900 group-hover:text-violet-700 text-sm transition-colors">
+                        {s.label}
+                      </div>
                     </div>
                   </Link>
                 ))}
@@ -255,56 +297,148 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Outils gratuits */}
-        <section className="py-20 sm:py-32 bg-gradient-to-b from-violet-50 to-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        {/* Outils gratuits — 3 cards visuelles */}
+        <section className="relative bg-white py-20 sm:py-28 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-violet-200/40 rounded-full filter blur-[120px]" />
+            <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-fuchsia-200/40 rounded-full filter blur-[120px]" />
+          </div>
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <AnimatedSection>
-              <div className="text-center mb-12">
-                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4">Nos outils gratuits</h2>
-                <p className="text-xl text-slate-600">Pour vous aider à choisir et chiffrer votre projet</p>
+              <div className="text-center mb-14">
+                <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white text-violet-700 text-xs font-semibold px-4 py-1.5 mb-4">
+                  100 % gratuit
+                </div>
+                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tight">
+                  Nos outils pour votre projet
+                </h2>
+                <p className="text-lg text-slate-600">Calculateur ROI, quiz personnalisé, comparateur de tarifs</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Link
-                  href="/outils/calculateur-roi-crm"
-                  className="group bg-white rounded-2xl border border-slate-200 p-8 hover:border-violet-300 hover:shadow-md transition-all"
-                >
-                  <div className="text-4xl mb-3">🧮</div>
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-violet-700 mb-2">Calculateur ROI CRM</h3>
-                  <p className="text-slate-600">Estimez en 30 secondes le gain de CA et le break-even d&apos;un projet CRM.</p>
-                </Link>
-                <Link
-                  href="/quiz"
-                  className="group bg-white rounded-2xl border border-slate-200 p-8 hover:border-violet-300 hover:shadow-md transition-all"
-                >
-                  <div className="text-4xl mb-3">🎯</div>
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-violet-700 mb-2">Quiz CRM</h3>
-                  <p className="text-slate-600">8 questions, 3 CRM recommandés pour votre profil en 2 minutes.</p>
-                </Link>
-                <Link
-                  href="/tarifs"
-                  className="group bg-white rounded-2xl border border-slate-200 p-8 hover:border-violet-300 hover:shadow-md transition-all"
-                >
-                  <div className="text-4xl mb-3">💰</div>
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-violet-700 mb-2">Comparateur de tarifs</h3>
-                  <p className="text-slate-600">Tableau interactif des prix de 24 CRM, filtrable par plan gratuit.</p>
-                </Link>
+                {[
+                  {
+                    href: "/outils/calculateur-roi-crm",
+                    emoji: "🧮",
+                    title: "Calculateur ROI",
+                    description: "Estimez en 30 secondes le gain de CA et le break-even d'un projet CRM.",
+                    glow: "from-violet-500/20 to-fuchsia-500/20",
+                  },
+                  {
+                    href: "/quiz",
+                    emoji: "🎯",
+                    title: "Quiz CRM",
+                    description: "8 questions, 3 CRM recommandés pour votre profil en 2 minutes.",
+                    glow: "from-fuchsia-500/20 to-pink-500/20",
+                  },
+                  {
+                    href: "/tarifs",
+                    emoji: "💰",
+                    title: "Comparateur de tarifs",
+                    description: "Tableau interactif des prix de 27 CRM, filtrable par plan gratuit.",
+                    glow: "from-pink-500/20 to-violet-500/20",
+                  },
+                ].map((t) => (
+                  <Link
+                    key={t.href}
+                    href={t.href}
+                    className="group relative bg-white rounded-3xl border border-slate-200/80 p-8 hover:border-violet-300 transition-all overflow-hidden"
+                  >
+                    <div
+                      className={`absolute -top-20 -right-20 w-56 h-56 bg-gradient-to-br ${t.glow} rounded-full filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity`}
+                      aria-hidden="true"
+                    />
+                    <div className="relative">
+                      <div className="text-5xl mb-4 group-hover:scale-110 transition-transform inline-block">
+                        {t.emoji}
+                      </div>
+                      <h3 className="text-xl font-bold text-slate-900 group-hover:text-violet-700 mb-2 transition-colors">
+                        {t.title}
+                      </h3>
+                      <p className="text-slate-600 text-sm leading-relaxed mb-4">{t.description}</p>
+                      <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-600 group-hover:gap-2.5 transition-all">
+                        Y aller
+                        <ArrowRight size={14} />
+                      </div>
+                    </div>
+                  </Link>
+                ))}
               </div>
             </AnimatedSection>
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-20 sm:py-32 bg-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        {/* Features — cards avec icônes en gradient */}
+        <section className="relative bg-[#fafaff] py-20 sm:py-28 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute top-1/3 right-1/3 w-[500px] h-[400px] bg-violet-200/30 rounded-full filter blur-[120px]" />
+          </div>
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <AnimatedSection>
-              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 to-violet-800 p-12 sm:p-20">
-                <div className="absolute inset-0 overflow-hidden pointer-events-none"><div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-violet-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10" /></div>
+              <div className="text-center mb-14">
+                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tight">
+                  Les fonctionnalités essentielles
+                </h2>
+                <p className="text-lg text-slate-600">Ce qu&apos;un bon CRM doit savoir faire</p>
+              </div>
+              <StaggerContainer>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {features.map((feature) => {
+                    const Icon = feature.icon;
+                    return (
+                      <StaggerItem key={feature.title}>
+                        <div className="rounded-3xl border border-slate-200/80 bg-white p-6 hover:border-violet-300 hover:shadow-lg hover:shadow-violet-500/5 transition-all duration-300 hover:-translate-y-0.5">
+                          <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white flex items-center justify-center shadow-md shadow-violet-500/20">
+                              <Icon className="h-6 w-6" />
+                            </div>
+                            <div className="flex-1">
+                              <h3 className="font-bold text-lg text-slate-900 mb-2">{feature.title}</h3>
+                              <p className="text-slate-600 text-sm leading-relaxed">{feature.description}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </StaggerItem>
+                    );
+                  })}
+                </div>
+              </StaggerContainer>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* CTA — bloc dark style hero pour fermer la boucle visuelle */}
+        <section className="bg-white py-20 sm:py-28">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+            <AnimatedSection>
+              <div className="relative overflow-hidden rounded-[2rem] bg-[#0a0a0f] p-10 sm:p-16">
+                {/* Halos identiques au hero pour cohérence */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+                  <div className="absolute -top-32 left-1/4 w-[500px] h-[400px] bg-violet-600/30 rounded-full filter blur-[100px]" />
+                  <div className="absolute -bottom-32 right-1/4 w-[500px] h-[400px] bg-fuchsia-500/25 rounded-full filter blur-[100px]" />
+                </div>
                 <div className="relative z-10 text-center">
-                  <h2 className="text-4xl sm:text-5xl font-black text-white mb-6">Prêt à trouver votre CRM parfait ?</h2>
-                  <p className="text-xl text-violet-100 mb-8 max-w-2xl mx-auto">Découvrez en 2 minutes le logiciel CRM qui correspond exactement à vos besoins et à votre budget.</p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button size="lg" asChild className="bg-white text-violet-600 hover:bg-violet-50"><Link href="/quiz">Démarrer le quiz <ArrowRight className="h-5 w-5 ml-2" /></Link></Button>
-                    <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white/10"><Link href="/comparateur">Voir le comparateur</Link></Button>
+                  <h2 className="text-4xl sm:text-5xl font-black mb-4 tracking-tight">
+                    <span className="bg-gradient-to-r from-white via-violet-200 to-fuchsia-200 bg-clip-text text-transparent">
+                      Prêt à trouver votre CRM ?
+                    </span>
+                  </h2>
+                  <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
+                    En 2 minutes, recevez 3 recommandations personnalisées parmi 27 logiciels analysés.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <Link
+                      href="/quiz"
+                      className="group inline-flex items-center justify-center gap-2 bg-gradient-to-br from-violet-500 to-fuchsia-500 hover:from-violet-400 hover:to-fuchsia-400 text-white font-semibold px-7 py-3.5 rounded-2xl shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40 transition-all duration-200 active:scale-[0.98]"
+                    >
+                      Démarrer le quiz
+                      <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                    </Link>
+                    <Link
+                      href="/comparateur"
+                      className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/15 hover:border-white/25 text-white font-semibold px-7 py-3.5 rounded-2xl transition-all duration-200"
+                    >
+                      Voir le comparateur
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -312,16 +446,26 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* SEO Text */}
-        <section className="py-20 sm:py-32 bg-slate-50">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        {/* SEO Text — sobre, dégradé subtil */}
+        <section className="relative bg-[#fafaff] py-20 sm:py-28 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute top-0 right-1/3 w-[400px] h-[300px] bg-violet-200/20 rounded-full filter blur-[100px]" />
+          </div>
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
             <AnimatedSection>
               <article className="prose prose-lg max-w-none text-slate-700">
-                <h2 className="text-3xl font-bold text-slate-900 mb-6">Le marché du CRM en France en 2026</h2>
-                <p className="mb-6">Le marché des logiciels de gestion de la relation client (CRM) en France connaît une croissance exponentielle. De plus en plus d&apos;entreprises françaises, de la PME au grand groupe, cherchent à optimiser leur approche commerciale en adoptant une solution CRM adaptée à leurs besoins spécifiques.</p>
-                <p className="mb-6">Les solutions CRM offrent bien plus que de la gestion de contacts. Elles permettent de créer un véritable écosystème commercial intégré, regroupant le suivi des opportunités, l&apos;automatisation des tâches, le scoring de leads et des analyses avancées.</p>
-                <p className="mb-6">Parmi les défis majeurs rencontrés par les entreprises françaises figure le choix du bon CRM. Avec plus de 24 solutions principales disponibles sur le marché, chacune proposant des avantages et des inconvénients spécifiques, la décision peut s&apos;avérer complexe.</p>
-                <p>Notre comparateur CRM vous aide à naviguer cette complexité en analysant les 24+ solutions principales du marché et en vous recommandant celle qui correspond le mieux à votre profil spécifique.</p>
+                <h2 className="text-3xl font-bold text-slate-900 mb-6 tracking-tight">
+                  Le marché du CRM en France en 2026
+                </h2>
+                <p className="mb-5 leading-relaxed">
+                  Le marché des logiciels de gestion de la relation client en France connaît une croissance soutenue. De plus en plus d&apos;entreprises françaises, de la TPE au grand groupe, cherchent à optimiser leur approche commerciale en adoptant une solution CRM adaptée à leurs besoins spécifiques.
+                </p>
+                <p className="mb-5 leading-relaxed">
+                  Les CRM modernes offrent bien plus que de la gestion de contacts. Ils créent un écosystème commercial intégré : suivi des opportunités, automatisation des tâches, scoring de leads, analyses avancées, et de plus en plus d&apos;intelligence artificielle pour prédire et personnaliser.
+                </p>
+                <p className="leading-relaxed">
+                  Notre comparateur indépendant analyse 27 solutions principales selon une <Link href="/methodologie" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">méthodologie publique</Link> et vous aide à choisir celle qui correspond le mieux à votre profil — sans email demandé, sans inscription.
+                </p>
               </article>
             </AnimatedSection>
           </div>
