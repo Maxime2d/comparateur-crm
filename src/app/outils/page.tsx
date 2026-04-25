@@ -24,7 +24,7 @@ const tools = [
     icon: Calculator,
     title: "Calculateur ROI CRM",
     description:
-      "Estimez en 30 secondes le retour sur investissement de votre projet CRM. Gain de CA, ROI annuel, break-even.",
+      "Estimez en 30 secondes le retour sur investissement de votre projet CRM. Gain de CA, ROI annuel, délai d'amortissement.",
     available: true,
   },
   {

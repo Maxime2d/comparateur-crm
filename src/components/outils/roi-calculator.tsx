@@ -131,7 +131,7 @@ export function RoiCalculator() {
             </div>
             <div className="bg-violet-800/40 rounded-xl p-4">
               <div className="text-xs text-violet-200 uppercase tracking-wider mb-1">
-                Break-even
+                Amortissement
               </div>
               <div className="text-2xl font-bold">
                 {calc.moisAvantBreakeven} mois

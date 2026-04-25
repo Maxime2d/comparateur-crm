@@ -9,7 +9,7 @@ import { PageHero } from "@/components/layout/page-hero";
 export const metadata: Metadata = {
   title: "Calculateur ROI CRM gratuit 2026 : estimez le retour sur investissement",
   description:
-    "Calculez gratuitement le ROI de votre projet CRM en 30 secondes. Saisissez votre nombre de commerciaux, panier moyen et amélioration attendue : obtenez le gain prévisionnel et le break-even.",
+    "Calculez gratuitement le ROI de votre projet CRM en 30 secondes. Saisissez votre nombre de commerciaux, panier moyen et amélioration attendue : obtenez le gain prévisionnel et le délai d'amortissement.",
   alternates: { canonical: `${SITE_URL}/outils/calculateur-roi-crm` },
   openGraph: {
     title: `Calculateur ROI CRM | ${SITE_NAME}`,
@@ -48,7 +48,7 @@ export default function CalculateurRoiPage() {
         eyebrowIcon={Calculator}
         title="Calculateur ROI CRM"
         highlight="ROI CRM"
-        subtitle="Estimez en 30 secondes le retour sur investissement de votre projet CRM, sans inscription. Gain de chiffre d'affaires, ROI annuel, break-even."
+        subtitle="Estimez en 30 secondes le retour sur investissement de votre projet CRM, sans inscription. Gain de chiffre d'affaires, ROI annuel, délai d'amortissement."
       />
 
       <div className="bg-[#fafaff] pb-20">

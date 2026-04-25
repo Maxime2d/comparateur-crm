@@ -349,7 +349,7 @@ export default function HomePage() {
                   href="/outils/calculateur-roi-crm"
                   icon={Calculator}
                   title="Calculateur ROI CRM"
-                  description="Estimez en 30 secondes le gain de chiffre d'affaires et le break-even de votre projet. Notre formule prend en compte taille d'équipe, gains de productivité et durée d'amortissement."
+                  description="Estimez en 30 secondes le gain de chiffre d'affaires et le délai d'amortissement de votre projet. Notre formule prend en compte taille d'équipe, gains de productivité et durée de retour sur investissement."
                   ctaLabel="Lancer le simulateur"
                   colSpan={4}
                   rowSpan={2}
@@ -363,7 +363,7 @@ export default function HomePage() {
                         <div className="text-2xl font-black bg-gradient-to-br from-violet-300 to-fuchsia-400 bg-clip-text text-transparent">+212%</div>
                       </div>
                       <div className="rounded-xl bg-white/5 border border-white/10 p-3">
-                        <div className="text-[10px] uppercase tracking-wider text-slate-400 mb-1">Break-even</div>
+                        <div className="text-[10px] uppercase tracking-wider text-slate-400 mb-1">Amortissement</div>
                         <div className="text-2xl font-black bg-gradient-to-br from-fuchsia-300 to-pink-400 bg-clip-text text-transparent">4,2 mois</div>
                       </div>
                     </div>
