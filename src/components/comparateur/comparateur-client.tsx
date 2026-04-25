@@ -2,18 +2,22 @@
 
 import React, { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Search, SlidersHorizontal, X, ArrowUpDown, RotateCcw } from "lucide-react";
+import {
+  Search,
+  SlidersHorizontal,
+  X,
+  RotateCcw,
+  Sparkles,
+  Filter,
+} from "lucide-react";
 
 import { platforms } from "@/lib/platforms";
 import { COMPANY_SIZES, CRM_FEATURE_LABELS } from "@/lib/constants";
-import { Platform, CompanySize, CRMFeatures } from "@/types/platform";
+import { CompanySize } from "@/types/platform";
 import { PlatformCard } from "@/components/platform/platform-card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
 export function ComparateurClient() {
-  const allPlatforms = platforms;
-
   // Filter states
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSizes, setSelectedSizes] = useState<CompanySize[]>([]);
@@ -27,58 +31,40 @@ export function ComparateurClient() {
   const [mobileApp, setMobileApp] = useState(false);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
 
-  // Filter platforms
   const filteredPlatforms = useMemo(() => {
     let result = [...platforms];
-
-    // Text search
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       result = result.filter(
         (p) =>
           p.name.toLowerCase().includes(query) ||
           p.shortDescription.toLowerCase().includes(query) ||
-          p.badges?.some((t) => t.toLowerCase().includes(query))
+          p.badges?.some((t) => t.toLowerCase().includes(query)),
       );
     }
-
-    // Company size filter
     if (selectedSizes.length > 0) {
       result = result.filter((p) =>
-        selectedSizes.some((size) => p.target.sizes.includes(size))
+        selectedSizes.some((size) => p.target.sizes.includes(size)),
       );
     }
-
-    // Budget range filter
     result = result.filter((p) => {
       const price = p.pricing.startsAt;
       return price >= budgetRange[0] && price <= budgetRange[1];
     });
-
-    // Score filter
     result = result.filter((p) => {
       const score = p.scores.overall || 75;
       return score >= minScore;
     });
-
-    // Free plan only
-    if (freeOnly) {
-      result = result.filter((p) => p.pricing.hasFreePlan);
-    }
-
-    // Mobile app
-    if (mobileApp) {
-      result = result.filter((p) => p.features.mobileApp);
-    }
-
-    // Selected features
+    if (freeOnly) result = result.filter((p) => p.pricing.hasFreePlan);
+    if (mobileApp) result = result.filter((p) => p.features.mobileApp);
     if (selectedFeatures.length > 0) {
       result = result.filter((p) =>
-        selectedFeatures.every((feature) => (p.features as any)[feature])
+        selectedFeatures.every(
+          (feature) =>
+            (p.features as unknown as Record<string, boolean>)[feature],
+        ),
       );
     }
-
-    // Sort
     if (sortBy === "score") {
       result.sort((a, b) => (b.scores.overall || 0) - (a.scores.overall || 0));
     } else if (sortBy === "price") {
@@ -86,9 +72,7 @@ export function ComparateurClient() {
     } else if (sortBy === "name") {
       result.sort((a, b) => a.name.localeCompare(b.name));
     }
-
     return result;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     searchQuery,
     selectedSizes,
@@ -102,7 +86,7 @@ export function ComparateurClient() {
 
   const handleSizeToggle = (size: CompanySize) => {
     setSelectedSizes((prev) =>
-      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
+      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size],
     );
   };
 
@@ -110,7 +94,7 @@ export function ComparateurClient() {
     setSelectedFeatures((prev) =>
       prev.includes(feature)
         ? prev.filter((f) => f !== feature)
-        : [...prev, feature]
+        : [...prev, feature],
     );
   };
 
@@ -137,214 +121,341 @@ export function ComparateurClient() {
     selectedFeatures.length > 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Comparateur de CRM</h1>
-          <p className="text-lg text-gray-600">
-            Trouvez et comparez les meilleurs logiciels de CRM pour votre entreprise
+    <div className="min-h-screen flex flex-col">
+      {/* Hero compact dark */}
+      <section className="relative overflow-hidden bg-[#0a0a0f] pt-16 pb-12 sm:pt-24 sm:pb-16">
+        <div
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+          aria-hidden="true"
+        >
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-violet-600/30 rounded-full filter blur-[100px]" />
+          <div className="absolute top-0 right-10 w-[400px] h-[300px] bg-fuchsia-500/20 rounded-full filter blur-[90px]" />
+          <div className="absolute bottom-0 left-10 w-[400px] h-[300px] bg-indigo-500/20 rounded-full filter blur-[90px]" />
+        </div>
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          aria-hidden="true"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/30 bg-violet-500/10 backdrop-blur-sm text-violet-300 text-xs font-semibold px-4 py-1.5 mb-6">
+            <Sparkles size={12} />
+            {platforms.length} CRM analysés · Édition 2026
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 leading-[1.1] tracking-tight">
+            Comparateur de{" "}
+            <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
+              logiciels CRM
+            </span>
+          </h1>
+          <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto">
+            Filtrez par taille, budget et fonctionnalités. Trouvez celui qui
+            correspond à votre profil en quelques secondes.
           </p>
         </div>
+        <div
+          className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#0a0a0f]/60 to-[#fafaff] pointer-events-none"
+          aria-hidden="true"
+        />
+      </section>
 
-        {/* Search Bar */}
-        <div className="bg-white rounded-lg shadow-md p-4 mb-8">
-          <div className="flex items-center gap-2 mb-4">
-            <Search className="text-gray-400" size={20} />
-            <input
-              type="text"
-              placeholder="Rechercher un CRM..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="flex-1 outline-none text-gray-900 bg-transparent"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                className="p-1 hover:bg-gray-100 rounded"
-              >
-                <X size={18} className="text-gray-400" />
-              </button>
-            )}
+      {/* Body */}
+      <section className="relative bg-[#fafaff] flex-1 pt-8 pb-20 overflow-hidden">
+        <div
+          className="absolute top-1/2 -left-32 w-[400px] h-[400px] bg-violet-200/20 rounded-full filter blur-[80px] pointer-events-none"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
+          {/* Search bar premium */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+            <div className="flex items-center px-5 py-4 border-b border-slate-100">
+              <Search className="text-slate-400 mr-3 flex-shrink-0" size={20} />
+              <input
+                type="search"
+                placeholder="Rechercher un CRM par nom, description ou tag..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="flex-1 outline-none text-slate-900 bg-transparent placeholder:text-slate-400"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="p-1 hover:bg-slate-100 rounded-md transition-colors"
+                  aria-label="Effacer la recherche"
+                >
+                  <X size={16} className="text-slate-400" />
+                </button>
+              )}
+            </div>
+
+            {/* Size chips */}
+            <div className="flex flex-wrap gap-2 px-5 py-4">
+              <span className="inline-flex items-center text-xs font-semibold text-slate-500 mr-2">
+                Taille d&apos;entreprise :
+              </span>
+              {COMPANY_SIZES.map((size) => {
+                const active = selectedSizes.includes(
+                  size.value as CompanySize,
+                );
+                return (
+                  <button
+                    key={size.value}
+                    onClick={() =>
+                      handleSizeToggle(size.value as CompanySize)
+                    }
+                    className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+                      active
+                        ? "bg-gradient-to-br from-violet-600 to-fuchsia-500 text-white shadow-sm shadow-violet-500/30"
+                        : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                    }`}
+                  >
+                    {size.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Size Filter Chips */}
-          <div className="flex flex-wrap gap-2">
-            {COMPANY_SIZES.map((size) => (
-              <Badge
-                key={size.value}
-                onClick={() => handleSizeToggle(size.value as CompanySize)}
-                className={`cursor-pointer transition-all ${
-                  selectedSizes.includes(size.value as CompanySize)
-                    ? "bg-violet-600 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-                variant={
-                  selectedSizes.includes(size.value as CompanySize)
-                    ? "default"
-                    : "secondary"
-                }
-              >
-                {size.label}
-              </Badge>
-            ))}
-          </div>
-        </div>
-
-        {/* Controls */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-          <div className="flex items-center gap-4">
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-violet-500"
-            >
-              <option value="score">Classement</option>
-              <option value="price">Prix</option>
-              <option value="name">Nom</option>
-            </select>
-
-            <button
-              onClick={() => setShowAdvanced(!showAdvanced)}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 hover:bg-gray-50"
-            >
-              <SlidersHorizontal size={18} />
-              Filtres avancés
-            </button>
-          </div>
-
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            {filteredPlatforms.length} résultat{filteredPlatforms.length !== 1 ? "s" : ""}
-            {hasActiveFilters && (
-              <button
-                onClick={handleReset}
-                className="flex items-center gap-1 ml-4 px-3 py-1 text-violet-600 hover:text-violet-700 font-medium"
-              >
-                <RotateCcw size={16} />
-                Réinitialiser
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Advanced Filters */}
-        {showAdvanced && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="bg-white rounded-lg shadow-md p-6 mb-8"
-          >
-            <h3 className="font-bold text-gray-900 mb-4">Filtres avancés</h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Budget Range */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Budget mensuel: {budgetRange[0]}€ - {budgetRange[1]}€
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max="500"
-                  value={budgetRange[1]}
+          {/* Sort + filter toggle + count */}
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <select
+                  value={sortBy}
                   onChange={(e) =>
-                    setBudgetRange([budgetRange[0], parseInt(e.target.value)])
+                    setSortBy(e.target.value as "score" | "price" | "name")
                   }
-                  className="w-full"
-                />
-              </div>
-
-              {/* Minimum Score */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Score minimum: {minScore}
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={minScore}
-                  onChange={(e) => setMinScore(parseInt(e.target.value))}
-                  className="w-full"
-                />
-              </div>
-
-              {/* Checkboxes */}
-              <div className="col-span-1 md:col-span-2 space-y-3">
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={freeOnly}
-                    onChange={(e) => setFreeOnly(e.target.checked)}
-                    className="w-4 h-4 rounded border-gray-300"
+                  className="appearance-none pl-4 pr-10 py-2.5 border border-slate-200 rounded-xl bg-white text-slate-900 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-violet-200 focus:border-violet-400 cursor-pointer"
+                >
+                  <option value="score">Trier par classement</option>
+                  <option value="price">Trier par prix</option>
+                  <option value="name">Trier par nom</option>
+                </select>
+                <svg
+                  className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
                   />
-                  <span className="text-gray-700">Plan gratuit disponible</span>
-                </label>
-
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={mobileApp}
-                    onChange={(e) => setMobileApp(e.target.checked)}
-                    className="w-4 h-4 rounded border-gray-300"
-                  />
-                  <span className="text-gray-700">Application mobile</span>
-                </label>
+                </svg>
               </div>
 
-              {/* Feature Checkboxes */}
-              <div className="col-span-1 md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Fonctionnalités
-                </label>
-                <div className="grid grid-cols-2 gap-3">
-                  {Object.entries(CRM_FEATURE_LABELS)
-                    .slice(0, 8)
-                    .map(([key, label]) => (
-                      <label key={key} className="flex items-center gap-3 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={selectedFeatures.includes(key)}
-                          onChange={() => handleFeatureToggle(key)}
-                          className="w-4 h-4 rounded border-gray-300"
-                        />
-                        <span className="text-sm text-gray-700">{label}</span>
-                      </label>
-                    ))}
+              <button
+                onClick={() => setShowAdvanced(!showAdvanced)}
+                className={`flex items-center gap-2 px-4 py-2.5 border rounded-xl text-sm font-medium transition-all ${
+                  showAdvanced
+                    ? "bg-violet-600 border-violet-600 text-white shadow-md shadow-violet-500/25"
+                    : "bg-white border-slate-200 text-slate-700 hover:border-violet-300"
+                }`}
+              >
+                <SlidersHorizontal size={16} />
+                Filtres avancés
+              </button>
+            </div>
+
+            <div className="flex items-center gap-3 text-sm">
+              <span className="text-slate-600">
+                <span className="font-bold text-slate-900">
+                  {filteredPlatforms.length}
+                </span>{" "}
+                CRM
+              </span>
+              {hasActiveFilters && (
+                <button
+                  onClick={handleReset}
+                  className="flex items-center gap-1.5 text-violet-600 hover:text-violet-700 font-semibold"
+                >
+                  <RotateCcw size={14} />
+                  Réinitialiser
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Advanced filters panel */}
+          {showAdvanced && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-6 overflow-hidden"
+            >
+              <div className="flex items-center gap-2 mb-5 text-slate-700">
+                <Filter size={16} className="text-violet-600" />
+                <h3 className="font-semibold">Filtres avancés</h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                {/* Budget range */}
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Budget mensuel max :{" "}
+                    <span className="font-bold text-violet-600">
+                      {budgetRange[1]} €
+                    </span>
+                  </label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="500"
+                    step="10"
+                    value={budgetRange[1]}
+                    onChange={(e) =>
+                      setBudgetRange([
+                        budgetRange[0],
+                        parseInt(e.target.value),
+                      ])
+                    }
+                    className="w-full accent-violet-600"
+                  />
+                  <div className="flex justify-between text-xs text-slate-500 mt-1">
+                    <span>0 €</span>
+                    <span>500 €</span>
+                  </div>
+                </div>
+
+                {/* Score min */}
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Note minimum :{" "}
+                    <span className="font-bold text-violet-600">
+                      {minScore}/10
+                    </span>
+                  </label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="10"
+                    step="0.5"
+                    value={minScore}
+                    onChange={(e) => setMinScore(parseFloat(e.target.value))}
+                    className="w-full accent-violet-600"
+                  />
+                  <div className="flex justify-between text-xs text-slate-500 mt-1">
+                    <span>0</span>
+                    <span>10</span>
+                  </div>
+                </div>
+
+                {/* Quick filters */}
+                <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <label
+                    className={`flex items-center gap-3 cursor-pointer rounded-xl border p-3 transition-all ${
+                      freeOnly
+                        ? "border-violet-300 bg-violet-50"
+                        : "border-slate-200 hover:border-slate-300"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={freeOnly}
+                      onChange={(e) => setFreeOnly(e.target.checked)}
+                      className="w-4 h-4 rounded border-slate-300 accent-violet-600"
+                    />
+                    <span className="text-sm text-slate-700 font-medium">
+                      Plan gratuit disponible
+                    </span>
+                  </label>
+
+                  <label
+                    className={`flex items-center gap-3 cursor-pointer rounded-xl border p-3 transition-all ${
+                      mobileApp
+                        ? "border-violet-300 bg-violet-50"
+                        : "border-slate-200 hover:border-slate-300"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={mobileApp}
+                      onChange={(e) => setMobileApp(e.target.checked)}
+                      className="w-4 h-4 rounded border-slate-300 accent-violet-600"
+                    />
+                    <span className="text-sm text-slate-700 font-medium">
+                      Application mobile native
+                    </span>
+                  </label>
+                </div>
+
+                {/* Features */}
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-slate-700 mb-3">
+                    Fonctionnalités requises
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {Object.entries(CRM_FEATURE_LABELS)
+                      .slice(0, 12)
+                      .map(([key, label]) => {
+                        const active = selectedFeatures.includes(key);
+                        return (
+                          <button
+                            key={key}
+                            onClick={() => handleFeatureToggle(key)}
+                            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                              active
+                                ? "bg-violet-600 text-white shadow-sm shadow-violet-500/25"
+                                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                            }`}
+                          >
+                            {label}
+                          </button>
+                        );
+                      })}
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
 
-        {/* Results Grid */}
-        {filteredPlatforms.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPlatforms.map((platform, index) => (
-              <motion.div
-                key={platform.slug}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-              >
-                <PlatformCard platform={platform} />
-              </motion.div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Aucun résultat</h3>
-            <p className="text-gray-600 mb-4">
-              Aucun CRM ne correspond à vos critères. Essayez d&apos;ajuster vos filtres.
-            </p>
-            <Button onClick={handleReset} variant="outline">
-              <RotateCcw className="mr-2" size={18} />
-              Réinitialiser les filtres
-            </Button>
-          </div>
-        )}
-      </div>
+          {/* Results */}
+          {filteredPlatforms.length > 0 ? (
+            <div className="space-y-4">
+              {filteredPlatforms.map((platform, index) => (
+                <motion.div
+                  key={platform.slug}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: Math.min(index * 0.04, 0.4),
+                  }}
+                >
+                  <PlatformCard
+                    platform={platform}
+                    rank={sortBy === "score" ? index + 1 : undefined}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center">
+              <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-violet-100 text-violet-600 flex items-center justify-center">
+                <Search size={26} />
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                Aucun CRM ne correspond
+              </h3>
+              <p className="text-slate-600 mb-5 max-w-sm mx-auto">
+                Essayez d&apos;ajuster vos filtres ou utilisez notre quiz pour
+                obtenir une recommandation personnalisée.
+              </p>
+              <Button onClick={handleReset} variant="outline">
+                <RotateCcw className="mr-2" size={16} />
+                Réinitialiser les filtres
+              </Button>
+            </div>
+          )}
+        </div>
+      </section>
     </div>
   );
 }
