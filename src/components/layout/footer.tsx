@@ -43,10 +43,13 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-slate-400">Légal</h3>
+            <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-slate-400">Ressources</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/mentions-legales" className="text-slate-300 hover:text-white transition-colors">Mentions légales</Link></li>
-              <li><Link href="/politique-confidentialite" className="text-slate-300 hover:text-white transition-colors">Confidentialité</Link></li>
+              <li><Link href="/blog" className="text-slate-300 hover:text-white transition-colors">Blog</Link></li>
+              <li><Link href="/glossaire-crm" className="text-slate-300 hover:text-white transition-colors">Glossaire CRM</Link></li>
+              <li><Link href="/faq" className="text-slate-300 hover:text-white transition-colors">FAQ</Link></li>
+              <li><Link href="/methodologie" className="text-slate-300 hover:text-white transition-colors">Méthodologie</Link></li>
+              <li><Link href="/a-propos" className="text-slate-300 hover:text-white transition-colors">À propos</Link></li>
             </ul>
           </div>
         </div>
