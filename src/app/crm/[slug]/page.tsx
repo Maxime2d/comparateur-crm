@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import React from "react";
 import Link from "next/link";
 import {
@@ -95,24 +96,7 @@ export default async function PlatformDetailPage({
   const platform = getPlatformBySlug(slug);
 
   if (!platform) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">
-            CRM non trouvé
-          </h1>
-          <p className="text-slate-600 mb-6">
-            Le CRM que vous recherchez n&apos;existe pas.
-          </p>
-          <Link
-            href="/comparateur"
-            className="text-violet-600 hover:text-violet-700 font-medium"
-          >
-            Retour au comparateur
-          </Link>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
   const relatedPlatforms = getTopPlatforms(6)

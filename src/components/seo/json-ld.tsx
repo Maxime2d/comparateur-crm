@@ -8,7 +8,76 @@ export function JsonLd({ data }: JsonLdProps) {
 }
 
 export function WebsiteJsonLd() {
-  return <JsonLd data={{ "@context": "https://schema.org", "@type": "WebSite", name: SITE_NAME, url: SITE_URL, description: "Comparez les meilleurs logiciels CRM en France. Quiz personnalisé, comparateur interactif, fiches détaillées.", publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL } }} />;
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: SITE_NAME,
+        url: SITE_URL,
+        description:
+          "Comparez les meilleurs logiciels CRM en France. Quiz personnalisé, comparateur interactif, fiches détaillées.",
+        inLanguage: "fr-FR",
+        publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${SITE_URL}/comparateur?q={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
+      }}
+    />
+  );
+}
+
+interface ArticleJsonLdProps {
+  title: string;
+  description: string;
+  slug: string;
+  datePublished?: string;
+  dateModified?: string;
+  authorName?: string;
+  imageUrl?: string;
+}
+
+export function ArticleJsonLd({
+  title,
+  description,
+  slug,
+  datePublished,
+  dateModified,
+  authorName,
+  imageUrl,
+}: ArticleJsonLdProps) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: title,
+        description,
+        url: `${SITE_URL}${slug}`,
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}${slug}` },
+        inLanguage: "fr-FR",
+        datePublished: datePublished || new Date().toISOString(),
+        dateModified: dateModified || datePublished || new Date().toISOString(),
+        author: {
+          "@type": "Organization",
+          name: authorName || SITE_NAME,
+          url: SITE_URL,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: SITE_NAME,
+          url: SITE_URL,
+          logo: { "@type": "ImageObject", url: `${SITE_URL}/favicon.svg` },
+        },
+        ...(imageUrl ? { image: imageUrl } : {}),
+      }}
+    />
+  );
 }
 
 export function PlatformJsonLd({ platform }: { platform: Platform }) {

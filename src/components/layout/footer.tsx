@@ -83,7 +83,46 @@ export function Footer() {
         </div>
 
         <div className="py-6 border-t border-slate-800 text-center text-sm text-slate-500">
-          <p>&copy; {new Date().getFullYear()} {SITE_NAME}. Tous droits réservés.</p>
+          <p className="mb-2">
+            &copy; {new Date().getFullYear()} {SITE_NAME}. Tous droits réservés.
+          </p>
+          <ul className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs">
+            <li>
+              <Link
+                href="/mentions-legales"
+                className="hover:text-slate-300 transition-colors"
+              >
+                Mentions légales
+              </Link>
+            </li>
+            <li className="text-slate-700">·</li>
+            <li>
+              <Link
+                href="/mentions-legales#cookies"
+                className="hover:text-slate-300 transition-colors"
+              >
+                Cookies
+              </Link>
+            </li>
+            <li className="text-slate-700">·</li>
+            <li>
+              <Link
+                href="/mentions-legales#donnees"
+                className="hover:text-slate-300 transition-colors"
+              >
+                RGPD
+              </Link>
+            </li>
+            <li className="text-slate-700">·</li>
+            <li>
+              <Link
+                href="/methodologie"
+                className="hover:text-slate-300 transition-colors"
+              >
+                Méthodologie
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>
