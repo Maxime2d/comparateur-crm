@@ -89,7 +89,7 @@ export default async function ComparisonPage({ params }: Props) {
         }}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      <div className="min-h-screen bg-[#fafaff]">
         <div className="max-w-5xl mx-auto px-4 pt-6">
           <nav aria-label="Fil d'Ariane" className="text-sm text-slate-500 mb-6">
             <ol className="flex flex-wrap items-center gap-1.5">

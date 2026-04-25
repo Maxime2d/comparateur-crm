@@ -134,7 +134,7 @@ export default async function PlatformDetailPage({
         ]}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pb-24 md:pb-0">
+      <div className="min-h-screen bg-[#fafaff] pb-24 md:pb-0">
         {/* Breadcrumb */}
         <nav
           aria-label="Fil d'Ariane"

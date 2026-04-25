@@ -94,7 +94,7 @@ export default async function BlogPostPage({ params }: Props) {
         }}
       />
 
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-[#fafaff]">
         <div className="max-w-7xl mx-auto px-4 pt-6">
           <nav
             aria-label="Fil d'Ariane"
