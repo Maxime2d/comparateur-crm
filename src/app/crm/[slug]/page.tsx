@@ -176,12 +176,26 @@ export default async function PlatformDetailPage({
                 <p className="text-lg text-slate-600 mb-4">
                   {platform.shortDescription}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {platform.badges?.slice(0, 4).map((tag) => (
                     <Badge key={tag} variant="secondary">
                       {tag}
                     </Badge>
                   ))}
+                </div>
+                <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-6">
+                  <span className="inline-flex items-center gap-1">
+                    Mis à jour : avril 2026
+                  </span>
+                  <span className="text-slate-300">•</span>
+                  <span>Par {SITE_NAME}</span>
+                  <span className="text-slate-300">•</span>
+                  <Link
+                    href="/methodologie"
+                    className="text-violet-600 hover:text-violet-700 underline underline-offset-2"
+                  >
+                    Voir notre méthodologie
+                  </Link>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <AffiliateLink
