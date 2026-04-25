@@ -1,0 +1,82 @@
+---
+title: "CRM pour la santé en 2026 : guide pour cabinets, cliniques et laboratoires"
+description: "Comparatif des meilleurs CRM pour le secteur santé en 2026. Conformité HDS, RGPD santé, secret médical : critères, outils, alternatives. Pour cabinets médicaux, cliniques, labos, mutuelles."
+date: "2026-04-24"
+author: "Équipe Comparateur CRM"
+category: "Verticaux"
+readingTime: 9
+tags: ["CRM santé", "HDS", "cabinet médical", "clinique", "laboratoire"]
+featuredPlatform: "salesforce"
+---
+
+Le secteur de la santé impose des contraintes uniques au choix d'un CRM : conformité HDS (Hébergement Données de Santé) certifié par l'ASIP, secret médical, RGPD santé renforcé, traçabilité totale des accès. Un CRM généraliste, même bon, n'est pas suffisant. En 2026, le marché propose des solutions verticales certifiées et des CRM généralistes adaptables avec précautions.
+
+## Pourquoi un cabinet ou une clinique ne peut pas utiliser n'importe quel CRM
+
+Trois contraintes structurent le choix d'un CRM dans la santé :
+
+**Hébergement HDS obligatoire** dès qu'on traite des données de santé identifiables. La certification HDS est délivrée par un organisme accrédité et engage l'hébergeur sur la sécurité, la traçabilité et la disponibilité. Sans HDS, vous êtes en infraction.
+
+**Secret médical et accès cloisonné**. Un secrétariat ne doit pas voir les notes médicales d'un médecin. Le CRM doit pouvoir gérer des permissions ultra-fines par profil (médecin, infirmière, secrétariat, gestion).
+
+**Traçabilité totale**. Chaque accès à une donnée de santé doit être journalisé : qui, quand, pour faire quoi. En cas de contrôle CNIL ou plainte d'un patient, vous devez pouvoir reconstituer l'historique.
+
+## Top 5 des CRM adaptés santé en 2026
+
+### 1. Salesforce Health Cloud — la référence enterprise
+
+À partir de 325 €/u/mois. Salesforce Health Cloud est la suite verticale santé de Salesforce. Hébergement HDS via partenaires français (OVHcloud, Outscale, Scaleway), modules patient 360, gestion de parcours de soins, intégration aux DPI. Très puissant, très cher, mais incontournable pour les cliniques et hôpitaux.
+
+Idéal pour : cliniques, hôpitaux privés, groupes de santé, mutuelles.
+
+### 2. Microsoft Dynamics 365 — l'alternative écosystème Microsoft
+
+À partir de 95 €/u/mois. Dynamics 365 propose des modules santé (Cloud for Healthcare) avec intégration Office 365 et Teams. Hébergement Azure HDS-certifié. Bon choix pour les structures déjà ancrées dans l'écosystème Microsoft.
+
+### 3. Sellsy — pour les structures non-cliniques
+
+À partir de 35 €/u/mois. Sellsy n'est pas certifié HDS et ne convient PAS pour gérer des données de santé identifiables. En revanche, il est parfait pour la gestion administrative des cabinets et cliniques (devis, facturation, fournisseurs, comptabilité), à condition de maintenir une stricte séparation entre données médicales (DPI dédié) et données de gestion.
+
+### 4. HubSpot — pour la communication patient (B2C santé)
+
+À partir de 15 €/u/mois. Pour les structures qui font de la communication patient sortante (newsletter information, rappels de RDV non médicaux, programmes de prévention), HubSpot peut être utilisé en respectant la RGPD. Attention à ne JAMAIS y stocker de données médicales identifiables.
+
+### 5. CRM verticaux santé français
+
+Plusieurs éditeurs français spécialisés existent : Doctolib pour la gestion de RDV, Cegedim pour les laboratoires et pharmacies, Maincare pour les hôpitaux, AlmaPro pour les médecins libéraux. Ces solutions sont certifiées HDS et adaptées aux workflows métier.
+
+## Critères spécifiques à vérifier pour la santé
+
+**Certification HDS valide**. Demandez l'attestation HDS de l'hébergeur du CRM. Sans ça, vous êtes en infraction au moindre stockage de donnée patient identifiable.
+
+**Permissions granulaires** par profil et par champ. Un secrétariat ne doit voir que ce dont il a besoin. Le CRM doit le permettre nativement, pas via custom dev.
+
+**Traçabilité des accès** activable et exportable. L'audit log doit être consultable par l'admin et exportable au format standard pour les contrôles CNIL.
+
+**Chiffrement des données au repos et en transit**. Standard chez tous les CRM enterprise mais à vérifier sur les CRM SMB.
+
+**DPA santé renforcé**. Le contrat doit prévoir explicitement le traitement de données de santé et les obligations spécifiques (réversibilité, suppression, notification de breach).
+
+**Anonymisation et pseudonymisation**. Le CRM doit pouvoir anonymiser les données pour les rapports statistiques et permettre la suppression complète sur demande du patient.
+
+## Erreurs à éviter
+
+**Utiliser un CRM grand public sans réflexion.** Un Pipedrive ou un Zoho non-HDS qui contient des coordonnées de patients avec leurs pathologies est une violation directe du RGPD santé. Sanction CNIL potentielle : 4 % du CA mondial.
+
+**Confondre HDS et hébergement UE**. L'hébergement en UE (RGPD général) ne suffit pas pour les données de santé. Il faut HDS spécifiquement.
+
+**Sous-estimer la formation des équipes**. Un médecin qui copie-colle un compte rendu médical dans un CRM non-HDS commet une violation. La formation et les procédures sont aussi importantes que l'outil lui-même.
+
+**Mélanger gestion et soins**. Toujours séparer le DPI (Dossier Patient Informatisé certifié HDS) du CRM marketing/communication. Aucune donnée médicale dans le CRM marketing.
+
+## Notre recommandation
+
+**Cabinet médical libéral** : utilisez votre logiciel métier certifié (AlmaPro, Maiia, Doctolib) pour les patients et leurs données santé. Ajoutez un CRM léger comme HubSpot gratuit uniquement pour la communication marketing (newsletter, prévention, sans données médicales).
+
+**Clinique privée ou groupe de santé** : Salesforce Health Cloud reste la référence enterprise. Investissement lourd (300+ €/u/mois) mais conformité totale.
+
+**Mutuelle ou assurance santé** : Salesforce Health Cloud ou Dynamics 365 selon votre écosystème IT existant.
+
+**Laboratoire d'analyses** : éditeur vertical spécialisé (Cegedim, Hexalis, Inlog) pour la partie métier, CRM généraliste pour la gestion commerciale B2B.
+
+Pour comparer ces options avec d'autres alternatives, voir notre [comparateur CRM](/comparateur).

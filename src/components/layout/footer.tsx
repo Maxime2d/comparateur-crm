@@ -29,17 +29,20 @@ export function Footer() {
             <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-slate-400">Outils</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/comparateur" className="text-slate-300 hover:text-white transition-colors">Comparateur</Link></li>
+              <li><Link href="/tarifs" className="text-slate-300 hover:text-white transition-colors">Tarifs</Link></li>
               <li><Link href="/quiz" className="text-slate-300 hover:text-white transition-colors">Quiz CRM</Link></li>
+              <li><Link href="/outils/calculateur-roi-crm" className="text-slate-300 hover:text-white transition-colors">Calculateur ROI</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-slate-400">CRM populaires</h3>
+            <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-slate-400">CRM par profil</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/crm/hubspot-crm" className="text-slate-300 hover:text-white transition-colors">HubSpot CRM</Link></li>
-              <li><Link href="/crm/salesforce" className="text-slate-300 hover:text-white transition-colors">Salesforce</Link></li>
-              <li><Link href="/crm/pipedrive" className="text-slate-300 hover:text-white transition-colors">Pipedrive</Link></li>
-              <li><Link href="/crm/sellsy" className="text-slate-300 hover:text-white transition-colors">Sellsy</Link></li>
-              <li><Link href="/crm/zoho-crm" className="text-slate-300 hover:text-white transition-colors">Zoho CRM</Link></li>
+              <li><Link href="/crm-francais" className="text-slate-300 hover:text-white transition-colors">CRM Français</Link></li>
+              <li><Link href="/crm-gratuit" className="text-slate-300 hover:text-white transition-colors">CRM Gratuit</Link></li>
+              <li><Link href="/crm-tpe" className="text-slate-300 hover:text-white transition-colors">CRM TPE</Link></li>
+              <li><Link href="/crm-startup" className="text-slate-300 hover:text-white transition-colors">CRM Startup</Link></li>
+              <li><Link href="/crm-freelance" className="text-slate-300 hover:text-white transition-colors">CRM Freelance</Link></li>
+              <li><Link href="/crm-open-source" className="text-slate-300 hover:text-white transition-colors">CRM Open Source</Link></li>
             </ul>
           </div>
           <div>
