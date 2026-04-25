@@ -1,202 +1,137 @@
-# Brief pour Antigravity — comparateurcrm.fr
+# Brief Antigravity v2 — comparateurcrm.fr
 
-Tu rejoins un projet déjà amorcé. Lis ce brief entièrement avant de toucher à quoi que ce soit.
+Tu rejoins un projet bien avancé. Lis ce brief en entier avant d'agir. La majorité de l'infrastructure et beaucoup de contenus pilier sont en place. **Ta mission est de produire 19 fiches d'avis CRM individuelles** de haute qualité.
 
-## Contexte projet (1 min)
+## État actuel du repo (résumé)
 
-**Site** : comparateurcrm.fr — comparateur de logiciels CRM avec monétisation par affiliation (programmes HubSpot, Pipedrive, Sellsy, etc.). Pendant de comparateur-efacturation.fr (dans le dossier parent).
+- **80 pages statiques** générées (Next.js 15 + MDX)
+- **24 fiches CRM** existantes dans `src/lib/platforms.ts` avec scores, pricing, features, FAQ
+- **5 fiches d'avis individuelles déjà publiées** dans `content/blog/*-avis-tarifs-test-complet-2026.mdx` :
+  - hubspot-avis-tarifs-test-complet-2026
+  - pipedrive-avis-tarifs-test-complet-2026
+  - sellsy-avis-tarifs-test-complet-2026
+  - axonaut-avis-tarifs-test-complet-2026
+  - zoho-crm-avis-tarifs-test-complet-2026
 
-**Modèle business** : SEO → pages comparateur / fiches CRM / blog → clic sur lien affilié → commission.
+## Ta mission : les 19 fiches d'avis manquantes
 
-**Objectif SEO** : 20K+ visites organiques par mois à terme sur les mots-clés CRM français.
+Pour chacun de ces 19 CRM, créer un fichier MDX dans `content/blog/{slug}-avis-tarifs-test-complet-2026.mdx`.
 
-## Stack technique
+**Liste des 19 slugs (qui doivent matcher exactement ceux dans `src/lib/platforms.ts`)** :
 
-- Next.js 15 + React 19 + TypeScript strict + Tailwind CSS 4
-- Contenu éditorial : MDX via `next-mdx-remote@^6.0.0` + `gray-matter` + `remark-gfm`
-- Analytics : `@vercel/analytics` + `@vercel/speed-insights`
-- Hébergement : Vercel (projet `prj_WNnTdJp2XoXMhXk9kds6DcYMqkBh`)
-- Domaine branché et actif, SSL OK. Live : https://comparateurcrm.fr
+1. salesforce
+2. monday-sales-crm
+3. freshsales
+4. brevo
+5. nocrm
+6. teamleader
+7. folk
+8. efficy
+9. microsoft-dynamics-365
+10. sugarcrm
+11. creatio
+12. agile-crm
+13. insightly
+14. copper
+15. close
+16. karlia
+17. youday-crm
+18. initiative-crm
+19. divalto-weavy
 
-## État actuel du repo
+**Format de nom de fichier** : `{slug}-avis-tarifs-test-complet-2026.mdx`
 
-- Branche : `main` (dernier commit `fc1ef69`)
-- `src/lib/platforms.ts` : 24 fiches CRM avec scores, pricing, features, FAQ, externalReviews
-- `src/lib/affiliate.ts` : builder UTM + mapping providers + tracking multi-canal. **Toute nouvelle page doit passer les liens affiliés par `AffiliateLink` avec une `AffiliateSource` valide (voir `src/lib/affiliate.ts` pour la liste des types)**
-- `src/lib/mdx.ts` : helpers pour Blog / Guide / Comparison
-- `src/components/mdx/mdx-components.tsx` : composants MDX stylés
-- `src/components/shared/` : TableOfContents, RelatedArticles, PillarLinks, BlogPlatformCTA
-- Routes : `/`, `/comparateur`, `/quiz`, `/crm/[slug]`, `/blog`, `/blog/[slug]`, `/guide`, `/guide/[slug]`, `/comparer`, `/comparer/[slug]`
-- Contenus publiés :
-  - Blog : `meilleur-crm-gratuit-2026`, `comment-choisir-crm`, `crm-pme-guide-complet`
-  - Comparisons : `hubspot-vs-pipedrive`, `hubspot-vs-salesforce`
+Exemple : `salesforce-avis-tarifs-test-complet-2026.mdx`
 
-## Ta mission
+## Frontmatter obligatoire
 
-Produire du **contenu MDX à fort potentiel SEO** en parallèle de Claude (qui bosse sur l'ops et la tech). Tu te concentres exclusivement sur `content/` — tu ne touches pas au code applicatif sauf si explicitement demandé.
-
-### Priorité 1 : 5 fiches avis individuelles (~2500 mots chacune)
-
-Dans `content/blog/` :
-
-1. `hubspot-avis-tarifs-test-complet-2026.mdx` — `featuredPlatform: "hubspot-crm"`
-2. `pipedrive-avis-tarifs-test-complet-2026.mdx` — `featuredPlatform: "pipedrive"`
-3. `sellsy-avis-tarifs-test-complet-2026.mdx` — `featuredPlatform: "sellsy"`
-4. `axonaut-avis-tarifs-test-complet-2026.mdx` — `featuredPlatform: "axonaut"`
-5. `zoho-crm-avis-tarifs-test-complet-2026.mdx` — `featuredPlatform: "zoho-crm"`
-
-Structure de chaque article (reprends la logique de `content/blog/crm-pme-guide-complet.mdx` en l'adaptant) :
-- Introduction (contexte + verdict express)
-- Présentation du produit et de son positionnement
-- Tarifs détaillés par palier (avec tableau markdown)
-- Fonctionnalités clés (ce qui différencie)
-- Points forts et points faibles (honnêtes)
-- Pour qui c'est idéal / à éviter
-- Intégrations disponibles
-- Comparaison rapide avec 2-3 concurrents directs
-- FAQ (4-6 questions)
-- Verdict final + CTA (le `BlogPlatformCTA` sera injecté automatiquement en fin d'article via `featuredPlatform` dans le frontmatter)
-
-### Priorité 2 : 3 pages VS (~1800 mots chacune)
-
-Dans `content/comparisons/` :
-
-1. `sellsy-vs-pipedrive.mdx` — `platformA: "sellsy"`, `platformB: "pipedrive"`
-2. `zoho-vs-hubspot.mdx` — `platformA: "zoho-crm"`, `platformB: "hubspot-crm"`
-3. `axonaut-vs-sellsy.mdx` — `platformA: "axonaut"`, `platformB: "sellsy"`
-
-Reprends la structure de `content/comparisons/hubspot-vs-pipedrive.mdx` : match en une minute, positionnement historique, tarifs comparés, UX, richesse fonctionnelle, cas d'usage où chacun gagne, mythes, verdict.
-
-### Priorité 3 (si temps)
-
-Dans `content/blog/` :
-- `crm-immobilier-2026.mdx` — thématique verticale
-- `crm-b2b-guide-complet-2026.mdx` — thématique verticale
-- `meilleur-crm-tpe-2026.mdx` — variante volumique
-
-## Conventions MDX (strictes)
-
-Le pipeline MDX est sensible. Pour éviter de casser le build :
-
-- **Markdown pur uniquement**. Pas de JSX custom, pas d'imports.
-- **Pas de HTML avec attribut `style="..."`** (ça casse le parser). Si tu as besoin d'un encart, utilise `<blockquote>` ou un détail markdown.
-- **Apostrophes directes (`'`)**, pas `&apos;` ni `&#39;`.
-- **Liens internes** en relatif : `[voir le comparateur](/comparateur)`, `[fiche HubSpot](/crm/hubspot-crm)`.
-- **Tableaux markdown** (GFM) autorisés et encouragés (`remark-gfm` est activé).
-- **Frontmatter** obligatoire, validé par TypeScript. Regarde `src/lib/mdx.ts` pour les interfaces `BlogFrontmatter` et `ComparisonFrontmatter`. Tous les champs listés sont requis sauf mention `?`.
-
-Exemple de frontmatter blog valide :
+Reproduit exactement la structure des 5 articles déjà publiés. Le `featuredPlatform` doit matcher le slug de la fiche. Exemple pour Salesforce :
 
 ```yaml
 ---
-title: "HubSpot CRM : avis, tarifs et test complet 2026"
-description: "Notre analyse détaillée de HubSpot CRM en 2026 : tarifs par palier, forces, limites, alternatives. Verdict objectif par cas d'usage."
+title: "Salesforce CRM : avis, tarifs et test complet 2026"
+description: "Notre analyse détaillée de Salesforce en 2026 : tarifs par palier, forces, limites, alternatives. Verdict objectif par cas d'usage."
 date: "2026-04-24"
 author: "Équipe Comparateur CRM"
 category: "Avis CRM"
 readingTime: 12
-tags: ["HubSpot", "avis HubSpot", "CRM", "comparatif"]
-featuredPlatform: "hubspot-crm"
+tags: ["Salesforce", "avis Salesforce", "CRM", "enterprise"]
+featuredPlatform: "salesforce"
 ---
 ```
 
-Exemple de frontmatter comparison valide :
+## Structure de chaque article (~2000 mots)
 
-```yaml
----
-title: "Sellsy vs Pipedrive en 2026 : lequel choisir ?"
-description: "Comparatif complet Sellsy vs Pipedrive en 2026 : tarifs, fonctionnalités, forces, faiblesses, cas d'usage idéal."
-date: "2026-04-24"
-platformA: "sellsy"
-platformB: "pipedrive"
-readingTime: 10
----
-```
+Reproduit la structure de `content/blog/sellsy-avis-tarifs-test-complet-2026.mdx` :
 
-**Les slugs de `platformA` / `platformB` / `featuredPlatform` doivent exister dans `src/lib/platforms.ts`.** Si le slug n'existe pas, le build casse. Slugs valides disponibles :
+1. **Introduction** (100 mots) — pose le contexte et le verdict express
+2. **Verdict express** (h2 + 100-150 mots) — synthèse honnête en 2-3 paragraphes
+3. **Présentation du produit et positionnement** (h2 + 200 mots) — histoire, vision, segment cible
+4. **Tarifs détaillés par palier** (h2 + tableau Markdown + 200 mots) — palier par palier, avec **tableau** comparatif obligatoire
+5. **Fonctionnalités clés** (h2 avec h3 par fonction, 4-5 fonctions, 400 mots total) — ce qui différencie
+6. **Points forts et points faibles** (h2 avec h3 Avantages et h3 Inconvénients, listes à puces, 200 mots)
+7. **Pour qui c'est idéal / à éviter** (h2 + 2 sous-listes, 150 mots)
+8. **Intégrations disponibles** (h2 + 100 mots) — 5-10 intégrations notables citées
+9. **Comparaison rapide avec 2-3 concurrents directs** (h2 + 250 mots) — courts paragraphes pointant vers les pages /comparer/{slug-vs-slug} si elles existent (`/comparer/hubspot-vs-pipedrive`, `/comparer/sellsy-vs-pipedrive`, etc.)
+10. **FAQ : questions fréquentes sur {Name}** (h2 avec 4-6 sous-h3 question, 350 mots)
+11. **Verdict final + CTA** (h2 + 150 mots) — recommandation par cas d'usage
 
-```
-hubspot-crm, salesforce, pipedrive, sellsy, axonaut, zoho-crm,
-monday-sales-crm, freshsales, brevo, nocrm, teamleader, folk,
-efficy, microsoft-dynamics-365, sugarcrm, creatio, agile-crm,
-insightly, copper, close, karlia, youday-crm, initiative-crm,
-divalto-weavy
-```
+## Données à utiliser
 
-## Qualité éditoriale
+**Source de vérité** : `src/lib/platforms.ts` contient pour chaque CRM le pricing, les features, les badges, le shortDescription, externalReviews. **Reprends ces données** pour rester cohérent. Ne pas inventer de tarifs.
 
-- Ton : professionnel, direct, pas promotionnel. L'honnêteté génère de la confiance et convertit mieux.
-- Pas de superlatifs creux ("incroyable", "révolutionnaire"). Utilise des faits et des chiffres (tarifs exacts, volumes, %).
-- Cite des cas d'usage concrets. Les lecteurs cherchent "est-ce fait pour ma boîte ?".
-- Chaque article doit répondre à l'intention de recherche du mot-clé principal dans les 3 premiers paragraphes.
-- Longueur cible : 2000-2500 mots pour les avis, 1800-2200 pour les VS.
+Ouvre le fichier et identifie l'objet du CRM concerné par son `slug`.
 
-## Git workflow
+## Conventions MDX (strictes)
 
-**Critique** : ne pousse JAMAIS directement sur `main`. Travaille sur une branche dédiée.
+- **Markdown pur uniquement.** Pas de JSX custom, pas d'imports, pas de composants importés.
+- **Pas de HTML avec `style="..."`** (le parser MDX casse). Si besoin d'un encart visuel, utilise `<blockquote>` ou `<details><summary>`.
+- **Apostrophes directes (`'`)**, pas `&apos;` ni `&#39;`.
+- **Liens internes en relatif** : `[voir le comparateur](/comparateur)`, `[fiche HubSpot](/crm/hubspot-crm)`.
+- **Tableaux Markdown GFM** activés et encouragés pour les tarifs.
+- **Le composant `BlogPlatformCTA`** est injecté automatiquement en fin d'article via le frontmatter `featuredPlatform`. Ne pas l'écrire manuellement dans le corps.
+
+## Maillage interne — important pour le SEO
+
+Dans chaque article, place **3 à 5 liens internes** vers :
+
+- La fiche CRM correspondante : `/crm/{slug}`
+- Au moins une page VS pertinente : `/comparer/hubspot-vs-pipedrive`, `/comparer/sellsy-vs-pipedrive`, etc.
+- Le comparateur principal : `/comparateur`
+- Le quiz : `/quiz`
+- La page tarifs : `/tarifs`
+- Une page hub pertinente : `/crm-francais` (pour Brevo, Karlia, Youday, Initiative, Divalto), `/crm-tpe` (pour les CRM TPE-friendly), `/crm-startup` (HubSpot, Pipedrive, Close, Folk, Freshsales).
+
+## Workflow Git
+
+**CRITIQUE** : ne pousse JAMAIS sur `main` directement. Travaille sur une branche dédiée.
 
 ```bash
-git checkout -b content/antigravity-batch-1
-# ... crée/édite tes fichiers dans content/ ...
-git add content/
-git commit -m "content: add 5 CRM review articles + 3 VS pages
-
-- hubspot-avis-tarifs-test-complet-2026
-- pipedrive-avis-tarifs-test-complet-2026
-- sellsy-avis-tarifs-test-complet-2026
-- axonaut-avis-tarifs-test-complet-2026
-- zoho-crm-avis-tarifs-test-complet-2026
-- sellsy-vs-pipedrive
-- zoho-vs-hubspot
-- axonaut-vs-sellsy
-"
-git push origin content/antigravity-batch-1
+git checkout -b content/antigravity-batch-4-reviews
+# ... crée les 19 fichiers MDX ...
+git add content/blog/
+git commit -m "content: add 19 CRM review articles (batch 4)"
+git push origin content/antigravity-batch-4-reviews
 ```
 
-Puis ouvre une PR vers `main`. Je reviendrai review et merger.
-
-**Convention de commit** : préfixe `content:` pour tous tes commits de contenu. Ça distingue visuellement tes contributions dans `git log`.
-
 ## Vérification avant commit
-
-Avant chaque commit :
 
 ```bash
 npm run build
 ```
 
-Le build doit passer. Si tu as une erreur MDX, c'est quasi toujours :
-- Un slug `featuredPlatform` / `platformA` / `platformB` qui n'existe pas
+Le build doit passer. Si erreur, c'est presque toujours :
+- Un `featuredPlatform` qui ne matche pas un slug existant
 - Un attribut `style="..."` dans le Markdown
-- Une apostrophe échappée `&apos;` au lieu de `'`
-- Un frontmatter malformé (YAML strict)
+- Une apostrophe échappée
+- Un frontmatter YAML mal formaté
 
-## Fichiers interdits
+## Mises à jour COORDINATION.md
 
-Tu ne touches PAS à :
-- `src/` (tout le code applicatif)
-- `package.json`, `next.config.ts`, `tsconfig.json`
-- `public/`
-- `next.config.ts`
-- Les 3 articles déjà publiés (sauf correction orthographique)
-- Les 2 comparaisons déjà publiées
+À la fin de la session, ajoute une entrée dans `COORDINATION.md` à la racine.
 
-Tu touches UNIQUEMENT à `content/` (tu crées de nouveaux `.mdx`).
+## Objectif
 
-## Quand tu as fini
-
-1. Lance `npm run build` une dernière fois pour vérifier
-2. Commit + push sur ta branche
-3. Ouvre une PR vers main avec description claire
-4. Ajoute une ligne dans `COORDINATION.md` (si présent à la racine) indiquant ce que tu as produit
-5. Attends le merge
-
-## En cas de blocage
-
-Si tu es bloqué sur un détail technique (build qui casse, frontmatter rejeté, doute sur une convention), note-le dans `COORDINATION.md` et laisse une PR en draft. Je prendrai le relais.
-
-## Objectif de volume
-
-Si tu es efficace, tu devrais pouvoir sortir les 5 avis + 3 VS en une session. Si tu as le temps après, tape dans la priorité 3.
+À l'arrivée, tous les 24 CRM du comparateur auront leur fiche d'avis individuelle en blog (5 déjà existantes + tes 19 = 24). Cela densifie massivement le maillage interne et capture les requêtes "{nom CRM} avis" / "{nom CRM} tarif" qui sont des intentions commerciales fortes.
 
 Bon travail.

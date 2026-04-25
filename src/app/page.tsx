@@ -160,6 +160,77 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Segment hubs */}
+        <section className="py-20 sm:py-32 bg-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <AnimatedSection>
+              <div className="text-center mb-12">
+                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4">CRM par profil</h2>
+                <p className="text-xl text-slate-600">Trouvez le CRM adapté à votre situation</p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                {[
+                  { href: "/crm-francais", label: "CRM Français", emoji: "🇫🇷" },
+                  { href: "/crm-gratuit", label: "CRM Gratuit", emoji: "🎁" },
+                  { href: "/crm-tpe", label: "CRM TPE", emoji: "🏪" },
+                  { href: "/crm-startup", label: "CRM Startup", emoji: "🚀" },
+                  { href: "/crm-freelance", label: "CRM Freelance", emoji: "👤" },
+                  { href: "/crm-open-source", label: "Open Source", emoji: "💻" },
+                ].map((s) => (
+                  <Link
+                    key={s.href}
+                    href={s.href}
+                    className="group bg-white rounded-2xl border border-slate-200 p-6 text-center hover:border-violet-300 hover:shadow-md transition-all"
+                  >
+                    <div className="text-3xl mb-2">{s.emoji}</div>
+                    <div className="font-semibold text-slate-900 group-hover:text-violet-700 text-sm">
+                      {s.label}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* Outils gratuits */}
+        <section className="py-20 sm:py-32 bg-gradient-to-b from-violet-50 to-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <AnimatedSection>
+              <div className="text-center mb-12">
+                <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4">Nos outils gratuits</h2>
+                <p className="text-xl text-slate-600">Pour vous aider à choisir et chiffrer votre projet</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Link
+                  href="/outils/calculateur-roi-crm"
+                  className="group bg-white rounded-2xl border border-slate-200 p-8 hover:border-violet-300 hover:shadow-md transition-all"
+                >
+                  <div className="text-4xl mb-3">🧮</div>
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-violet-700 mb-2">Calculateur ROI CRM</h3>
+                  <p className="text-slate-600">Estimez en 30 secondes le gain de CA et le break-even d&apos;un projet CRM.</p>
+                </Link>
+                <Link
+                  href="/quiz"
+                  className="group bg-white rounded-2xl border border-slate-200 p-8 hover:border-violet-300 hover:shadow-md transition-all"
+                >
+                  <div className="text-4xl mb-3">🎯</div>
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-violet-700 mb-2">Quiz CRM</h3>
+                  <p className="text-slate-600">8 questions, 3 CRM recommandés pour votre profil en 2 minutes.</p>
+                </Link>
+                <Link
+                  href="/tarifs"
+                  className="group bg-white rounded-2xl border border-slate-200 p-8 hover:border-violet-300 hover:shadow-md transition-all"
+                >
+                  <div className="text-4xl mb-3">💰</div>
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-violet-700 mb-2">Comparateur de tarifs</h3>
+                  <p className="text-slate-600">Tableau interactif des prix de 24 CRM, filtrable par plan gratuit.</p>
+                </Link>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="py-20 sm:py-32 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
