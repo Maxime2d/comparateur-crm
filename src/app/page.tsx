@@ -8,7 +8,7 @@ import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { ItemListJsonLd, HowToJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { getTopPlatforms } from "@/lib/platforms";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
-import { ArrowRight, CheckCircle2, Zap, BarChart3, Smartphone, Mail, Workflow, MessageSquare, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, BarChart3, Smartphone, Mail, Workflow, MessageSquare, Sparkles, Flag, Gift, Store, Rocket, User, Code, Calculator, Target, Euro } from "lucide-react";
 import { TypewriterText } from "@/components/ui/typewriter-text";
 
 export const metadata: Metadata = {
@@ -256,30 +256,35 @@ export default function HomePage() {
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                 {[
-                  { href: "/crm-francais", label: "CRM Français", emoji: "🇫🇷", glow: "from-blue-400/20 to-violet-400/20" },
-                  { href: "/crm-gratuit", label: "CRM Gratuit", emoji: "🎁", glow: "from-emerald-400/20 to-teal-400/20" },
-                  { href: "/crm-tpe", label: "CRM TPE", emoji: "🏪", glow: "from-amber-400/20 to-orange-400/20" },
-                  { href: "/crm-startup", label: "CRM Startup", emoji: "🚀", glow: "from-fuchsia-400/20 to-pink-400/20" },
-                  { href: "/crm-freelance", label: "CRM Freelance", emoji: "👤", glow: "from-violet-400/20 to-purple-400/20" },
-                  { href: "/crm-open-source", label: "Open Source", emoji: "💻", glow: "from-slate-400/20 to-zinc-400/20" },
-                ].map((s) => (
-                  <Link
-                    key={s.href}
-                    href={s.href}
-                    className="group relative bg-white rounded-2xl border border-slate-200/80 p-6 text-center hover:border-violet-300 transition-all overflow-hidden"
-                  >
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${s.glow} opacity-0 group-hover:opacity-100 transition-opacity`}
-                      aria-hidden="true"
-                    />
-                    <div className="relative">
-                      <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">{s.emoji}</div>
-                      <div className="font-semibold text-slate-900 group-hover:text-violet-700 text-sm transition-colors">
-                        {s.label}
+                  { href: "/crm-francais", label: "CRM Français", Icon: Flag, gradient: "from-blue-500 to-indigo-500", glow: "from-blue-400/20 to-violet-400/20" },
+                  { href: "/crm-gratuit", label: "CRM Gratuit", Icon: Gift, gradient: "from-emerald-500 to-teal-500", glow: "from-emerald-400/20 to-teal-400/20" },
+                  { href: "/crm-tpe", label: "CRM TPE", Icon: Store, gradient: "from-amber-500 to-orange-500", glow: "from-amber-400/20 to-orange-400/20" },
+                  { href: "/crm-startup", label: "CRM Startup", Icon: Rocket, gradient: "from-fuchsia-500 to-pink-500", glow: "from-fuchsia-400/20 to-pink-400/20" },
+                  { href: "/crm-freelance", label: "CRM Freelance", Icon: User, gradient: "from-violet-500 to-purple-500", glow: "from-violet-400/20 to-purple-400/20" },
+                  { href: "/crm-open-source", label: "Open Source", Icon: Code, gradient: "from-slate-500 to-zinc-500", glow: "from-slate-400/20 to-zinc-400/20" },
+                ].map((s) => {
+                  const SegIcon = s.Icon;
+                  return (
+                    <Link
+                      key={s.href}
+                      href={s.href}
+                      className="group relative bg-white rounded-2xl border border-slate-200/80 p-6 text-center hover:border-violet-300 transition-all overflow-hidden"
+                    >
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${s.glow} opacity-0 group-hover:opacity-100 transition-opacity`}
+                        aria-hidden="true"
+                      />
+                      <div className="relative">
+                        <div className={`mx-auto mb-3 w-12 h-12 rounded-xl bg-gradient-to-br ${s.gradient} text-white flex items-center justify-center shadow-md group-hover:scale-110 transition-transform`}>
+                          <SegIcon size={22} />
+                        </div>
+                        <div className="font-semibold text-slate-900 group-hover:text-violet-700 text-sm transition-colors">
+                          {s.label}
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  );
+                })}
               </div>
             </AnimatedSection>
           </div>
@@ -303,50 +308,56 @@ export default function HomePage() {
                 {[
                   {
                     href: "/outils/calculateur-roi-crm",
-                    emoji: "🧮",
+                    Icon: Calculator,
                     title: "Calculateur ROI",
                     description: "Estimez en 30 secondes le gain de CA et le break-even d'un projet CRM.",
+                    gradient: "from-violet-500 to-fuchsia-500",
                     glow: "from-violet-500/20 to-fuchsia-500/20",
                   },
                   {
                     href: "/quiz",
-                    emoji: "🎯",
+                    Icon: Target,
                     title: "Quiz CRM",
                     description: "8 questions, 3 CRM recommandés pour votre profil en 2 minutes.",
+                    gradient: "from-fuchsia-500 to-pink-500",
                     glow: "from-fuchsia-500/20 to-pink-500/20",
                   },
                   {
                     href: "/tarifs",
-                    emoji: "💰",
+                    Icon: Euro,
                     title: "Comparateur de tarifs",
                     description: "Tableau interactif des prix de 27 CRM, filtrable par plan gratuit.",
+                    gradient: "from-pink-500 to-violet-500",
                     glow: "from-pink-500/20 to-violet-500/20",
                   },
-                ].map((t) => (
-                  <Link
-                    key={t.href}
-                    href={t.href}
-                    className="group relative bg-white rounded-3xl border border-slate-200/80 p-8 hover:border-violet-300 transition-all overflow-hidden"
-                  >
-                    <div
-                      className={`absolute -top-20 -right-20 w-56 h-56 bg-gradient-to-br ${t.glow} rounded-full filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity`}
-                      aria-hidden="true"
-                    />
-                    <div className="relative">
-                      <div className="text-5xl mb-4 group-hover:scale-110 transition-transform inline-block">
-                        {t.emoji}
+                ].map((t) => {
+                  const ToolIcon = t.Icon;
+                  return (
+                    <Link
+                      key={t.href}
+                      href={t.href}
+                      className="group relative bg-white rounded-3xl border border-slate-200/80 p-8 hover:border-violet-300 transition-all overflow-hidden"
+                    >
+                      <div
+                        className={`absolute -top-20 -right-20 w-56 h-56 bg-gradient-to-br ${t.glow} rounded-full filter blur-3xl opacity-50 group-hover:opacity-100 transition-opacity`}
+                        aria-hidden="true"
+                      />
+                      <div className="relative">
+                        <div className={`mb-5 w-14 h-14 rounded-2xl bg-gradient-to-br ${t.gradient} text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
+                          <ToolIcon size={26} />
+                        </div>
+                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-violet-700 mb-2 transition-colors">
+                          {t.title}
+                        </h3>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-4">{t.description}</p>
+                        <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-600 group-hover:gap-2.5 transition-all">
+                          Y aller
+                          <ArrowRight size={14} />
+                        </div>
                       </div>
-                      <h3 className="text-xl font-bold text-slate-900 group-hover:text-violet-700 mb-2 transition-colors">
-                        {t.title}
-                      </h3>
-                      <p className="text-slate-600 text-sm leading-relaxed mb-4">{t.description}</p>
-                      <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-600 group-hover:gap-2.5 transition-all">
-                        Y aller
-                        <ArrowRight size={14} />
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  );
+                })}
               </div>
             </AnimatedSection>
           </div>
