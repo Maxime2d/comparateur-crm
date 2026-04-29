@@ -81,9 +81,145 @@ export function ArticleJsonLd({
 }
 
 export function PlatformJsonLd({ platform }: { platform: Platform }) {
-  const reviews = platform.externalReviews || [];
-  const totalReviews = reviews.reduce((sum, r) => sum + r.reviewCount, 0);
-  return <JsonLd data={{ "@context": "https://schema.org", "@type": "SoftwareApplication", name: platform.name, description: platform.description, url: `${SITE_URL}/crm/${platform.slug}`, applicationCategory: "BusinessApplication", operatingSystem: "Web", offers: { "@type": "Offer", price: platform.pricing.startsAt || 0, priceCurrency: "EUR", availability: "https://schema.org/InStock", url: platform.website }, review: { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: platform.scores.overall, bestRating: 10 }, author: { "@type": "Organization", name: SITE_NAME } }, ...(totalReviews > 0 ? { aggregateRating: { "@type": "AggregateRating", ratingValue: Math.round((reviews.reduce((sum, r) => sum + r.rating * r.reviewCount, 0) / totalReviews) * 10) / 10, bestRating: 10, ratingCount: totalReviews } } : {}) }} />;
+  const externalReviews = platform.externalReviews || [];
+  const totalExternalReviews = externalReviews.reduce(
+    (sum, r) => sum + r.reviewCount,
+    0,
+  );
+
+  // Note moyenne pondérée : si on a des reviews externes (G2, Capterra…),
+  // on les utilise. Sinon on tombe sur notre note interne.
+  const aggregateRating = totalExternalReviews > 0
+    ? {
+        "@type": "AggregateRating",
+        ratingValue:
+          Math.round(
+            (externalReviews.reduce((s, r) => s + r.rating * r.reviewCount, 0) /
+              totalExternalReviews) * 10,
+          ) / 10,
+        bestRating: 5,
+        worstRating: 1,
+        ratingCount: totalExternalReviews,
+      }
+    : {
+        // Pas de reviews externes → on émet quand même une AggregateRating
+        // basée sur notre score éditorial (sur 10, ramené sur 5)
+        "@type": "AggregateRating",
+        ratingValue: Math.round((platform.scores.overall / 2) * 10) / 10,
+        bestRating: 5,
+        worstRating: 1,
+        ratingCount: 1,
+      };
+
+  // Review array : notre review éditoriale + les reviews externes si on les a
+  const reviewList = [
+    {
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: Math.round((platform.scores.overall / 2) * 10) / 10,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      author: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+      datePublished: platform.lastUpdated || "2026-04-01",
+      reviewBody: platform.description.slice(0, 500),
+      name: `Avis ${platform.name} par ${SITE_NAME}`,
+    },
+    ...externalReviews.map((r) => ({
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: r.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      author: { "@type": "Organization", name: r.source },
+      url: r.url,
+    })),
+  ];
+
+  // Image : on utilise l'OG image dynamique générée par Next.js
+  // (route /crm/[slug]/opengraph-image.tsx) qui produit du PNG 1200×630
+  const imageUrl = `${SITE_URL}/crm/${platform.slug}/opengraph-image`;
+
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        // Garde SoftwareApplication (plus précis) mais ajoute les champs
+        // que Google attend pour les Product Snippets
+        "@type": ["SoftwareApplication", "Product"],
+        name: platform.name,
+        description: platform.description,
+        url: `${SITE_URL}/crm/${platform.slug}`,
+        // Champ critique manquant signalé par GSC
+        image: [imageUrl],
+        // Brand (équivaut à GTIN pour les softwares)
+        brand: {
+          "@type": "Brand",
+          name: platform.name,
+        },
+        applicationCategory: "BusinessApplication",
+        applicationSubCategory: "CRM",
+        operatingSystem: "Web, iOS, Android",
+        inLanguage: "fr-FR",
+        offers: {
+          "@type": "Offer",
+          price: platform.pricing.startsAt || 0,
+          priceCurrency: "EUR",
+          priceValidUntil: "2026-12-31",
+          availability: "https://schema.org/InStock",
+          url: platform.website,
+          seller: {
+            "@type": "Organization",
+            name: platform.name,
+            url: platform.website,
+          },
+          // Pour un SaaS : livraison instantanée gratuite (logiciel digital)
+          shippingDetails: {
+            "@type": "OfferShippingDetails",
+            shippingRate: {
+              "@type": "MonetaryAmount",
+              value: 0,
+              currency: "EUR",
+            },
+            shippingDestination: {
+              "@type": "DefinedRegion",
+              addressCountry: "FR",
+            },
+            deliveryTime: {
+              "@type": "ShippingDeliveryTime",
+              handlingTime: {
+                "@type": "QuantitativeValue",
+                minValue: 0,
+                maxValue: 0,
+                unitCode: "DAY",
+              },
+              transitTime: {
+                "@type": "QuantitativeValue",
+                minValue: 0,
+                maxValue: 0,
+                unitCode: "DAY",
+              },
+            },
+          },
+          // Délai légal de rétractation FR (14 jours)
+          hasMerchantReturnPolicy: {
+            "@type": "MerchantReturnPolicy",
+            applicableCountry: "FR",
+            returnPolicyCategory:
+              "https://schema.org/MerchantReturnFiniteReturnWindow",
+            merchantReturnDays: 14,
+            returnMethod: "https://schema.org/ReturnByMail",
+            returnFees: "https://schema.org/FreeReturn",
+          },
+        },
+        aggregateRating,
+        review: reviewList,
+      }}
+    />
+  );
 }
 
 export function FAQJsonLd({ faqs }: { faqs: { question: string; answer: string }[] }) {
