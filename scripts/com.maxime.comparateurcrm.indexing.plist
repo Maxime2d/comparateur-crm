@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.maxime.comparateurcrm.indexing</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-l</string>
+    <string>-c</string>
+    <string>cd /Users/maxime/Documents/affiliations/comparateur-crm &amp;&amp; /opt/homebrew/bin/npx tsx scripts/indexing-push.ts &gt;&gt; /tmp/comparateurcrm-indexing.log 2&gt;&amp;1; /opt/homebrew/bin/git -C /Users/maxime/Documents/affiliations/comparateur-crm add scripts/indexing-state.json &amp;&amp; /opt/homebrew/bin/git -C /Users/maxime/Documents/affiliations/comparateur-crm commit -m "chore(indexing): mise à jour state $(date +%Y-%m-%d)" --no-verify || true</string>
+  </array>
+
+  <!-- Tous les jours à 18h00 (heure locale Mac) -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>18</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <!-- Au cas où le Mac est éteint à 18h, on retentera dès qu'il s'allume -->
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/comparateurcrm-indexing-stdout.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/comparateurcrm-indexing-stderr.log</string>
+
+  <!-- Restreint à la session utilisateur (pas root) -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+</dict>
+</plist>
