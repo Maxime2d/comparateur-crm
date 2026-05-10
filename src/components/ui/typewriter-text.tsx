@@ -30,8 +30,12 @@ export function TypewriterText({
   cursorClassName = "bg-violet-400",
   className = "",
 }: TypewriterTextProps) {
+  // SSR : on rend la 1ère phrase complète pour que les crawlers SEO
+  // (Google notamment) voient un H1 lisible et complet, pas tronqué.
+  // Au mount client, l'animation prend le relais : pause puis effacement
+  // puis enchaînement des phrases suivantes.
   const [phraseIndex, setPhraseIndex] = useState(0);
-  const [displayed, setDisplayed] = useState("");
+  const [displayed, setDisplayed] = useState(phrases[0] || "");
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {

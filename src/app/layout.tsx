@@ -30,7 +30,22 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
-  keywords: ["CRM", "logiciel CRM", "comparatif CRM", "comparateur CRM", "meilleur CRM", "CRM gratuit", "CRM français", "CRM TPE", "CRM PME", "gestion relation client", "pipeline commercial", "CRM 2026"],
+  keywords: [
+    // Cluster principal
+    "CRM", "logiciel CRM", "comparatif CRM", "comparateur CRM",
+    "meilleur CRM", "CRM 2026", "avis CRM", "test CRM",
+    // Cluster segments
+    "CRM gratuit", "CRM français", "CRM TPE", "CRM PME",
+    "CRM startup", "CRM freelance", "CRM open source",
+    // Cluster transactionnel
+    "tarifs CRM", "prix CRM", "essai CRM gratuit",
+    // Cluster top éditeurs (apporte du long-tail vs marques)
+    "HubSpot", "Salesforce", "Pipedrive", "Sellsy", "Zoho CRM",
+    "Axonaut", "Folk", "Monday Sales CRM", "Brevo", "ActiveCampaign",
+    // Cluster fonctionnel
+    "gestion relation client", "pipeline commercial", "automatisation commerciale",
+    "scoring de leads", "ROI CRM",
+  ],
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,
   publisher: SITE_NAME,

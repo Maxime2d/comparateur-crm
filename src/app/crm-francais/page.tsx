@@ -75,7 +75,7 @@ export default function CrmFrancaisPage() {
       <PageHero
         eyebrow="Made in France"
         eyebrowIcon={Flag}
-        title="Les meilleur CRM français"
+        title="Les meilleurs CRM français en 2026"
         highlight="CRM français"
         subtitle="Hébergement en Union Européenne, support en français, équipes basées en France, conformité RGPD native. Notre sélection des logiciels CRM vraiment made in France."
       />
