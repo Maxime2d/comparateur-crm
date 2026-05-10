@@ -4,7 +4,7 @@ import { BreadcrumbJsonLd, HowToJsonLd } from "@/components/seo/json-ld";
 import { QuizClient } from "@/components/quiz/quiz-client";
 
 export const metadata: Metadata = {
-  title: "Quiz CRM : Trouvez le meilleur CRM pour votre entreprise",
+  title: "Quiz CRM 2026 : trouvez le bon CRM en 2 minutes",
   description: "Répondez à 8 questions simples et recevez une recommandation personnalisée parmi les meilleurs logiciels CRM du marché. Gratuit et sans inscription.",
   alternates: { canonical: `${SITE_URL}/quiz` },
 };

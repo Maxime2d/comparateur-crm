@@ -8,7 +8,7 @@ import { PageHero } from "@/components/layout/page-hero";
 export const metadata: Metadata = {
   title: "Glossaire CRM 2026 : tous les termes expliqués simplement",
   description:
-    "Lexique CRM complet : définitions claires de 30+ termes essentiels (lead, pipeline, scoring, MQL, SQL, ARR, churn, automation, intégration). Le dictionnaire de la relation client.",
+    "Lexique CRM 2026 : 30+ définitions claires (lead, pipeline, scoring, MQL, ARR, churn, automation). Le dictionnaire de la relation client.",
   alternates: { canonical: `${SITE_URL}/glossaire-crm` },
   openGraph: {
     title: `Glossaire CRM | ${SITE_NAME}`,

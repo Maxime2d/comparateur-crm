@@ -6,9 +6,9 @@ import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { SegmentHub } from "@/components/segment/segment-hub";
 
 export const metadata: Metadata = {
-  title: "Meilleur CRM pour freelance 2026 : Top des outils pour indépendants",
+  title: "Meilleur CRM pour freelance 2026 : Top 7 outils",
   description:
-    "Comparatif des meilleurs CRM pour freelances et indépendants en 2026 : Folk, Axonaut, HubSpot, Brevo, noCRM. Choix selon votre métier (consultant, créatif, dev).",
+    "Top 7 CRM pour freelances et indépendants 2026 : Folk, Axonaut, HubSpot, Brevo, noCRM. Choix selon votre métier (consultant, créatif, dev).",
   alternates: { canonical: `${SITE_URL}/crm-freelance` },
   openGraph: {
     title: `Meilleur CRM pour freelance | ${SITE_NAME}`,

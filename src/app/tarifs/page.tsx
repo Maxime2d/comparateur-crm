@@ -8,9 +8,9 @@ import { PageHero } from "@/components/layout/page-hero";
 import { TarifsClient } from "@/components/tarifs/tarifs-client";
 
 export const metadata: Metadata = {
-  title: "Tarifs CRM 2026 : comparatif des prix de tous les logiciels CRM",
+  title: "Tarifs CRM 2026 : comparatif des prix",
   description:
-    "Découvrez les tarifs 2026 des 24 principaux logiciels CRM : HubSpot, Salesforce, Pipedrive, Sellsy, Zoho, Axonaut et plus. Plans gratuits, essais, prix par utilisateur.",
+    "Tarifs 2026 des 24 principaux logiciels CRM : HubSpot, Salesforce, Pipedrive, Sellsy, Zoho, Axonaut. Plans gratuits, essais, prix par utilisateur.",
   alternates: { canonical: `${SITE_URL}/tarifs` },
   openGraph: {
     title: `Tarifs CRM 2026 | ${SITE_NAME}`,

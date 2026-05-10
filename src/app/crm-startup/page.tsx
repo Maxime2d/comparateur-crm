@@ -6,7 +6,7 @@ import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { SegmentHub } from "@/components/segment/segment-hub";
 
 export const metadata: Metadata = {
-  title: "Meilleur CRM pour startup 2026 : Top des outils pour scale-ups",
+  title: "Meilleur CRM pour startup 2026 : Top 7 outils",
   description:
     "Comparatif des meilleurs CRM pour startups en 2026 : HubSpot, Pipedrive, Close, Folk, Freshsales. Choix selon votre stade (pré-seed, seed, Series A-C).",
   alternates: { canonical: `${SITE_URL}/crm-startup` },

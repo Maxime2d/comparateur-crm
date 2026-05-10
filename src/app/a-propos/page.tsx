@@ -8,7 +8,7 @@ import { PageHero } from "@/components/layout/page-hero";
 export const metadata: Metadata = {
   title: "À propos : qui est derrière Comparateur CRM",
   description:
-    "Découvrez l'équipe et la démarche éditoriale derrière Comparateur CRM, le comparateur indépendant des logiciels CRM en France. Notre mission, nos valeurs, notre histoire.",
+    "L'équipe et la démarche éditoriale derrière Comparateur CRM. Notre mission : aider TPE et PME françaises à choisir le bon CRM.",
   alternates: { canonical: `${SITE_URL}/a-propos` },
   openGraph: {
     title: `À propos | ${SITE_NAME}`,

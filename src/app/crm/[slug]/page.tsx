@@ -57,7 +57,10 @@ export async function generateMetadata({
   }
 
   const title = `${platform.name} : avis, tarifs et test complet 2026`;
-  const description = `${platform.shortDescription} Découvrez notre analyse détaillée, les prix, les fonctionnalités et les alternatives à ${platform.name}.`;
+  // Phrase 1 : positionnement (cleané, max 90 chars). Phrase 2 : promesse value.
+  // Total visé : 130-155 chars (sweet spot SEO).
+  const cleanShort = platform.shortDescription.trim().replace(/[.!?]+$/, "");
+  const description = `${platform.name} en 2026 : ${cleanShort}. Avis détaillé, tarifs, fonctionnalités, alternatives.`;
 
   return {
     title,

@@ -8,7 +8,7 @@ import { PageHero } from "@/components/layout/page-hero";
 export const metadata: Metadata = {
   title: "Guides CRM : méthodes, bonnes pratiques et tutoriels",
   description:
-    "Tous nos guides pour choisir, déployer et tirer le meilleur parti d'un logiciel CRM dans votre entreprise.",
+    "Tous nos guides pour choisir, déployer et tirer le meilleur parti d'un CRM en entreprise. Méthodes, bonnes pratiques, retours terrain.",
   alternates: { canonical: `${SITE_URL}/guide` },
   openGraph: {
     title: `Guides CRM | ${SITE_NAME}`,

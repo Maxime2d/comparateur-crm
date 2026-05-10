@@ -7,7 +7,7 @@ import { SITE_URL } from "@/lib/constants";
 import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
-  title: "Comparaisons CRM : comparatifs 1:1 entre logiciels CRM",
+  title: "Comparatifs CRM 2026 : 10 face-à-face détaillés",
   description:
     "Tous nos comparatifs face-à-face entre les principaux logiciels CRM : HubSpot, Pipedrive, Salesforce, Sellsy, Zoho et plus.",
   alternates: { canonical: `${SITE_URL}/comparer` },

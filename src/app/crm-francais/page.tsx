@@ -12,9 +12,9 @@ import { formatPrice, getCtaLabel } from "@/lib/utils";
 import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
-  title: "Meilleur CRM français 2026 : Top 8 des logiciels CRM made in France",
+  title: "Meilleur CRM français 2026 : Top 8 made in France",
   description:
-    "Comparatif des meilleurs CRM français en 2026 : Sellsy, Axonaut, Brevo, Karlia, Teamleader, Youday, Initiative CRM, Divalto. Hébergement UE, support FR, conformité RGPD garantie.",
+    "Top 8 CRM français 2026 : Sellsy, Axonaut, Brevo, Karlia, Teamleader, Initiative, Divalto, Youday. Hébergement UE, support FR, conformité RGPD.",
   alternates: { canonical: `${SITE_URL}/crm-francais` },
   openGraph: {
     title: `Meilleur CRM français 2026 | ${SITE_NAME}`,

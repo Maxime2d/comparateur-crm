@@ -7,9 +7,9 @@ import { SegmentHub } from "@/components/segment/segment-hub";
 import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
-  title: "Meilleur CRM gratuit 2026 : Top des logiciels CRM 100% sans payer",
+  title: "Meilleur CRM gratuit 2026 : Top des plans free",
   description:
-    "Comparatif des meilleurs CRM gratuits en 2026 : HubSpot, Brevo, Zoho, Freshsales, Folk, Agile CRM. Plans gratuits permanents, fonctionnalités, limites, alternatives.",
+    "Top CRM gratuits 2026 : HubSpot, Brevo, Zoho, Freshsales, Folk, Agile CRM. Plans gratuits permanents, fonctionnalités, limites, alternatives.",
   alternates: { canonical: `${SITE_URL}/crm-gratuit` },
   openGraph: {
     title: `Meilleur CRM gratuit 2026 | ${SITE_NAME}`,

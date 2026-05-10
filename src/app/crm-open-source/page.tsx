@@ -6,7 +6,7 @@ import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
-  title: "Meilleur CRM open source 2026 : Top 6 des solutions auto-hébergeables",
+  title: "Meilleur CRM open source 2026 : Top 6",
   description:
     "Comparatif des meilleurs CRM open source en 2026 : SuiteCRM, EspoCRM, Vtiger, Odoo CRM, Mautic, Twenty. Auto-hébergement, prix, communauté, alternatives SaaS.",
   alternates: { canonical: `${SITE_URL}/crm-open-source` },

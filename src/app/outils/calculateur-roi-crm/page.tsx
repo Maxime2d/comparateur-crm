@@ -7,9 +7,9 @@ import { RoiCalculator } from "@/components/outils/roi-calculator";
 import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
-  title: "Calculateur ROI CRM gratuit 2026 : estimez le retour sur investissement",
+  title: "Calculateur ROI CRM gratuit 2026",
   description:
-    "Calculez gratuitement le ROI de votre projet CRM en 30 secondes. Saisissez votre nombre de commerciaux, panier moyen et amélioration attendue : obtenez le gain prévisionnel et le délai d'amortissement.",
+    "Calculez le ROI de votre projet CRM en 30 secondes. Gain prévisionnel et délai d'amortissement instantanés. Sans inscription, sans email demandé.",
   alternates: { canonical: `${SITE_URL}/outils/calculateur-roi-crm` },
   openGraph: {
     title: `Calculateur ROI CRM | ${SITE_NAME}`,

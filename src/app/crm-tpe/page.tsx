@@ -6,9 +6,9 @@ import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { SegmentHub } from "@/components/segment/segment-hub";
 
 export const metadata: Metadata = {
-  title: "Meilleur CRM pour TPE 2026 : Top des logiciels pour petites entreprises",
+  title: "Meilleur CRM pour TPE 2026 : Top 8 logiciels",
   description:
-    "Comparatif des meilleurs CRM pour TPE et petites entreprises (1-10 salariés) en 2026 : Axonaut, Sellsy, HubSpot, Pipedrive. Choix adapté à votre taille et budget.",
+    "Top 8 CRM pour TPE et petites entreprises (1-10 salariés) en 2026 : Axonaut, Sellsy, HubSpot, Pipedrive. Sélection adaptée à votre budget.",
   alternates: { canonical: `${SITE_URL}/crm-tpe` },
   openGraph: {
     title: `Meilleur CRM pour TPE | ${SITE_NAME}`,

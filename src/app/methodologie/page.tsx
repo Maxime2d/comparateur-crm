@@ -9,7 +9,7 @@ import { StickyScroll } from "@/components/ui/sticky-scroll";
 export const metadata: Metadata = {
   title: "Notre méthodologie : comment nous notons les CRM",
   description:
-    "Découvrez la méthodologie transparente que nous utilisons pour analyser, noter et classer les 24 logiciels CRM de notre comparateur : critères, pondération, sources, mises à jour.",
+    "Méthodologie transparente pour analyser et noter 24 logiciels CRM : critères, pondération, sources, mises à jour. Audit public et reproductible.",
   alternates: { canonical: `${SITE_URL}/methodologie` },
   openGraph: {
     title: `Notre méthodologie | ${SITE_NAME}`,
