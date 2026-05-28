@@ -294,7 +294,7 @@ export default function HomePage() {
                     Trouvez le CRM adapté à votre situation
                   </span>
                 </h2>
-                <p className="text-lg text-slate-600">6 sélections curées pour chaque type de structure</p>
+                <p className="text-lg text-slate-600">Une sélection adaptée à chaque type de structure</p>
               </div>
               <HoverCardGrid
                 columns={6}
