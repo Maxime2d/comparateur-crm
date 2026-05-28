@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRight, ScrollText, Scale, ShieldCheck, Calendar, Users, ClipboardCheck, FlaskConical, FileSearch, BarChart3, Trophy } from "lucide-react";
+import { ChevronRight, Scale, ShieldCheck, Calendar, Users, ClipboardCheck, FileSearch, BarChart3, Trophy } from "lucide-react";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { PageHero } from "@/components/layout/page-hero";
@@ -9,7 +9,7 @@ import { StickyScroll } from "@/components/ui/sticky-scroll";
 export const metadata: Metadata = {
   title: "Notre méthodologie : comment nous notons les CRM",
   description:
-    "Méthodologie transparente pour analyser et noter 24 logiciels CRM : critères, pondération, sources, mises à jour. Audit public et reproductible.",
+    "Méthodologie transparente pour analyser et noter 24 logiciels CRM : critères, pondération, sources, mises à jour.",
   alternates: { canonical: `${SITE_URL}/methodologie` },
   openGraph: {
     title: `Notre méthodologie | ${SITE_NAME}`,
@@ -37,7 +37,7 @@ const criteria = [
     name: "Expérience utilisateur",
     weight: "15 %",
     detail:
-      "Modernité de l'interface, courbe d'apprentissage, qualité de l'application mobile, accessibilité. Évalué par tests pratiques et retours d'utilisateurs cumulés sur G2, Capterra et Trustpilot.",
+      "Modernité de l'interface, courbe d'apprentissage, qualité de l'application mobile, accessibilité. Évalué via les retours d'utilisateurs cumulés sur G2, Capterra et GetApp.",
   },
   {
     name: "Intégrations",
@@ -67,14 +67,14 @@ const criteria = [
 
 const principles = [
   {
-    icon: ScrollText,
-    title: "Tests pratiques",
-    text: "Chaque CRM est testé sur un cas réel d'usage avant publication : import de contacts, création d'un pipeline, configuration d'une automatisation, génération d'un rapport.",
+    icon: FileSearch,
+    title: "Analyse documentaire approfondie",
+    text: "Chaque CRM est analysé via sa documentation officielle, ses démos publiques et les retours d'utilisateurs B2B vérifiés sur G2, Capterra et GetApp.",
   },
   {
     icon: Users,
     title: "Sources tierces croisées",
-    text: "Nous compilons systématiquement les avis publics de G2, Capterra, GetApp et Trustpilot pour vérifier nos impressions et capter les angles utilisateurs.",
+    text: "Nous compilons les avis publics de G2, Capterra et GetApp pour vérifier nos impressions et capter les angles utilisateurs.",
   },
   {
     icon: Scale,
@@ -120,7 +120,7 @@ export default function MethodologiePage() {
         eyebrowIcon={ClipboardCheck}
         title="Comment nous notons les logiciels CRM"
         highlight="logiciels CRM"
-        subtitle="Notre méthodologie est volontairement publique. Vous pouvez auditer chaque critère, chaque pondération, et reproduire notre analyse vous-même."
+        subtitle="Découvrez les critères et la pondération que nous utilisons pour analyser chaque CRM."
       />
 
       <div className="bg-[#fafaff] pb-20">
@@ -147,30 +147,30 @@ export default function MethodologiePage() {
                 </span>
               </h2>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Du test pratique à la note finale, voici comment chaque CRM est analysé pour entrer dans notre comparateur.
+                De l&apos;analyse documentaire à la note finale, voici comment chaque CRM est évalué pour entrer dans notre comparateur.
               </p>
             </div>
 
             <StickyScroll
               sections={[
                 {
-                  title: "Tests pratiques en conditions réelles",
+                  title: "Analyse documentaire approfondie",
                   description: (
                     <>
                       <p className="mb-3">
-                        Chaque CRM est <strong>testé pendant 5 à 10 jours</strong> via son essai gratuit ou son plan free. On crée un compte, on importe 50 contacts fictifs, on construit un pipeline commercial complet et on configure au moins une automatisation.
+                        Chaque CRM est <strong>analysé en profondeur</strong> à partir de sa documentation officielle, ses démos publiques, vidéos produit et captures d&apos;écran. On vérifie chaque fonctionnalité annoncée par l&apos;éditeur.
                       </p>
                       <p>
-                        Cette étape génère les retours d&apos;expérience qui nourrissent les sections &quot;avantages&quot; et &quot;inconvénients&quot; de chaque fiche.
+                        Cette analyse nourrit les sections &quot;avantages&quot; et &quot;inconvénients&quot; en croisant les promesses éditeur avec les retours utilisateurs publics.
                       </p>
                     </>
                   ),
                   accent: "violet",
                   visual: (
                     <div className="text-center px-6">
-                      <FlaskConical size={72} className="mx-auto mb-4 opacity-90" />
-                      <div className="text-3xl font-black mb-2">5–10 jours</div>
-                      <div className="text-sm opacity-80">de test approfondi par CRM</div>
+                      <FileSearch size={72} className="mx-auto mb-4 opacity-90" />
+                      <div className="text-3xl font-black mb-2">Analyse complète</div>
+                      <div className="text-sm opacity-80">par CRM avant publication</div>
                     </div>
                   ),
                 },
@@ -179,7 +179,7 @@ export default function MethodologiePage() {
                   description: (
                     <>
                       <p className="mb-3">
-                        Nos impressions sont systématiquement croisées avec les <strong>avis utilisateurs publics</strong> de G2, Capterra, GetApp et Trustpilot. On agrège la note moyenne pondérée par le nombre d&apos;avis.
+                        Nos impressions sont systématiquement croisées avec les <strong>avis utilisateurs publics</strong> de G2, Capterra et GetApp. On agrège la note moyenne pondérée par le nombre d&apos;avis.
                       </p>
                       <p>
                         Cela nous permet de capter les angles morts d&apos;un test individuel : usage long-terme, scalabilité, qualité du support sur la durée.
@@ -190,8 +190,8 @@ export default function MethodologiePage() {
                   visual: (
                     <div className="text-center px-6">
                       <FileSearch size={72} className="mx-auto mb-4 opacity-90" />
-                      <div className="text-3xl font-black mb-2">4 sources</div>
-                      <div className="text-sm opacity-80">G2 · Capterra · GetApp · Trustpilot</div>
+                      <div className="text-3xl font-black mb-2">3 sources</div>
+                      <div className="text-sm opacity-80">G2 · Capterra · GetApp</div>
                     </div>
                   ),
                 },
@@ -224,7 +224,7 @@ export default function MethodologiePage() {
                         Tarifs, fonctionnalités et notes sont <strong>revus tous les 3 mois</strong> pour suivre les évolutions du marché. Une refonte complète a lieu en janvier de chaque année.
                       </p>
                       <p>
-                        La date de dernière mise à jour est toujours affichée en haut de chaque fiche. Vous pouvez auditer l&apos;historique de la méthodologie plus bas.
+                        La date de dernière mise à jour est toujours affichée en haut de chaque fiche. L&apos;historique des mises à jour de la méthodologie est disponible plus bas.
                       </p>
                     </>
                   ),
@@ -333,15 +333,15 @@ export default function MethodologiePage() {
                 commerciales lorsque cela est nécessaire.
               </p>
               <p>
-                <strong>Avis utilisateurs</strong> : moyenne agrégée de G2, Capterra,
-                GetApp et Trustpilot. Chaque source est citée sur la fiche du CRM avec
+                <strong>Avis utilisateurs</strong> : moyenne agrégée de G2, Capterra
+                et GetApp. Chaque source est citée sur la fiche du CRM avec
                 le nombre d&apos;avis et la note moyenne.
               </p>
               <p>
-                <strong>Tests pratiques</strong> : nous testons chaque CRM en
-                conditions réelles via leur essai gratuit ou plan gratuit. Nos retours
-                d&apos;expérience nourrissent les sections &quot;avantages&quot; et
-                &quot;inconvénients&quot;.
+                <strong>Analyse documentaire</strong> : nous analysons chaque CRM à
+                partir de sa documentation officielle, ses démos publiques, vidéos
+                produit et captures d&apos;écran. Cette analyse nourrit les sections
+                &quot;avantages&quot; et &quot;inconvénients&quot;.
               </p>
               <p>
                 <strong>Conformité</strong> : nous lisons et résumons les politiques

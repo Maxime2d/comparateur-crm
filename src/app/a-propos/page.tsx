@@ -79,7 +79,7 @@ export default function AProposPage() {
               fonctionnalités. Pour un dirigeant de PME ou un commercial, choisir
               prend des semaines de recherche, de démos et d&apos;essais. Notre
               mission : compresser cette recherche en 30 minutes, avec des données
-              fiables et une méthodologie publique.
+              fiables et une méthodologie rigoureuse.
             </p>
             <p className="text-slate-700 leading-relaxed">
               Nous ne sommes ni revendeurs, ni intégrateurs, ni partenaires
@@ -94,10 +94,10 @@ export default function AProposPage() {
               Notre approche
             </h2>
             <p className="text-slate-700 leading-relaxed">
-              Chaque fiche CRM publiée passe par un test pratique, un croisement avec
-              les avis utilisateurs publics (G2, Capterra, GetApp, Trustpilot) et une
+              Chaque fiche CRM publiée fait l&apos;objet d&apos;une analyse documentaire approfondie croisée avec
+              les avis utilisateurs publics (G2, Capterra, GetApp) et une
               vérification des conditions tarifaires officielles. Notre méthodologie
-              est publiée publiquement et auditable :{" "}
+              est détaillée publiquement :{" "}
               <Link
                 href="/methodologie"
                 className="text-violet-600 hover:text-violet-700 underline underline-offset-2"

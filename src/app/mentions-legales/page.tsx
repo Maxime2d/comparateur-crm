@@ -227,7 +227,7 @@ export default function MentionsLegalesPage() {
               <strong>Ces commissions ne modifient pas le prix payé par
               l&apos;utilisateur</strong> et n&apos;influencent pas notre
               classement éditorial. Notre méthodologie de notation est
-              publiée publiquement et auditable&nbsp;:{" "}
+              détaillée publiquement&nbsp;:{" "}
               <Link href="/methodologie">consulter notre méthodologie</Link>.
               Nous publions également des avis négatifs ou nuancés lorsque
               c&apos;est justifié, y compris sur des CRM avec lesquels nous

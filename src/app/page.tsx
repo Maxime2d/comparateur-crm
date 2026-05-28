@@ -216,7 +216,7 @@ export default function HomePage() {
                   </span>
                 </h2>
                 <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                  Notre classement éditorial indépendant, basé sur 27 logiciels analysés selon notre méthodologie publique.
+                  Notre classement éditorial indépendant, basé sur 27 logiciels analysés selon notre méthodologie d&apos;évaluation.
                 </p>
               </div>
               <HoverCardGrid
@@ -435,7 +435,7 @@ export default function HomePage() {
             Prêt à trouver votre CRM ?
           </h2>
           <p className="text-lg sm:text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
-            En 2 minutes, recevez 3 recommandations personnalisées parmi 27 logiciels analysés selon notre méthodologie publique.
+            En 2 minutes, recevez 3 recommandations personnalisées parmi 27 logiciels analysés selon notre méthodologie d&apos;évaluation.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
@@ -469,7 +469,7 @@ export default function HomePage() {
                   Les CRM modernes offrent bien plus que de la gestion de contacts. Ils créent un écosystème commercial intégré : suivi des opportunités, automatisation des tâches, scoring de leads, analyses avancées, et de plus en plus d&apos;intelligence artificielle pour prédire et personnaliser.
                 </p>
                 <p className="leading-relaxed">
-                  Notre comparateur indépendant analyse 27 solutions principales selon une <Link href="/methodologie" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">méthodologie publique</Link> et vous aide à choisir celle qui correspond le mieux à votre profil — sans email demandé, sans inscription.
+                  Notre comparateur indépendant analyse 27 solutions principales selon une <Link href="/methodologie" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">méthodologie d&apos;évaluation</Link> et vous aide à choisir celle qui correspond le mieux à votre profil — sans email demandé, sans inscription.
                 </p>
               </article>
             </AnimatedSection>
