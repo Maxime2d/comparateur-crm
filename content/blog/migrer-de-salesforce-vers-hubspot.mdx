@@ -1,0 +1,185 @@
+---
+title: "Migrer de Salesforce vers HubSpot en 2026 : guide pratique complet"
+description: "Étapes, mapping, exports, pièges à éviter : la méthode complète pour réussir votre migration de Salesforce vers HubSpot sans perdre de données."
+date: "2026-06-05"
+author: "Équipe Comparateur CRM"
+category: "Guides"
+readingTime: 14
+tags: ["migration CRM", "Salesforce", "HubSpot", "déploiement", "data"]
+featuredPlatform: "hubspot-crm"
+---
+
+Quitter Salesforce pour HubSpot est un projet courant en 2026. Les raisons reviennent toujours : coût Salesforce qui dérape avec les modules CPQ, Service et Marketing Cloud, complexité du paramétrage qui ralentit les commerciaux, équipe trop petite pour absorber la richesse de la plateforme. HubSpot séduit par son interface plus moderne, une tarification plus lisible et un plan gratuit qui rassure pour démarrer.
+
+Mais une migration CRM n'est jamais anodine. Vous déplacez plusieurs années d'historique commercial, des champs personnalisés que personne ne se rappelle avoir créés, et des automatisations qui pilotent vos relances quotidiennes. Le mauvais scénario : 6 semaines de chaos, des deals qui disparaissent, et une équipe qui réclame le retour à Salesforce.
+
+Ce guide détaille la méthode complète, de l'audit pré-migration à la formation post-bascule, en passant par les pièges qu'on voit le plus souvent.
+
+## Étape 1 : l'audit pré-migration (ne sautez pas cette étape)
+
+Avant tout export, vous devez répondre à 5 questions sur votre Salesforce actuel.
+
+**Quels objets sont vraiment utilisés ?** Salesforce permet de créer des objets personnalisés à l'infini. Listez les objets standards (Account, Contact, Lead, Opportunity, Case) et les objets custom. Pour chaque objet, comptez le nombre d'enregistrements créés dans les 12 derniers mois. Si un objet custom n'a pas vu de nouvel enregistrement depuis 18 mois, il est probablement obsolète et ne doit pas être migré.
+
+**Quels champs sont remplis ?** C'est l'audit le plus douloureux. Exportez la liste de tous les champs personnalisés (Setup > Object Manager) avec le pourcentage de remplissage. Vous découvrirez souvent que 40 à 60 % des champs custom sont vides ou remplis à moins de 5 %. Ceux-là ne doivent surtout pas être migrés.
+
+**Quelles automatisations tournent ?** Process Builder, Flow, Workflow Rules, Apex Triggers : faites l'inventaire. Notez ce que fait chaque automatisation et qui en bénéficie. Certaines ne sont plus utilisées (commercial parti, process abandonné), d'autres devront être recréées dans HubSpot.
+
+**Quels rapports sont consultés ?** Ouvrez Reports et triez par date de dernière consultation. Les 5 à 10 rapports vraiment utilisés sont ceux qu'il faudra reconstruire dans HubSpot. Le reste, vous l'oublierez.
+
+**Quelles intégrations sont actives ?** Listez les apps connectées (AppExchange, intégrations Zapier, API custom) : Slack, DocuSign, Outreach, Aircall, votre ERP. Pour chacune, vérifiez l'équivalent HubSpot avant la bascule. C'est souvent là qu'on découvre une mauvaise surprise.
+
+Cet audit prend 1 à 2 semaines pour une PME. Il est non négociable.
+
+## Étape 2 : préparer les exports Salesforce
+
+Salesforce propose plusieurs méthodes d'export.
+
+**Data Export Service** (Setup > Data > Data Export). Solution native, gratuite, qui génère un export CSV complet hebdomadaire ou mensuel. Idéale pour un snapshot de référence avant migration. Limite : ne capture pas les pièces jointes complètement et impose un délai.
+
+**Data Loader** (Setup > Integrations > Data Loader). Outil officiel pour des exports objet par objet en CSV. Permet de filtrer (SOQL) et de récupérer exactement ce dont vous avez besoin. C'est l'outil de référence pour un export "propre" prêt à mapper.
+
+**Workbench** (workbench.developerforce.com). Outil web pour des exports plus flexibles. Pratique pour vérifier la structure des données et tester des requêtes SOQL.
+
+**API REST/Bulk**. Pour les volumes importants (> 500 000 enregistrements) ou des extractions complexes, l'API est incontournable mais demande un développeur.
+
+Exportez systématiquement : Accounts, Contacts, Leads, Opportunities, Tasks, Events, Notes, Attachments, Cases (si Service Cloud), et les objets custom validés à l'étape 1.
+
+## Étape 3 : le mapping de champs (le cœur du projet)
+
+Le mapping Salesforce → HubSpot, c'est 60 % de la qualité finale de la migration. Construisez un tableur avec ces colonnes : objet Salesforce, champ Salesforce, type, % rempli, objet HubSpot, propriété HubSpot, type HubSpot, transformation nécessaire.
+
+Quelques règles de mapping incontournables :
+
+- **Account → Company** : mapping direct. Attention au champ "Account Owner" qui devient "Company owner" — vérifiez la correspondance des utilisateurs.
+- **Lead vs Contact** : HubSpot ne distingue pas Lead et Contact comme Salesforce. Vous devez choisir : tout migrer en Contact (recommandé) avec une propriété "Lifecycle Stage" qui marque Lead vs Customer, ou créer une propriété custom "Source".
+- **Opportunity → Deal** : les étapes du pipeline doivent être recréées à l'identique dans HubSpot (Settings > Objects > Deals > Pipelines). Mappez ensuite "Stage Salesforce" → "Deal Stage HubSpot".
+- **Tasks/Events → Engagements** : HubSpot regroupe les interactions sous "engagements" (call, email, meeting, note, task). Adaptez votre logique.
+- **Champs custom Salesforce** : créez les propriétés HubSpot équivalentes AVANT l'import, avec le même type (texte, nombre, picklist, date).
+
+Pour les picklists Salesforce, recréez les valeurs à l'identique dans HubSpot. Toute valeur non reconnue à l'import sera rejetée.
+
+## Étape 4 : nettoyer avant d'importer
+
+Profitez de la migration pour assainir vos données. C'est l'unique occasion où l'équipe acceptera de toucher à l'historique.
+
+À nettoyer impérativement :
+
+- **Doublons** : utilisez un outil comme OpenRefine, Dedupely ou les outils natifs de Salesforce pour fusionner les doublons côté Salesforce avant export. Ne pas refaire ce travail dans HubSpot après import.
+- **Contacts inactifs** : si un contact n'a eu aucune activité (email, deal, note) depuis 3 ans, archivez-le côté Salesforce ou marquez-le pour ne pas l'importer.
+- **Opportunités fantômes** : les deals "Open" depuis plus de 18 mois sans activité sont morts. Mettez-les "Closed Lost" avant export.
+- **Champs aux valeurs incohérentes** : si "Country" contient "France", "FR", "France métropolitaine", "FRANCE", normalisez avant import.
+
+Une migration sur des données sales reproduit le problème dans le nouveau CRM. C'est garanti.
+
+## Étape 5 : importer dans HubSpot
+
+HubSpot propose trois voies d'import.
+
+**Import natif** (Contacts > Import). Compatible CSV, jusqu'à 250 000 lignes par fichier. Mapping en interface, validation des erreurs, possibilité de rollback. Suffisant pour 80 % des cas.
+
+**Migration Tools officiels HubSpot**. HubSpot propose un connecteur Salesforce officiel (HubSpot-Salesforce Integration) qui peut servir à une migration en mode "miroir" puis bascule. Utile si vous voulez tourner les deux outils en parallèle pendant quelques semaines.
+
+**Outils de migration tiers**. Pour les volumes ou la complexité importante, ces outils accélèrent fortement :
+
+- **Trujay (now SyncMatters)** : spécialiste de la migration CRM, propose un wizard Salesforce → HubSpot.
+- **Import2** : outil de migration multi-CRM avec mapping intelligent.
+- **HubSpot Solutions Partners** : un intégrateur certifié coûte 5 000 à 30 000 € mais sécurise les migrations complexes.
+
+Ordre recommandé pour l'import :
+
+1. Companies (Accounts)
+2. Contacts (Contacts + Leads)
+3. Deals (Opportunities)
+4. Engagements (Tasks, Events, Notes, Emails)
+5. Custom objects (si activés dans votre plan HubSpot)
+
+Importez TOUJOURS sur un environnement de test d'abord (HubSpot propose des sandbox sur les plans Enterprise) ou validez sur 50 lignes avant l'import complet.
+
+## Étape 6 : recréer automatisations et rapports
+
+C'est l'étape qu'on oublie systématiquement de chiffrer.
+
+**Workflows HubSpot** : recréez les automatisations critiques identifiées à l'étape 1. HubSpot Workflows est plus visuel que Salesforce Flow mais plus limité sur les actions complexes. Comptez 2 à 5 heures par workflow.
+
+**Rapports et dashboards** : reconstruisez vos 5-10 rapports clés. HubSpot Reports est intuitif mais demande de réapprendre la logique (Custom Reports sur les plans Pro et Enterprise).
+
+**Templates d'email et séquences** : si vous utilisez Salesforce Engage ou High Velocity Sales, leur équivalent est HubSpot Sequences (plan Sales Hub Pro minimum).
+
+**Intégrations** : reconnectez votre téléphonie (Aircall, Ringover), votre signature (DocuSign), votre outil de facturation, votre ERP. Testez chaque flux end-to-end.
+
+## Étape 7 : former l'équipe (le facteur d'échec n°1)
+
+Une migration ratée est presque toujours une formation ratée. Salesforce et HubSpot ne se manipulent pas pareil — habitudes, raccourcis, vocabulaire diffèrent.
+
+Plan de formation minimum :
+
+- **Session 1 (1h30)** : tour d'horizon HubSpot, vocabulaire (Contact, Company, Deal, Engagement), navigation, recherche.
+- **Session 2 (1h30)** : workflow quotidien — qualifier un lead, créer un deal, logger un call, envoyer un email tracké.
+- **Session 3 (1h)** : pipeline et reporting personnel — gérer son pipeline visuel, comprendre ses dashboards.
+- **Session 4 (1h)** : managers — reporting équipe, prévisions, contrôle qualité.
+
+Désignez 1 super-user par équipe de 5 commerciaux pour gérer le quotidien et faire remonter les blocages les 8 premières semaines.
+
+HubSpot Academy (gratuit) propose des parcours certifiants à compléter par l'équipe.
+
+## Les 7 pièges à éviter absolument
+
+**Piège 1 : migrer sans nettoyer.** Vous payez pour stocker des données mortes. Profitez du switch pour purger.
+
+**Piège 2 : ne pas tester l'import.** Tout import volumineux doit d'abord être testé sur 50 lignes. Sur 10 000 lignes, vous découvrirez 3 erreurs critiques.
+
+**Piège 3 : oublier les pièces jointes.** Salesforce stocke des PDF, des contrats, des screenshots. HubSpot peut les recevoir via Files mais le processus de migration des attachments demande un script spécifique. Anticipez.
+
+**Piège 4 : couper Salesforce trop vite.** Gardez un accès lecture seule à Salesforce pendant 3 à 6 mois. Vous aurez besoin de revenir à l'historique pour des cas litigieux.
+
+**Piège 5 : sous-estimer le re-paramétrage.** Les workflows, rapports, intégrations représentent souvent plus de jours-homme que la migration des données elle-même.
+
+**Piège 6 : importer pendant la haute saison commerciale.** Migrez en période creuse (juillet, août, décembre) — pas en septembre quand l'équipe est sur les chapeaux de roue.
+
+**Piège 7 : ne pas verrouiller la résiliation Salesforce.** Vérifiez les conditions de sortie de votre contrat (préavis, date anniversaire). Une migration finalisée le 15 du mois alors que le préavis Salesforce était à 60 jours = 2 mois payés double.
+
+## Checklist finale de migration
+
+Avant la bascule, cochez :
+
+- [ ] Audit complet des objets, champs, automatisations, rapports
+- [ ] Liste des intégrations à reconnecter validée
+- [ ] Exports Salesforce sauvegardés en double (local + cloud)
+- [ ] Fichier de mapping validé par le sponsor projet
+- [ ] Données nettoyées (doublons, contacts inactifs, deals morts)
+- [ ] Sandbox HubSpot test passé avec succès
+- [ ] Propriétés HubSpot custom créées
+- [ ] Pipelines HubSpot recréés à l'identique
+- [ ] Utilisateurs HubSpot créés et invités
+- [ ] Plan de formation des équipes calé
+- [ ] Date de bascule choisie (hors haute saison)
+- [ ] Accès lecture Salesforce maintenu 6 mois
+- [ ] KPIs de succès définis à 30, 60, 90 jours
+
+## Notre recommandation outil
+
+Pour une migration TPE/PME simple (< 5 000 contacts, < 500 deals), l'import natif HubSpot fait largement le travail si vos données sont propres. Comptez 2 à 4 semaines projet.
+
+Pour une migration PME/ETI plus complexe (> 10 000 contacts, custom objects, automatisations nombreuses), partez sur **Trujay/SyncMatters** ou un **HubSpot Solutions Partner** certifié. Le surcoût (3 000 à 15 000 €) est largement remboursé en temps gagné et en risques évités.
+
+## FAQ migration Salesforce vers HubSpot
+
+**Combien de temps prend une migration Salesforce vers HubSpot ?**
+De 3 semaines (TPE avec données propres) à 6 mois (ETI avec custom objects et nombreuses intégrations). Comptez en moyenne 6 à 10 semaines pour une PME.
+
+**Peut-on perdre des données pendant la migration ?**
+Oui, si vous sautez l'étape d'audit ou si vous n'importez pas sur un sandbox test. Les causes fréquentes : champs mal mappés, picklists non recréées, doublons fusionnés à tort. Les exports de référence vous permettent de récupérer en cas de problème.
+
+**Faut-il vraiment garder Salesforce en lecture ?**
+Oui, au moins 6 mois. Vous tomberez sur un litige client, un audit fiscal, une question d'un partenaire qui demandera de retrouver une donnée d'il y a 3 ans. Le coût mensuel d'un siège lecture Salesforce est marginal.
+
+**HubSpot peut-il vraiment remplacer Salesforce ?**
+Pour la grande majorité des PME B2B, oui. Pour les structures complexes avec CPQ avancé, Service Cloud étendu, ou des règles métiers très spécifiques, Salesforce reste plus puissant. Auditez vos vrais besoins avant de basculer.
+
+**Que faire des intégrations qui n'existent pas dans HubSpot ?**
+Trois options : trouver une alternative HubSpot Marketplace, utiliser Zapier/Make pour faire le pont, ou développer une intégration custom via l'API HubSpot. Vérifiez avant la bascule, pas après.
+
+## Prêt à choisir ?
+
+Avant de migrer, assurez-vous que HubSpot est bien le bon successeur à votre Salesforce. Notre [comparateur CRM](/comparateur) confronte HubSpot à 25 autres outils selon vos critères (taille, budget, fonctionnalités, secteur). Et notre [quiz CRM](/quiz) vous donne une recommandation personnalisée en 2 minutes.
