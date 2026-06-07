@@ -18,6 +18,7 @@ import {
   getAllPlatformSlugs,
   getTopPlatforms,
 } from "@/lib/platforms";
+import { getCrmEditorialBySlug } from "@/lib/crm-editorial";
 import {
   SITE_NAME,
   SITE_URL,
@@ -107,6 +108,9 @@ export default async function PlatformDetailPage({
     .slice(0, 3);
 
   const ctaLabel = getCtaLabel(platform.pricing);
+
+  // Long-form editorial content (graceful fallback if absent for this slug)
+  const editorial = await getCrmEditorialBySlug(platform.slug);
 
   return (
     <>
@@ -466,6 +470,22 @@ export default async function PlatformDetailPage({
             </div>
           </div>
         </section>
+
+        {/* Long-form editorial analysis (optional, per-slug MDX) */}
+        {editorial && (
+          <section className="py-12 bg-white border-y border-slate-200">
+            <div className="max-w-3xl mx-auto px-4">
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                Notre analyse approfondie
+              </h2>
+              <p className="text-sm text-slate-500 mb-8">
+                Analyse documentaire et synthèse des retours utilisateurs publics
+                (G2, Capterra) — par l&apos;équipe éditoriale {SITE_NAME}.
+              </p>
+              <article className="crm-editorial">{editorial.content}</article>
+            </div>
+          </section>
+        )}
 
         {/* FAQ */}
         {platform.faq && platform.faq.length > 0 && (
