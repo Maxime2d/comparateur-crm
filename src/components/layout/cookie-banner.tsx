@@ -50,6 +50,8 @@ export function CookieBanner() {
         };
         w.va?.("event", { name: "cookie_refused" });
       }
+      // Notifie les trackers (Matomo) du changement de consentement.
+      window.dispatchEvent(new Event("ccm-consent-change"));
     } catch {
       /* localStorage indisponible */
     }
@@ -95,8 +97,8 @@ export function CookieBanner() {
                 className="text-xs text-slate-600 leading-relaxed"
               >
                 On utilise des cookies de mesure d&apos;audience anonymes
-                (Vercel Analytics) pour améliorer le site. Pas de pub, pas de
-                revente de données.{" "}
+                (Vercel Analytics, Matomo) pour améliorer le site. Pas de pub,
+                pas de revente de données.{" "}
                 <Link
                   href="/mentions-legales"
                   className="text-violet-600 hover:text-violet-700 underline underline-offset-2"

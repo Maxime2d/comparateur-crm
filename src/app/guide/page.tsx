@@ -5,19 +5,24 @@ import { getAllGuidesFrontmatter } from "@/lib/mdx";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { PageHero } from "@/components/layout/page-hero";
 
-export const metadata: Metadata = {
-  title: "Guides CRM : méthodes, bonnes pratiques et tutoriels",
-  description:
-    "Tous nos guides pour choisir, déployer et tirer le meilleur parti d'un CRM en entreprise. Méthodes, bonnes pratiques, retours terrain.",
-  alternates: { canonical: `${SITE_URL}/guide` },
-  openGraph: {
-    title: `Guides CRM | ${SITE_NAME}`,
+export function generateMetadata(): Metadata {
+  // Tant qu'aucun guide n'est publié, on évite d'indexer une page vide.
+  const hasGuides = getAllGuidesFrontmatter().length > 0;
+  return {
+    title: "Guides CRM : méthodes, bonnes pratiques et tutoriels",
     description:
-      "Guides pratiques sur les CRM : choix, déploiement, adoption, ROI.",
-    url: `${SITE_URL}/guide`,
-    type: "website",
-  },
-};
+      "Tous nos guides pour choisir, déployer et tirer le meilleur parti d'un CRM en entreprise. Méthodes, bonnes pratiques, retours terrain.",
+    alternates: { canonical: `${SITE_URL}/guide` },
+    robots: hasGuides ? undefined : { index: false, follow: true },
+    openGraph: {
+      title: `Guides CRM | ${SITE_NAME}`,
+      description:
+        "Guides pratiques sur les CRM : choix, déploiement, adoption, ROI.",
+      url: `${SITE_URL}/guide`,
+      type: "website",
+    },
+  };
+}
 
 export default function GuidesIndexPage() {
   const guides = getAllGuidesFrontmatter();

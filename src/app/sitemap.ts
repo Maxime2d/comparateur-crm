@@ -9,6 +9,7 @@ import {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
+  const guides = getAllGuidesFrontmatter();
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: SITE_URL, lastModified: now, changeFrequency: "weekly", priority: 1 },
@@ -36,12 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
-    {
-      url: `${SITE_URL}/guide`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+    // /guide n'est ajouté que s'il existe au moins un guide (cf. plus bas).
     {
       url: `${SITE_URL}/comparer`,
       lastModified: now,
@@ -164,14 +160,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  const guidePages: MetadataRoute.Sitemap = getAllGuidesFrontmatter().map(
-    ({ slug, data }) => ({
-      url: `${SITE_URL}/guide/${slug}`,
-      lastModified: data.date || now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    }),
-  );
+  // La page d'index /guide n'est listée que si des guides existent
+  // (évite d'indexer une page vide).
+  const guideIndex: MetadataRoute.Sitemap = guides.length
+    ? [
+        {
+          url: `${SITE_URL}/guide`,
+          lastModified: now,
+          changeFrequency: "weekly" as const,
+          priority: 0.8,
+        },
+      ]
+    : [];
+
+  const guidePages: MetadataRoute.Sitemap = guides.map(({ slug, data }) => ({
+    url: `${SITE_URL}/guide/${slug}`,
+    lastModified: data.date || now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
 
   const comparisonPages: MetadataRoute.Sitemap =
     getAllComparisonsFrontmatter().map(({ slug, data }) => ({
@@ -185,6 +192,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticPages,
     ...platformPages,
     ...blogPages,
+    ...guideIndex,
     ...guidePages,
     ...comparisonPages,
   ];

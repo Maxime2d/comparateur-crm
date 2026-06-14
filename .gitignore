@@ -9,3 +9,8 @@ out/
 next-env.d.ts
 .vercel
 design-review/
+scripts/gsc-reports/
+
+# logs
+*.log
+build.log

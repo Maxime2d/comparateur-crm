@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { MatomoAnalytics } from "@/components/analytics/matomo";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CookieBanner } from "@/components/layout/cookie-banner";
@@ -85,6 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CookieBanner />
         <Analytics />
         <SpeedInsights />
+        <MatomoAnalytics />
       </body>
     </html>
   );

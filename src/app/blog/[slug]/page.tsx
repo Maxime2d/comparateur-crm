@@ -9,10 +9,11 @@ import {
 } from "@/lib/mdx";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";
-import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
+import { BreadcrumbJsonLd, JsonLd, FAQJsonLd } from "@/components/seo/json-ld";
 import { TableOfContents } from "@/components/shared/table-of-contents";
 import { RelatedArticles } from "@/components/shared/related-articles";
 import { BlogPlatformCTA } from "@/components/shared/blog-platform-cta";
+import { PillarLinks } from "@/components/shared/pillar-links";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -61,10 +62,11 @@ export default async function BlogPostPage({ params }: Props) {
   const post = await getBlogPostBySlug(slug);
   if (!post) return notFound();
 
-  const { frontmatter, content } = post;
+  const { frontmatter, content, faqs, mentionedSlugs } = post;
 
   return (
     <>
+      {faqs.length > 0 && <FAQJsonLd faqs={faqs} />}
       <BreadcrumbJsonLd
         items={[
           { name: "Accueil", href: "/" },
@@ -161,6 +163,10 @@ export default async function BlogPostPage({ params }: Props) {
                 slug={frontmatter.featuredPlatform}
                 source="blog-conclusion"
               />
+            )}
+
+            {mentionedSlugs.length > 0 && (
+              <PillarLinks platformSlugs={mentionedSlugs} />
             )}
 
             <RelatedArticles

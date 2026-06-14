@@ -6,10 +6,12 @@ import {
   getAllComparisonSlugs,
   getComparisonFrontmatter,
   getComparisonBySlug,
+  getRelatedComparisons,
 } from "@/lib/mdx";
 import { getPlatformBySlug } from "@/lib/platforms";
 import { SITE_URL, SITE_NAME, CRM_FEATURE_LABELS } from "@/lib/constants";
-import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
+import { BreadcrumbJsonLd, JsonLd, FAQJsonLd } from "@/components/seo/json-ld";
+import { PillarLinks } from "@/components/shared/pillar-links";
 import { PlatformLogo } from "@/components/shared/platform-logo";
 import { AffiliateLink } from "@/components/shared/affiliate-link";
 import { ScoreBadge } from "@/components/ui/score-badge";
@@ -51,16 +53,22 @@ export default async function ComparisonPage({ params }: Props) {
   const comparison = await getComparisonBySlug(slug);
   if (!comparison) return notFound();
 
-  const { frontmatter, content } = comparison;
+  const { frontmatter, content, faqs } = comparison;
   const a = getPlatformBySlug(frontmatter.platformA);
   const b = getPlatformBySlug(frontmatter.platformB);
 
   if (!a || !b) return notFound();
 
   const featureKeys = Object.keys(CRM_FEATURE_LABELS);
+  const relatedComparisons = getRelatedComparisons(
+    slug,
+    frontmatter.platformA,
+    frontmatter.platformB,
+  );
 
   return (
     <>
+      {faqs.length > 0 && <FAQJsonLd faqs={faqs} />}
       <BreadcrumbJsonLd
         items={[
           { name: "Accueil", href: "/" },
@@ -242,6 +250,42 @@ export default async function ComparisonPage({ params }: Props) {
           <article className="max-w-none bg-white rounded-2xl border border-slate-200 p-6 md:p-10 mb-12">
             {content}
           </article>
+
+          {/* Maillage interne — fiches des 2 CRM comparés */}
+          <PillarLinks
+            platformSlugs={[a.slug, b.slug]}
+            title="Lire nos avis détaillés"
+          />
+
+          {/* Comparaisons connexes */}
+          {relatedComparisons.length > 0 && (
+            <aside
+              className="mt-8 rounded-2xl border border-slate-200 bg-slate-50/50 p-6"
+              aria-label="Comparaisons connexes"
+            >
+              <h2 className="text-lg font-semibold text-slate-900 mb-4">
+                Autres comparaisons utiles
+              </h2>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {relatedComparisons.map(({ slug: relSlug, data }) => (
+                  <li key={relSlug}>
+                    <Link
+                      href={`/comparer/${relSlug}`}
+                      className="group flex items-center justify-between gap-3 rounded-xl bg-white border border-slate-200 p-3 hover:border-violet-300 hover:shadow-sm transition-all"
+                    >
+                      <span className="font-medium text-slate-800 text-sm">
+                        {data.title}
+                      </span>
+                      <ChevronRight
+                        size={16}
+                        className="text-violet-500 flex-shrink-0 group-hover:translate-x-0.5 transition-transform"
+                      />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          )}
 
           {/* Final CTAs */}
           <section className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
