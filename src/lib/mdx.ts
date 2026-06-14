@@ -123,6 +123,8 @@ export interface BlogFrontmatter {
   tags: string[];
   /** Optional — slug of a CRM to feature as inline CTA in the article */
   featuredPlatform?: string;
+  /** Optional — date de dernière mise à jour (dateModified). Fallback: date. */
+  updated?: string;
 }
 
 export interface GuideFrontmatter {
@@ -141,6 +143,8 @@ export interface ComparisonFrontmatter {
   platformA: string;
   platformB: string;
   readingTime?: number;
+  /** Optional — date de dernière mise à jour (dateModified). Fallback: date. */
+  updated?: string;
 }
 
 // ─── Generic helpers ────────────────────────────────────────────────────
@@ -200,6 +204,19 @@ export function getAllBlogFrontmatter(): {
     );
 }
 
+/**
+ * Retourne le slug de l'article d'avis/test correspondant à un CRM
+ * (frontmatter featuredPlatform === platformSlug + nom de fichier "…-avis-…").
+ * Sert au lien croisé fiche ↔ article (anti-cannibalisation).
+ */
+export function getReviewSlugForPlatform(platformSlug: string): string | null {
+  const match = getAllBlogSlugs().find((slug) => {
+    if (!/avis/.test(slug)) return false;
+    return getBlogFrontmatter(slug)?.featuredPlatform === platformSlug;
+  });
+  return match || null;
+}
+
 export async function getBlogPostBySlug(slug: string) {
   try {
     const { data, content: rawContent } = readMdxFile(BLOG_DIR, slug);
@@ -245,7 +262,12 @@ export async function getGuideBySlug(slug: string) {
   try {
     const { data, content: rawContent } = readMdxFile(GUIDES_DIR, slug);
     const content = await compileMdxContent(rawContent);
-    return { frontmatter: data as GuideFrontmatter, content };
+    return {
+      frontmatter: data as GuideFrontmatter,
+      content,
+      faqs: extractFaqs(rawContent),
+      mentionedSlugs: detectPlatformSlugs(rawContent),
+    };
   } catch {
     return null;
   }

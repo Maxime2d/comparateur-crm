@@ -14,6 +14,7 @@ import { TableOfContents } from "@/components/shared/table-of-contents";
 import { RelatedArticles } from "@/components/shared/related-articles";
 import { BlogPlatformCTA } from "@/components/shared/blog-platform-cta";
 import { PillarLinks } from "@/components/shared/pillar-links";
+import { AuthorBox } from "@/components/shared/author-box";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -81,10 +82,11 @@ export default async function BlogPostPage({ params }: Props) {
           headline: frontmatter.title,
           description: frontmatter.description,
           datePublished: frontmatter.date,
-          dateModified: frontmatter.date,
+          dateModified: frontmatter.updated || frontmatter.date,
           author: {
             "@type": "Organization",
             name: frontmatter.author || SITE_NAME,
+            url: `${SITE_URL}/a-propos`,
           },
           publisher: {
             "@type": "Organization",
@@ -155,6 +157,23 @@ export default async function BlogPostPage({ params }: Props) {
                 )}
               </div>
             </header>
+
+            <div className="mb-8">
+              <AuthorBox
+                author={frontmatter.author}
+                date={frontmatter.date}
+                updated={frontmatter.updated}
+              />
+            </div>
+
+            <aside className="mb-8 rounded-2xl border border-violet-200 bg-violet-50/60 p-5">
+              <p className="text-xs font-bold uppercase tracking-wide text-violet-700 mb-1.5">
+                En bref
+              </p>
+              <p className="text-slate-700 leading-relaxed">
+                {frontmatter.description}
+              </p>
+            </aside>
 
             <div className="prose-none">{content}</div>
 

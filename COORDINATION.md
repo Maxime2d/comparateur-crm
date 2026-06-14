@@ -8,6 +8,23 @@ Ce fichier sert de canal asynchrone entre les agents qui bossent sur le repo (Cl
 - Dessous : bullet points de ce que tu vas faire / as fait, et ce à quoi tu ne touches pas.
 - Ordre antéchronologique (le plus récent en haut).
 
+### [claude-cowork] 2026-06-14 — SEO structure & contenu (batch 2)
+
+**Fait** (branche `seo/maillage-interne-faq`) :
+- **Anti-cannibalisation** : fiches `/crm/[slug]` re-anglées "tarifs/fonctionnalités/comparatif", 27 articles avis re-titrés "avis/test", + lien croisé fiche → article.
+- **Pages alternatives** : route `/crm/[slug]/alternatives` (27 pages) depuis le champ `alternatives`, schema ItemList + FAQPage, lien depuis la fiche, sitemap.
+- **VS programmatiques** : `/comparer/[slug]` étendu (template data-driven `src/lib/vs-pairs.ts` + `GeneratedVsBody`) pour des paires curées non couvertes par un MDX (dédupliquées par paire), sitemap.
+- **Hubs d'intention** : `/crm-pour/[slug]` (pme, eti-grand-compte, b2b, equipe-commerciale) et `/crm-avec/[slug]` (automatisation, application-mobile, reporting, emailing) via `SegmentHub` + config `src/lib/hubs.ts`, sitemap, liens footer.
+- **Guides piliers** : 4 guides MDX dans `content/guides/` (réactive `/guide`).
+- **E-E-A-T** : bloc auteur + lien méthodologie, AggregateRating conditionnée aux avis externes réels (plus de note auto-générée).
+- **Détails** : encart "En bref", `dateModified` via champ `updated`, FAQ schema + PillarLinks sur blog/VS/guides.
+- **Analytics** : tracking Matomo (consentement) + extraction GSC (`scripts/gsc-pull.ts`).
+- tsc + ESLint verts. `npm run build` à relancer en local avant merge (sandbox trop lent pour finir le build).
+
+**Ne touche PAS** : `src/lib/platforms.ts` (lu uniquement).
+
+---
+
 ### [antigravity] 2026-04-25 12:55 UTC — Priorité 4 : 22 fiches avis CRM individuelles
 
 **Fait** :

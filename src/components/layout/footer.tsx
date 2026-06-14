@@ -45,7 +45,11 @@ export function Footer() {
               <li><Link href="/crm-francais" className="text-slate-300 hover:text-white transition-colors">CRM Français</Link></li>
               <li><Link href="/crm-gratuit" className="text-slate-300 hover:text-white transition-colors">CRM Gratuit</Link></li>
               <li><Link href="/crm-tpe" className="text-slate-300 hover:text-white transition-colors">CRM TPE</Link></li>
+              <li><Link href="/crm-pour/pme" className="text-slate-300 hover:text-white transition-colors">CRM PME</Link></li>
+              <li><Link href="/crm-pour/b2b" className="text-slate-300 hover:text-white transition-colors">CRM B2B</Link></li>
+              <li><Link href="/crm-pour/equipe-commerciale" className="text-slate-300 hover:text-white transition-colors">CRM commercial</Link></li>
               <li><Link href="/crm-startup" className="text-slate-300 hover:text-white transition-colors">CRM Startup</Link></li>
+              <li><Link href="/crm-avec/automatisation" className="text-slate-300 hover:text-white transition-colors">CRM avec automatisation</Link></li>
               <li><Link href="/crm-freelance" className="text-slate-300 hover:text-white transition-colors">CRM Freelance</Link></li>
               <li><Link href="/crm-open-source" className="text-slate-300 hover:text-white transition-colors">CRM Open Source</Link></li>
             </ul>
@@ -53,6 +57,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-slate-400">Ressources</h3>
             <ul className="space-y-2 text-sm">
+              <li><Link href="/guide" className="text-slate-300 hover:text-white transition-colors">Guides CRM</Link></li>
               <li><Link href="/blog" className="text-slate-300 hover:text-white transition-colors">Blog</Link></li>
               <li><Link href="/glossaire-crm" className="text-slate-300 hover:text-white transition-colors">Glossaire CRM</Link></li>
               <li><Link href="/faq" className="text-slate-300 hover:text-white transition-colors">FAQ</Link></li>

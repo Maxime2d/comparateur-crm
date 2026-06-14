@@ -87,29 +87,28 @@ export function PlatformJsonLd({ platform }: { platform: Platform }) {
     0,
   );
 
-  // Note moyenne pondérée : si on a des reviews externes (G2, Capterra…),
-  // on les utilise. Sinon on tombe sur notre note interne.
-  const aggregateRating = totalExternalReviews > 0
-    ? {
-        "@type": "AggregateRating",
-        ratingValue:
-          Math.round(
-            (externalReviews.reduce((s, r) => s + r.rating * r.reviewCount, 0) /
-              totalExternalReviews) * 10,
-          ) / 10,
-        bestRating: 5,
-        worstRating: 1,
-        ratingCount: totalExternalReviews,
-      }
-    : {
-        // Pas de reviews externes → on émet quand même une AggregateRating
-        // basée sur notre score éditorial (sur 10, ramené sur 5)
-        "@type": "AggregateRating",
-        ratingValue: Math.round((platform.scores.overall / 2) * 10) / 10,
-        bestRating: 5,
-        worstRating: 1,
-        ratingCount: 1,
-      };
+  // Note moyenne pondérée À PARTIR DES AVIS EXTERNES VÉRIFIABLES uniquement
+  // (G2, Capterra…). Sans avis externes, on N'ÉMET PAS d'AggregateRating :
+  // Google déconseille les notes auto-générées non sourcées (risque de
+  // pénalité / snippet ignoré). E-E-A-T : pas de note inventée.
+  const aggregateRating =
+    totalExternalReviews > 0
+      ? {
+          "@type": "AggregateRating",
+          ratingValue:
+            Math.round(
+              (externalReviews.reduce(
+                (s, r) => s + r.rating * r.reviewCount,
+                0,
+              ) /
+                totalExternalReviews) *
+                10,
+            ) / 10,
+          bestRating: 5,
+          worstRating: 1,
+          ratingCount: totalExternalReviews,
+        }
+      : undefined;
 
   // Review array : notre review éditoriale + les reviews externes si on les a
   const reviewList = [

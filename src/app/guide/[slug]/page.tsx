@@ -8,8 +8,9 @@ import {
   getGuideBySlug,
 } from "@/lib/mdx";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
-import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
+import { BreadcrumbJsonLd, JsonLd, FAQJsonLd } from "@/components/seo/json-ld";
 import { TableOfContents } from "@/components/shared/table-of-contents";
+import { PillarLinks } from "@/components/shared/pillar-links";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -46,10 +47,11 @@ export default async function GuidePage({ params }: Props) {
   const guide = await getGuideBySlug(slug);
   if (!guide) return notFound();
 
-  const { frontmatter, content } = guide;
+  const { frontmatter, content, faqs, mentionedSlugs } = guide;
 
   return (
     <>
+      {faqs.length > 0 && <FAQJsonLd faqs={faqs} />}
       <BreadcrumbJsonLd
         items={[
           { name: "Accueil", href: "/" },
@@ -117,6 +119,10 @@ export default async function GuidePage({ params }: Props) {
             </header>
 
             <div>{content}</div>
+
+            {mentionedSlugs.length > 0 && (
+              <PillarLinks platformSlugs={mentionedSlugs} />
+            )}
 
             <div className="mt-12 pt-6 border-t border-slate-200">
               <Link

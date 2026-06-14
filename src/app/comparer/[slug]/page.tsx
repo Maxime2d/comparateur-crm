@@ -9,6 +9,12 @@ import {
   getRelatedComparisons,
 } from "@/lib/mdx";
 import { getPlatformBySlug } from "@/lib/platforms";
+import {
+  getGeneratedComparisonSlugs,
+  resolveGeneratedPair,
+  buildVsFaqs,
+} from "@/lib/vs-pairs";
+import { GeneratedVsBody } from "@/components/comparer/generated-vs-body";
 import { SITE_URL, SITE_NAME, CRM_FEATURE_LABELS } from "@/lib/constants";
 import { BreadcrumbJsonLd, JsonLd, FAQJsonLd } from "@/components/seo/json-ld";
 import { PillarLinks } from "@/components/shared/pillar-links";
@@ -23,48 +29,79 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return getAllComparisonSlugs().map((slug) => ({ slug }));
+  return [
+    ...getAllComparisonSlugs(),
+    ...getGeneratedComparisonSlugs(),
+  ].map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const fm = getComparisonFrontmatter(slug);
-  if (!fm) return {};
+  let title: string;
+  let description: string;
+  if (fm) {
+    title = fm.title;
+    description = fm.description;
+  } else {
+    const pair = resolveGeneratedPair(slug);
+    if (!pair) return {};
+    title = `${pair.a.name} vs ${pair.b.name} : comparatif 2026 (tarifs & fonctionnalités)`;
+    description = `${pair.a.name} ou ${pair.b.name} en 2026 ? Comparatif des tarifs, fonctionnalités, forces et limites pour choisir le bon CRM selon votre profil.`;
+  }
   return {
-    title: fm.title,
-    description: fm.description,
+    title,
+    description,
     alternates: { canonical: `${SITE_URL}/comparer/${slug}` },
     openGraph: {
-      title: fm.title,
-      description: fm.description,
+      title,
+      description,
       type: "article",
       url: `${SITE_URL}/comparer/${slug}`,
     },
-    twitter: {
-      card: "summary_large_image",
-      title: fm.title,
-      description: fm.description,
-    },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
 export default async function ComparisonPage({ params }: Props) {
   const { slug } = await params;
   const comparison = await getComparisonBySlug(slug);
-  if (!comparison) return notFound();
 
-  const { frontmatter, content, faqs } = comparison;
-  const a = getPlatformBySlug(frontmatter.platformA);
-  const b = getPlatformBySlug(frontmatter.platformB);
+  // Deux sources possibles : un MDX rédigé, ou une paire générée (data-driven).
+  let a, b;
+  let bodyNode: React.ReactNode;
+  let faqs: { question: string; answer: string }[];
+  let headerTitle: string;
+  let headerDescription: string;
+  let pageDate: string;
+  let pageUpdated: string;
 
-  if (!a || !b) return notFound();
+  if (comparison) {
+    const { frontmatter, content, faqs: mdxFaqs } = comparison;
+    a = getPlatformBySlug(frontmatter.platformA);
+    b = getPlatformBySlug(frontmatter.platformB);
+    if (!a || !b) return notFound();
+    bodyNode = content;
+    faqs = mdxFaqs;
+    headerTitle = frontmatter.title;
+    headerDescription = frontmatter.description;
+    pageDate = frontmatter.date;
+    pageUpdated = frontmatter.updated || frontmatter.date;
+  } else {
+    const pair = resolveGeneratedPair(slug);
+    if (!pair) return notFound();
+    a = pair.a;
+    b = pair.b;
+    bodyNode = <GeneratedVsBody a={a} b={b} />;
+    faqs = buildVsFaqs(a, b);
+    headerTitle = `${a.name} vs ${b.name} : comparatif 2026`;
+    headerDescription = `${a.name} ou ${b.name} ? Tarifs, fonctionnalités et verdict par profil pour choisir le bon CRM.`;
+    pageDate = a.lastUpdated || "2026-01-01";
+    pageUpdated = pageDate;
+  }
 
   const featureKeys = Object.keys(CRM_FEATURE_LABELS);
-  const relatedComparisons = getRelatedComparisons(
-    slug,
-    frontmatter.platformA,
-    frontmatter.platformB,
-  );
+  const relatedComparisons = getRelatedComparisons(slug, a.slug, b.slug);
 
   return (
     <>
@@ -73,17 +110,17 @@ export default async function ComparisonPage({ params }: Props) {
         items={[
           { name: "Accueil", href: "/" },
           { name: "Comparaisons", href: "/comparer" },
-          { name: frontmatter.title, href: `/comparer/${slug}` },
+          { name: headerTitle, href: `/comparer/${slug}` },
         ]}
       />
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "Article",
-          headline: frontmatter.title,
-          description: frontmatter.description,
-          datePublished: frontmatter.date,
-          dateModified: frontmatter.date,
+          headline: headerTitle,
+          description: headerDescription,
+          datePublished: pageDate,
+          dateModified: pageUpdated,
           publisher: {
             "@type": "Organization",
             name: SITE_NAME,
@@ -121,10 +158,10 @@ export default async function ComparisonPage({ params }: Props) {
 
           <header className="text-center mb-10">
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
-              {frontmatter.title}
+              {headerTitle}
             </h1>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              {frontmatter.description}
+              {headerDescription}
             </p>
           </header>
 
@@ -248,7 +285,7 @@ export default async function ComparisonPage({ params }: Props) {
 
           {/* MDX body — verdict, use-cases, pros/cons */}
           <article className="max-w-none bg-white rounded-2xl border border-slate-200 p-6 md:p-10 mb-12">
-            {content}
+            {bodyNode}
           </article>
 
           {/* Maillage interne — fiches des 2 CRM comparés */}

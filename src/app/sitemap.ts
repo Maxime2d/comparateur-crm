@@ -6,6 +6,8 @@ import {
   getAllGuidesFrontmatter,
   getAllComparisonsFrontmatter,
 } from "@/lib/mdx";
+import { getGeneratedComparisonSlugs } from "@/lib/vs-pairs";
+import { HUBS } from "@/lib/hubs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
@@ -151,6 +153,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
+  const alternativePages: MetadataRoute.Sitemap = getAllPlatformSlugs().map(
+    (slug) => ({
+      url: `${SITE_URL}/crm/${slug}/alternatives`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    }),
+  );
+
   const blogPages: MetadataRoute.Sitemap = getAllBlogFrontmatter().map(
     ({ slug, data }) => ({
       url: `${SITE_URL}/blog/${slug}`,
@@ -188,12 +199,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }));
 
+  const generatedComparisonPages: MetadataRoute.Sitemap =
+    getGeneratedComparisonSlugs().map((slug) => ({
+      url: `${SITE_URL}/comparer/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.65,
+    }));
+
+  const hubPages: MetadataRoute.Sitemap = HUBS.map((h) => ({
+    url: `${SITE_URL}/${h.base}/${h.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
   return [
     ...staticPages,
     ...platformPages,
+    ...alternativePages,
     ...blogPages,
     ...guideIndex,
     ...guidePages,
     ...comparisonPages,
+    ...generatedComparisonPages,
+    ...hubPages,
   ];
 }

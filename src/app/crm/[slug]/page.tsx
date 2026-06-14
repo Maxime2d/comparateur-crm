@@ -19,6 +19,7 @@ import {
   getTopPlatforms,
 } from "@/lib/platforms";
 import { getCrmEditorialBySlug } from "@/lib/crm-editorial";
+import { getReviewSlugForPlatform } from "@/lib/mdx";
 import {
   SITE_NAME,
   SITE_URL,
@@ -57,11 +58,12 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${platform.name} : avis, tarifs et test complet 2026`;
-  // Phrase 1 : positionnement (cleané, max 90 chars). Phrase 2 : promesse value.
-  // Total visé : 130-155 chars (sweet spot SEO).
+  // Intention de cette page = "prix / tarifs / fonctionnalités" (fiche produit).
+  // L'article de blog /blog/{…}-avis-… porte l'intention "avis / test" (long-form),
+  // pour éviter la cannibalisation entre les deux pages sur le même CRM.
+  const title = `${platform.name} : tarifs 2026, fonctionnalités et comparatif`;
   const cleanShort = platform.shortDescription.trim().replace(/[.!?]+$/, "");
-  const description = `${platform.name} en 2026 : ${cleanShort}. Avis détaillé, tarifs, fonctionnalités, alternatives.`;
+  const description = `${platform.name} en 2026 : tarifs par palier, fonctionnalités, forces et limites. ${cleanShort}. Comparez et trouvez mieux.`;
 
   return {
     title,
@@ -108,6 +110,7 @@ export default async function PlatformDetailPage({
     .slice(0, 3);
 
   const ctaLabel = getCtaLabel(platform.pricing);
+  const reviewSlug = getReviewSlugForPlatform(platform.slug);
 
   // Long-form editorial content (graceful fallback if absent for this slug)
   const editorial = await getCrmEditorialBySlug(platform.slug);
@@ -164,11 +167,22 @@ export default async function PlatformDetailPage({
                   />
                 </div>
                 <h1 className="text-4xl font-bold text-slate-900 mb-3">
-                  {platform.name} : avis, tarifs et test complet
+                  {platform.name} : tarifs, fonctionnalités et comparatif
                 </h1>
                 <p className="text-lg text-slate-600 mb-4">
                   {platform.shortDescription}
                 </p>
+                {reviewSlug && (
+                  <p className="mb-4">
+                    <Link
+                      href={`/blog/${reviewSlug}`}
+                      className="inline-flex items-center gap-1.5 text-violet-600 hover:text-violet-700 font-semibold"
+                    >
+                      Lire notre avis et test complet de {platform.name}
+                      <ArrowRight size={16} />
+                    </Link>
+                  </p>
+                )}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {platform.badges?.slice(0, 4).map((tag) => (
                     <Badge key={tag} variant="secondary">
@@ -521,9 +535,18 @@ export default async function PlatformDetailPage({
         {relatedPlatforms.length > 0 && (
           <section className="py-12">
             <div className="max-w-5xl mx-auto px-4">
-              <h2 className="text-2xl font-bold text-slate-900 mb-8">
-                Alternatives à {platform.name}
-              </h2>
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-8">
+                <h2 className="text-2xl font-bold text-slate-900">
+                  Alternatives à {platform.name}
+                </h2>
+                <Link
+                  href={`/crm/${platform.slug}/alternatives`}
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-600 hover:text-violet-700"
+                >
+                  Voir les 6 meilleures alternatives
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedPlatforms.map((alt) => (
                   <div
