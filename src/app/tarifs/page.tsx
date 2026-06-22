@@ -8,22 +8,22 @@ import { PageHero } from "@/components/layout/page-hero";
 import { TarifsClient } from "@/components/tarifs/tarifs-client";
 
 export const metadata: Metadata = {
-  title: "Tarifs CRM 2026 : comparatif des prix",
+  title: "Prix CRM 2026 : tarifs comparés de 24 logiciels (gratuit à 150€/mois)",
   description:
-    "Tarifs 2026 des 24 principaux logiciels CRM : HubSpot, Salesforce, Pipedrive, Sellsy, Zoho, Axonaut. Plans gratuits, essais, prix par utilisateur.",
+    "Combien coûte un CRM en 2026 ? Tarifs comparés de 24 logiciels : HubSpot, Salesforce, Pipedrive, Sellsy, Zoho, Axonaut. Plans gratuits, essais, prix par utilisateur.",
   alternates: { canonical: `${SITE_URL}/tarifs` },
   openGraph: {
-    title: `Tarifs CRM 2026 | ${SITE_NAME}`,
+    title: `Prix CRM 2026 : tarifs comparés de 24 logiciels | ${SITE_NAME}`,
     description:
-      "Comparatif des prix des logiciels CRM en France. Plans gratuits, essais, et tarifs à partir de.",
+      "Combien coûte un CRM en 2026 ? Tarifs détaillés (HubSpot, Salesforce, Pipedrive, Sellsy…), plans gratuits et essais.",
     url: `${SITE_URL}/tarifs`,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tarifs CRM 2026",
+    title: "Prix CRM 2026 : 24 logiciels comparés (dès 0€/mois)",
     description:
-      "Comparez les prix de 24 logiciels CRM. Plans gratuits, essais, tarifs au mois.",
+      "Tarifs CRM 2026 : plans gratuits, essais, prix au mois et par utilisateur sur 24 logiciels.",
   },
 };
 

@@ -1,14 +1,14 @@
 {
-  "lastRunAt": "2026-05-10T17:37:40.873Z",
-  "totalSubmissions": 10,
+  "lastRunAt": "2026-06-22T08:53:55.628Z",
+  "totalSubmissions": 30,
   "submissions": {
     "https://comparateurcrm.fr/crm-gratuit": {
-      "lastSubmittedAt": "2026-05-10T17:37:40.873Z",
-      "submissionCount": 1
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 2
     },
     "https://comparateurcrm.fr/crm/bitrix24": {
-      "lastSubmittedAt": "2026-05-10T17:37:40.873Z",
-      "submissionCount": 1
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 2
     },
     "https://comparateurcrm.fr/comparer/monday-vs-pipedrive": {
       "lastSubmittedAt": "2026-05-10T17:37:40.873Z",
@@ -40,6 +40,78 @@
     },
     "https://comparateurcrm.fr/crm-francais": {
       "lastSubmittedAt": "2026-05-10T17:37:40.873Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/comparer/pipedrive-vs-zoho": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/sellsy": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/axonaut": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/monday-sales-crm": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/folk": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/microsoft-dynamics-365": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/zoho-crm": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/pipedrive": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/comparer/hubspot-vs-pipedrive": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/comparer/brevo-vs-hubspot": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm-open-source": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/odoo-crm": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/comparer/sellsy-vs-pipedrive": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/comparer/salesforce-vs-zoho": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/comparer/zoho-vs-hubspot": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm-tpe": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/salesforce": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/freshsales": {
+      "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
       "submissionCount": 1
     }
   }

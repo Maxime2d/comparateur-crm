@@ -13,6 +13,7 @@ import { BreadcrumbJsonLd, JsonLd, FAQJsonLd } from "@/components/seo/json-ld";
 import { TableOfContents } from "@/components/shared/table-of-contents";
 import { RelatedArticles } from "@/components/shared/related-articles";
 import { BlogPlatformCTA } from "@/components/shared/blog-platform-cta";
+import { ConversionCta } from "@/components/shared/conversion-cta";
 import { PillarLinks } from "@/components/shared/pillar-links";
 import { AuthorBox } from "@/components/shared/author-box";
 
@@ -174,6 +175,19 @@ export default async function BlogPostPage({ params }: Props) {
                 {frontmatter.description}
               </p>
             </aside>
+
+            {/* CTA conversion — haut de page (capte les visiteurs Google avant qu'ils repartent).
+                Pattern éprouvé sur le site sœur comparateur-efacturation.fr. */}
+            <ConversionCta />
+
+            {/* CTA produit mid-article (sur les avis CRM avec featuredPlatform) — placé
+                après l'aside "En bref" pour saisir l'intention d'achat immédiate. */}
+            {frontmatter.featuredPlatform && (
+              <BlogPlatformCTA
+                slug={frontmatter.featuredPlatform}
+                source="blog-mid-article"
+              />
+            )}
 
             <div className="prose-none">{content}</div>
 

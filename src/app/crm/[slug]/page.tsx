@@ -61,9 +61,18 @@ export async function generateMetadata({
   // Intention de cette page = "prix / tarifs / fonctionnalités" (fiche produit).
   // L'article de blog /blog/{…}-avis-… porte l'intention "avis / test" (long-form),
   // pour éviter la cannibalisation entre les deux pages sur le même CRM.
-  const title = `${platform.name} : tarifs 2026, fonctionnalités et comparatif`;
+  // Title optimisé CTR : nom + verdict + prix d'appel pour se démarquer en SERP.
+  const startsAt = platform.pricing.startsAt;
+  const priceTag = platform.pricing.hasFreePlan
+    ? "gratuit"
+    : platform.pricing.onQuote
+      ? "sur devis"
+      : startsAt > 0
+        ? `dès ${startsAt}€/mois`
+        : "tarif 2026";
+  const title = `${platform.name} avis 2026 : prix (${priceTag}), test et alternatives`;
   const cleanShort = platform.shortDescription.trim().replace(/[.!?]+$/, "");
-  const description = `${platform.name} en 2026 : tarifs par palier, fonctionnalités, forces et limites. ${cleanShort}. Comparez et trouvez mieux.`;
+  const description = `${platform.name} en 2026 : prix réel (${priceTag}), analyse fonctionnalités, forces et limites. ${cleanShort}. Vaut-il vraiment le coup ?`;
 
   return {
     title,
