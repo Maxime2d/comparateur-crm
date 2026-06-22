@@ -44,8 +44,27 @@ export interface CrmPartnership {
  *   }
  */
 export const crmPartnerships: CrmPartnership[] = [
-  // À COMPLÉTER : aucune approbation confirmée à ce jour.
-  // Voir suivi-partenariats.md (à la racine du projet) pour le pipeline.
+  // ─── SELLSY (Kiflo) — partenariat existant via comparateur-efacturation.fr ──
+  {
+    platformSlug: "sellsy",
+    status: "approved",
+    network: "kiflo",
+    startDate: "2026-02",
+    clientBenefit: "30 jours d'essai + 20 % la 1ère année (au choix)",
+    notes:
+      "Programme Ambassadeur Sellsy (TeamSystem) via Kiflo. Commission = 15 % du CA HT facturé an 1 + 20 % an 2 OU remise client de 20 % an 1 (exclusif). Récurrence si 3 nouveaux clients/an OU 10 000 € HT de revenus annuels facturés. Lien tracker actuel = comparateur-efacturationfr (à dupliquer sur comparateurcrm.fr quand possible pour split l'attribution).",
+  },
+
+  // ─── AXONAUT (programme direct) — réutilise lien du site sœur ──
+  {
+    platformSlug: "axonaut",
+    status: "approved",
+    network: "direct",
+    startDate: "2026-02",
+    clientBenefit: "1 mois gratuit après le premier achat",
+    notes:
+      "Programme d'affiliation DIRECT Axonaut (Digitica SAS, CGU 03/2022). 300 € HT/client, dû une fois qu'Axonaut a encaissé les 300 premiers euros HT d'abonnement du client. Aucune commission si annulation avant 300 € encaissés. Réservé aux personnes morales (facture Digitica SAS). ⚠️ CGU : interdit d'enchérir sur le mot-clé « AXONAUT » en Google/Bing Ads. Tracker = ?a=A8066H11F6.",
+  },
 ];
 
 /**
