@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Building2,
@@ -55,6 +56,7 @@ const stepIcons = {
 };
 
 export function QuizClient() {
+  const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswers>({
     companySize: null,
@@ -67,6 +69,20 @@ export function QuizClient() {
     digitalComfort: null,
   });
   const [results, setResults] = useState<QuizResult[] | null>(null);
+
+  // ── Quiz embedded sur la home : on lit ?profil= et on saute la Q1
+  // Profil-aware deep-link entrant depuis le hero homepage (cf. site sœur).
+  useEffect(() => {
+    const profil = searchParams.get("profil");
+    if (!profil) return;
+    const VALID_SIZES: CompanySize[] = ["TPE", "PME", "ETI", "Entreprise"];
+    if (VALID_SIZES.includes(profil as CompanySize)) {
+      setAnswers((prev) => ({ ...prev, companySize: profil as CompanySize }));
+      setCurrentStep(1);
+    }
+    // intentionnellement pas de dépendance dynamique : un seul shot au mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleCompanySize = (size: CompanySize) => {
     setAnswers((prev) => ({ ...prev, companySize: size }));

@@ -34,7 +34,9 @@ export type AffiliateSource =
   | "vs-page"
   | "vs-verdict"
   | "related-crm"
-  | "compare-drawer";
+  | "compare-drawer"
+  | "alternatives-blog"
+  | "alternatives-fiche";
 
 // ─── Provider mapping ────────────────────────────────────────────────
 // Progressive enhancement: when a real affiliate ID becomes available

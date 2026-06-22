@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { BreadcrumbJsonLd, HowToJsonLd } from "@/components/seo/json-ld";
 import { QuizClient } from "@/components/quiz/quiz-client";
@@ -18,7 +19,9 @@ export default function QuizPage() {
         { name: "Précisez vos besoins", text: "Process de vente, budget et outils existants." },
         { name: "Recevez votre recommandation", text: "Top 3 personnalisé avec scores de compatibilité." },
       ]} />
-      <QuizClient />
+      <Suspense fallback={<div className="min-h-screen bg-[#fafaff]" aria-busy="true" />}>
+        <QuizClient />
+      </Suspense>
     </>
   );
 }

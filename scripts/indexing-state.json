@@ -1,6 +1,6 @@
 {
-  "lastRunAt": "2026-06-22T08:53:55.628Z",
-  "totalSubmissions": 30,
+  "lastRunAt": "2026-06-22T13:02:11.417Z",
+  "totalSubmissions": 110,
   "submissions": {
     "https://comparateurcrm.fr/crm-gratuit": {
       "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
@@ -11,36 +11,36 @@
       "submissionCount": 2
     },
     "https://comparateurcrm.fr/comparer/monday-vs-pipedrive": {
-      "lastSubmittedAt": "2026-05-10T17:37:40.873Z",
-      "submissionCount": 1
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 2
     },
     "https://comparateurcrm.fr/comparer/axonaut-vs-sellsy": {
-      "lastSubmittedAt": "2026-05-10T17:37:40.873Z",
-      "submissionCount": 1
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 2
     },
     "https://comparateurcrm.fr/comparer/pipedrive-vs-salesforce": {
-      "lastSubmittedAt": "2026-05-10T17:37:40.873Z",
-      "submissionCount": 1
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 2
     },
     "https://comparateurcrm.fr/crm-freelance": {
-      "lastSubmittedAt": "2026-05-10T17:37:40.873Z",
-      "submissionCount": 1
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 2
     },
     "https://comparateurcrm.fr/crm/activecampaign": {
-      "lastSubmittedAt": "2026-05-10T17:37:40.873Z",
-      "submissionCount": 1
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 2
     },
     "https://comparateurcrm.fr/comparer/hubspot-vs-salesforce": {
-      "lastSubmittedAt": "2026-05-10T17:37:40.873Z",
-      "submissionCount": 1
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 2
     },
     "https://comparateurcrm.fr/crm-startup": {
-      "lastSubmittedAt": "2026-05-10T17:37:40.873Z",
-      "submissionCount": 1
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 2
     },
     "https://comparateurcrm.fr/crm-francais": {
-      "lastSubmittedAt": "2026-05-10T17:37:40.873Z",
-      "submissionCount": 1
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 2
     },
     "https://comparateurcrm.fr/comparer/pipedrive-vs-zoho": {
       "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
@@ -112,6 +112,294 @@
     },
     "https://comparateurcrm.fr/crm/freshsales": {
       "lastSubmittedAt": "2026-06-22T08:53:55.628Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/comparateur": {
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/tarifs": {
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/faq": {
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/a-propos": {
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/quiz": {
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/glossaire-crm": {
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog": {
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/methodologie": {
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/guide": {
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/outils/calculateur-roi-crm": {
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/comparer": {
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/outils": {
+      "lastSubmittedAt": "2026-06-22T09:08:48.311Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/mentions-legales": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-retail-magasin-2026": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/hubspot-crm": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-immobilier-pro-2026": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-association-obnl-2026": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/meilleur-crm-gratuit-2026": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/creatio": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/sugarcrm": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/initiative-crm": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/agile-crm-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-restauration-2026": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/teamleader-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/initiative-crm-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/axonaut-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/close-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-sante-2026": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/insightly": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/brevo": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/comment-choisir-crm": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-services-consulting-2026": {
+      "lastSubmittedAt": "2026-06-22T09:10:39.488Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-finance-banque-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/karlia": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/folk-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/sugarcrm-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/freshsales-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/odoo-crm-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/efficy-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-pme-guide-complet": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-btp-construction-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-b2b-guide-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/microsoft-dynamics-365-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/copper-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/zoho-crm-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-ecommerce-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/efficy": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/meilleur-crm-tpe-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/creatio-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/insightly-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-immobilier-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/bitrix24-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T12:54:53.449Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/divalto-weavy": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/salesforce-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/teamleader": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/karlia-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/activecampaign-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/hubspot-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-formation-edtech-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/monday-sales-crm-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/close": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/copper": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/nocrm-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/crm-saas-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/divalto-weavy-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/nocrm": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/youday-crm-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/youday-crm": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/crm/agile-crm": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/brevo-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/sellsy-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
+      "submissionCount": 1
+    },
+    "https://comparateurcrm.fr/blog/pipedrive-avis-tarifs-test-complet-2026": {
+      "lastSubmittedAt": "2026-06-22T13:02:11.417Z",
       "submissionCount": 1
     }
   }

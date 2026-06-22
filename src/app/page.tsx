@@ -7,8 +7,8 @@ import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { ItemListJsonLd, HowToJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { getTopPlatforms } from "@/lib/platforms";
-import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
-import { ArrowRight, CheckCircle2, Zap, BarChart3, Smartphone, Mail, Workflow, MessageSquare, Sparkles, Flag, Gift, Store, Rocket, User, Code, Calculator, Target, Euro } from "lucide-react";
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL, COMPANY_SIZES } from "@/lib/constants";
+import { ArrowRight, CheckCircle2, Zap, BarChart3, Smartphone, Mail, Workflow, MessageSquare, Sparkles, Flag, Gift, Store, Rocket, User, Code, Calculator, Target, Euro, Search } from "lucide-react";
 import { TypewriterText } from "@/components/ui/typewriter-text";
 import { Marquee } from "@/components/ui/marquee";
 import { PlatformLogo } from "@/components/shared/platform-logo";
@@ -100,25 +100,45 @@ export default function HomePage() {
                   </span>
                 </h1>
 
-                <p className="text-lg sm:text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto">
+                <p className="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl mx-auto">
                   Comparez 27 logiciels CRM en 2 minutes. Tarifs, fonctionnalités, avis vérifiés. Recommandation personnalisée gratuite.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
-                  <Link
-                    href="/quiz"
-                    className="group inline-flex items-center justify-center gap-2 bg-gradient-to-br from-violet-500 to-fuchsia-500 hover:from-violet-400 hover:to-fuchsia-400 text-white font-semibold px-7 py-3.5 rounded-2xl shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40 transition-all duration-200 active:scale-[0.98]"
-                  >
-                    Démarrer le quiz
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                  </Link>
-                  <Link
-                    href="/comparateur"
-                    className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/15 hover:border-white/25 text-white font-semibold px-7 py-3.5 rounded-2xl transition-all duration-200"
-                  >
-                    Comparer directement
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
+                {/* Quiz diagnostic embedded — démarre le parcours en 1 clic.
+                    Pattern éprouvé sur le site sœur comparateur-efacturation.fr. */}
+                <div className="mx-auto max-w-xl text-left rounded-2xl border border-white/15 bg-slate-900/60 backdrop-blur-xl p-5 sm:p-6 shadow-2xl mb-8">
+                  <div className="flex items-center gap-2 text-violet-300 text-xs font-bold uppercase tracking-wide mb-2">
+                    <Sparkles className="h-4 w-4" /> Quiz diagnostic · 2 min
+                  </div>
+                  <p className="text-white font-bold text-lg leading-snug">
+                    Quelle est la taille de votre entreprise ?
+                  </p>
+                  <p className="text-slate-400 text-sm mt-1 mb-4">
+                    Recevez votre top 3 CRM personnalisé en 2 minutes.
+                  </p>
+                  <div className="space-y-2">
+                    {COMPANY_SIZES.map((size) => (
+                      <Link
+                        key={size.value}
+                        href={`/quiz?profil=${size.value}`}
+                        className="group flex items-center justify-between gap-2 rounded-xl border border-white/10 bg-white/5 hover:bg-violet-500/15 hover:border-violet-400/50 px-4 py-3 text-sm font-medium text-white transition-colors"
+                      >
+                        <span className="leading-tight">{size.label}</span>
+                        <ArrowRight className="h-4 w-4 shrink-0 text-slate-400 group-hover:text-violet-300 group-hover:translate-x-0.5 transition-all" />
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] text-slate-400">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Gratuit · Sans inscription
+                    </span>
+                    <Link
+                      href="/comparateur"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-300 hover:text-violet-200"
+                    >
+                      <Search className="h-4 w-4" /> Voir le comparateur complet
+                    </Link>
+                  </div>
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-slate-400">
@@ -132,7 +152,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    <span>Méthodologie publique</span>
+                    <span>Comparatif indépendant</span>
                   </div>
                 </div>
               </div>

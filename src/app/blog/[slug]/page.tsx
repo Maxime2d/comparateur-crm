@@ -14,8 +14,11 @@ import { TableOfContents } from "@/components/shared/table-of-contents";
 import { RelatedArticles } from "@/components/shared/related-articles";
 import { BlogPlatformCTA } from "@/components/shared/blog-platform-cta";
 import { ConversionCta } from "@/components/shared/conversion-cta";
+import { PartnerAlternatives } from "@/components/shared/partner-alternatives";
 import { PillarLinks } from "@/components/shared/pillar-links";
 import { AuthorBox } from "@/components/shared/author-box";
+import { getPlatformBySlug } from "@/lib/platforms";
+import { isApprovedPartner } from "@/lib/affiliate-partners";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -65,6 +68,17 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) return notFound();
 
   const { frontmatter, content, faqs, mentionedSlugs } = post;
+
+  // ── Routage partenaire vs non-partenaire (pattern site sœur) :
+  // - Si le featuredPlatform de cet article EST un partenaire affilié approuvé
+  //   → on lui pousse son CTA (BlogPlatformCTA mid + conclusion).
+  // - Sinon → on lui pousse des ALTERNATIVES partenaires monétisées.
+  const linkedPlatform = frontmatter.featuredPlatform
+    ? getPlatformBySlug(frontmatter.featuredPlatform)
+    : null;
+  const linkedIsPartner = linkedPlatform
+    ? isApprovedPartner(linkedPlatform.slug)
+    : false;
 
   return (
     <>
@@ -180,21 +194,36 @@ export default async function BlogPostPage({ params }: Props) {
                 Pattern éprouvé sur le site sœur comparateur-efacturation.fr. */}
             <ConversionCta />
 
-            {/* CTA produit mid-article (sur les avis CRM avec featuredPlatform) — placé
-                après l'aside "En bref" pour saisir l'intention d'achat immédiate. */}
-            {frontmatter.featuredPlatform && (
+            {/* Routage partenaire vs non-partenaire (pattern site sœur).
+                Si la fiche concerne un partenaire → CTA produit direct.
+                Sinon → on pousse les alternatives monétisées en lieu et place. */}
+            {linkedPlatform && linkedIsPartner && (
               <BlogPlatformCTA
-                slug={frontmatter.featuredPlatform}
+                slug={linkedPlatform.slug}
                 source="blog-mid-article"
+              />
+            )}
+            {linkedPlatform && !linkedIsPartner && (
+              <PartnerAlternatives
+                currentPlatform={linkedPlatform}
+                source="alternatives-blog"
               />
             )}
 
             <div className="prose-none">{content}</div>
 
-            {frontmatter.featuredPlatform && (
+            {/* CTA de conclusion : même logique partenaire vs alternatives */}
+            {linkedPlatform && linkedIsPartner && (
               <BlogPlatformCTA
-                slug={frontmatter.featuredPlatform}
+                slug={linkedPlatform.slug}
                 source="blog-conclusion"
+              />
+            )}
+            {linkedPlatform && !linkedIsPartner && (
+              <PartnerAlternatives
+                currentPlatform={linkedPlatform}
+                source="alternatives-blog"
+                title={`Notre recommandation : 3 alternatives à ${linkedPlatform.name}`}
               />
             )}
 

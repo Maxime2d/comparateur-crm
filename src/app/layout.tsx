@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { MatomoAnalytics } from "@/components/analytics/matomo";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { GlobalMobileCta } from "@/components/layout/global-mobile-cta";
 import { CookieBanner } from "@/components/layout/cookie-banner";
 import { ReadingProgress } from "@/components/layout/reading-progress";
 import { WebsiteJsonLd, OrganizationJsonLd } from "@/components/seo/json-ld";
@@ -83,6 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <GlobalMobileCta />
         <CookieBanner />
         <Analytics />
         <SpeedInsights />
