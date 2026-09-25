@@ -20,11 +20,13 @@ import { HeroParallax } from "@/components/ui/hero-parallax";
 import { HoverCardGrid } from "@/components/ui/hover-card-grid";
 
 export const metadata: Metadata = {
-  title: `${SITE_NAME} - Comparez les meilleurs logiciels CRM en 2026`,
-  description: SITE_DESCRIPTION,
+  title: `Comparateur CRM 2026 : +20 Logiciels Testés et Notés | ${SITE_NAME}`,
+  description:
+    "Comparez +20 logiciels CRM en 2026 : tarifs réels, notes indépendantes, avis vérifiés. HubSpot, Pipedrive, Sellsy, Salesforce… Quiz personnalisé pour trouver le CRM adapté à votre entreprise.",
   openGraph: {
-    title: `${SITE_NAME} - Comparez les meilleurs logiciels CRM`,
-    description: SITE_DESCRIPTION,
+    title: `Comparateur CRM 2026 : +20 Logiciels Testés et Notés`,
+    description:
+      "Comparez +20 logiciels CRM en 2026. Tarifs, avis, fonctionnalités. Quiz personnalisé gratuit.",
     url: SITE_URL,
     type: "website",
     locale: "fr_FR",
@@ -488,8 +490,17 @@ export default function HomePage() {
                 <p className="mb-5 leading-relaxed">
                   Les CRM modernes offrent bien plus que de la gestion de contacts. Ils créent un écosystème commercial intégré : suivi des opportunités, automatisation des tâches, scoring de leads, analyses avancées, et de plus en plus d&apos;intelligence artificielle pour prédire et personnaliser.
                 </p>
-                <p className="leading-relaxed">
+                <p className="mb-5 leading-relaxed">
                   Notre comparateur indépendant analyse 27 solutions principales selon une <Link href="/methodologie" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">méthodologie d&apos;évaluation</Link> et vous aide à choisir celle qui correspond le mieux à votre profil — sans email demandé, sans inscription.
+                </p>
+                <p className="leading-relaxed">
+                  Pour les petits budgets, découvrez notre sélection de{" "}
+                  <Link href="/crm-gratuit" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">CRM gratuits permanents</Link>.
+                  Les entreprises soucieuses de souveraineté numérique trouveront leur bonheur parmi les{" "}
+                  <Link href="/crm-open-source" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">CRM open source auto-hébergeables</Link>.
+                  Et si vous êtes en forte croissance, notre guide{" "}
+                  <Link href="/crm-startup" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">CRM pour startup</Link>{" "}
+                  classe les outils par phase de développement, du seed à la Series C.
                 </p>
               </article>
             </AnimatedSection>

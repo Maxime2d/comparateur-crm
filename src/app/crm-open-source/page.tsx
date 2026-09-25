@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight, Code, Server, Shield } from "lucide-react";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
-import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
+import { BreadcrumbJsonLd, JsonLd, FAQJsonLd } from "@/components/seo/json-ld";
 import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
-  title: "Meilleur CRM open source 2026 : Top 6",
+  title: "CRM Open Source 2026 : Top 6 Solutions Auto-hébergées (Comparatif)",
   description:
-    "Comparatif des meilleurs CRM open source en 2026 : SuiteCRM, EspoCRM, Vtiger, Odoo CRM, Mautic, Twenty. Auto-hébergement, prix, communauté, alternatives SaaS.",
+    "Comparatif des 6 meilleurs CRM open source en 2026 : SuiteCRM, EspoCRM, Vtiger, Odoo, Mautic, Twenty. GitHub stars, licence, stack technique, avantages vs SaaS. Guide complet pour choisir.",
   alternates: { canonical: `${SITE_URL}/crm-open-source` },
   openGraph: {
-    title: `Meilleur CRM open source | ${SITE_NAME}`,
-    description: "Top des CRM open source auto-hébergeables en 2026.",
+    title: `CRM Open Source 2026 : Top 6 Solutions Comparées | ${SITE_NAME}`,
+    description: "Comparatif des meilleurs CRM open source auto-hébergeables en 2026. Licence, stack, communauté, avantages vs SaaS.",
     url: `${SITE_URL}/crm-open-source`,
     type: "website",
   },
@@ -167,6 +167,27 @@ export default function CrmOpenSourcePage() {
         }}
       />
 
+      <FAQJsonLd
+        faqs={[
+          {
+            question: "Quelle est la différence entre un CRM open source et un CRM gratuit ?",
+            answer: "Un CRM open source donne accès au code source : vous pouvez l'héberger vous-même, le modifier et l'auditer. Un CRM gratuit (comme HubSpot Free) est un SaaS fermé avec un plan à 0 €. L'open source offre plus de contrôle mais demande des compétences techniques.",
+          },
+          {
+            question: "Faut-il des compétences techniques pour installer un CRM open source ?",
+            answer: "Oui, la plupart nécessitent un serveur Linux, une base de données et des connaissances en administration système. SuiteCRM et EspoCRM requièrent un stack LAMP, Odoo tourne sur Python/PostgreSQL, Twenty sur Node.js/Docker. Des versions cloud managées existent pour simplifier.",
+          },
+          {
+            question: "Un CRM open source est-il conforme au RGPD ?",
+            answer: "L'auto-hébergement est un avantage majeur pour le RGPD : vos données restent sur vos serveurs, en France ou en UE, sans transfert vers des datacenters américains. Vous gardez un contrôle total sur le stockage, la rétention et la suppression des données personnelles.",
+          },
+          {
+            question: "Quel est le meilleur CRM open source pour une PME française en 2026 ?",
+            answer: "SuiteCRM pour les PME qui veulent un CRM mature et très personnalisable sans licence. Odoo CRM si vous cherchez un écosystème ERP complet (compta, RH, stock). Twenty pour les équipes tech qui valorisent une interface moderne et un stack TypeScript.",
+          },
+        ]}
+      />
+
       <PageHero
         eyebrow="Open source"
         eyebrowIcon={Code}
@@ -313,7 +334,40 @@ export default function CrmOpenSourcePage() {
                 déployer en moins d&apos;une semaine, vous n&apos;avez pas de
                 ressource technique dédiée, vous valorisez les mises à jour
                 automatiques et le support fourni par l&apos;éditeur.
+                Découvrez notre sélection de{" "}
+                <Link href="/crm-gratuit" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">CRM gratuits SaaS</Link>{" "}
+                pour démarrer sans coût de licence ni contrainte technique.
               </p>
+              <p>
+                Pour les <strong>startups tech</strong> qui hésitent entre open source et SaaS,
+                consultez notre guide{" "}
+                <Link href="/crm-startup" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">CRM pour startup</Link>{" "}
+                qui classe les outils par phase de croissance.
+              </p>
+            </div>
+          </section>
+
+          <section className="mb-12 bg-white rounded-2xl border border-slate-200 p-8">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
+              Questions fréquentes sur les CRM open source
+            </h2>
+            <div className="space-y-3 text-slate-700 leading-relaxed">
+              <details className="group border border-slate-200 rounded-lg p-4">
+                <summary className="font-semibold text-slate-900 cursor-pointer">Quelle différence entre CRM open source et CRM gratuit ?</summary>
+                <p className="mt-2">Un CRM open source donne accès au code source : vous pouvez l&apos;héberger vous-même, le modifier et l&apos;auditer. Un CRM gratuit (comme HubSpot Free) est un SaaS fermé avec un plan à 0 €. L&apos;open source offre plus de contrôle mais demande des compétences techniques.</p>
+              </details>
+              <details className="group border border-slate-200 rounded-lg p-4">
+                <summary className="font-semibold text-slate-900 cursor-pointer">Faut-il des compétences techniques pour installer un CRM open source ?</summary>
+                <p className="mt-2">Oui, la plupart nécessitent un serveur Linux, une base de données et des connaissances sysadmin. SuiteCRM et EspoCRM requièrent LAMP, Odoo tourne sur Python/PostgreSQL, Twenty sur Node.js/Docker. Des versions cloud managées existent pour simplifier.</p>
+              </details>
+              <details className="group border border-slate-200 rounded-lg p-4">
+                <summary className="font-semibold text-slate-900 cursor-pointer">Un CRM open source est-il conforme au RGPD ?</summary>
+                <p className="mt-2">L&apos;auto-hébergement est un avantage majeur pour le RGPD : vos données restent sur vos serveurs, en France ou en UE, sans transfert vers des datacenters américains. Vous gardez un contrôle total sur le stockage et la suppression des données personnelles.</p>
+              </details>
+              <details className="group border border-slate-200 rounded-lg p-4">
+                <summary className="font-semibold text-slate-900 cursor-pointer">Quel est le meilleur CRM open source pour une PME française ?</summary>
+                <p className="mt-2">SuiteCRM pour les PME qui veulent un CRM mature et personnalisable sans licence. Odoo CRM pour un écosystème ERP complet. Twenty pour les équipes tech qui valorisent une interface moderne et un stack TypeScript.</p>
+              </details>
             </div>
           </section>
 

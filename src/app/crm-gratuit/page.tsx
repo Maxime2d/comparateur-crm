@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Gift, Infinity as InfinityIcon, Zap } from "lucide-react";
 import { platforms } from "@/lib/platforms";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
-import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/json-ld";
+import { BreadcrumbJsonLd, JsonLd, FAQJsonLd } from "@/components/seo/json-ld";
 import { SegmentHub } from "@/components/segment/segment-hub";
 import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
-  title: "Meilleur CRM gratuit 2026 : Top des plans free",
+  title: "CRM Gratuit 2026 : Top 6 Plans Gratuits Permanents (Sans CB)",
   description:
-    "Top CRM gratuits 2026 : HubSpot, Brevo, Zoho, Freshsales, Folk, Agile CRM. Plans gratuits permanents, fonctionnalités, limites, alternatives.",
+    "Comparatif des 6 meilleurs CRM gratuits en 2026 (HubSpot, Brevo, Zoho…). Plans gratuits à vie, sans carte bancaire. Contacts illimités, limites réelles, notre verdict pour les TPE/PME.",
   alternates: { canonical: `${SITE_URL}/crm-gratuit` },
   openGraph: {
-    title: `Meilleur CRM gratuit 2026 | ${SITE_NAME}`,
+    title: `CRM Gratuit 2026 : Top 6 Plans Gratuits Permanents | ${SITE_NAME}`,
     description:
-      "Top des CRM avec plan gratuit permanent en 2026.",
+      "Comparatif des meilleurs CRM avec plan gratuit permanent en 2026. Contacts illimités, sans engagement, sans CB.",
     url: `${SITE_URL}/crm-gratuit`,
     type: "website",
   },
@@ -57,6 +58,27 @@ export default function CrmGratuitPage() {
             },
           })),
         }}
+      />
+
+      <FAQJsonLd
+        faqs={[
+          {
+            question: "Un CRM gratuit est-il vraiment gratuit à vie ?",
+            answer: "Oui, les CRM de notre sélection (HubSpot, Brevo, Zoho…) proposent des plans gratuits permanents, sans limite de durée et sans carte bancaire requise. Les limites portent sur le nombre de fonctionnalités ou d'utilisateurs, pas sur la durée.",
+          },
+          {
+            question: "Quel est le meilleur CRM gratuit pour une TPE en 2026 ?",
+            answer: "HubSpot CRM gratuit est le plus complet : contacts et utilisateurs illimités, pipeline de vente, formulaires, emails. Pour les e-commerçants, Brevo offre en plus l'email marketing et le SMS natif gratuitement.",
+          },
+          {
+            question: "Peut-on migrer d'un CRM gratuit vers un CRM payant facilement ?",
+            answer: "Oui. Les CRM de notre sélection permettent de passer au plan payant en un clic, sans perdre vos données. HubSpot, Zoho et Brevo proposent tous une montée en gamme progressive avec vos données intactes.",
+          },
+          {
+            question: "Combien de contacts peut-on gérer avec un CRM gratuit ?",
+            answer: "Cela varie : HubSpot permet des contacts illimités sur son plan gratuit, Zoho CRM gratuit accepte jusqu'à 5 000 contacts pour 3 utilisateurs, et Brevo gère des contacts illimités avec une limite de 300 emails/jour.",
+          },
+        ]}
       />
 
       <SegmentHub
@@ -126,16 +148,44 @@ export default function CrmGratuitPage() {
               dont le plan gratuit reste vraiment utilisable.
             </p>
             <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+              Questions fréquentes sur les CRM gratuits
+            </h2>
+            <details className="group border border-slate-200 rounded-lg p-4 mb-3">
+              <summary className="font-semibold text-slate-900 cursor-pointer">Un CRM gratuit est-il vraiment gratuit à vie ?</summary>
+              <p className="mt-2">Oui, les CRM de notre sélection (HubSpot, Brevo, Zoho…) proposent des plans gratuits permanents, sans limite de durée et sans carte bancaire requise. Les limites portent sur le nombre de fonctionnalités ou d&apos;utilisateurs, pas sur la durée.</p>
+            </details>
+            <details className="group border border-slate-200 rounded-lg p-4 mb-3">
+              <summary className="font-semibold text-slate-900 cursor-pointer">Quel est le meilleur CRM gratuit pour une TPE en 2026 ?</summary>
+              <p className="mt-2">HubSpot CRM gratuit est le plus complet : contacts et utilisateurs illimités, pipeline de vente, formulaires, emails. Pour les e-commerçants, Brevo offre en plus l&apos;email marketing et le SMS natif gratuitement.</p>
+            </details>
+            <details className="group border border-slate-200 rounded-lg p-4 mb-3">
+              <summary className="font-semibold text-slate-900 cursor-pointer">Peut-on migrer facilement vers un plan payant ?</summary>
+              <p className="mt-2">Oui. Les CRM de notre sélection permettent de passer au plan payant en un clic, sans perdre vos données. HubSpot, Zoho et Brevo proposent tous une montée en gamme progressive avec vos données intactes.</p>
+            </details>
+            <details className="group border border-slate-200 rounded-lg p-4 mb-3">
+              <summary className="font-semibold text-slate-900 cursor-pointer">Combien de contacts peut-on gérer gratuitement ?</summary>
+              <p className="mt-2">Cela varie : HubSpot permet des contacts illimités, Zoho CRM gratuit accepte jusqu&apos;à 5 000 contacts pour 3 utilisateurs, et Brevo gère des contacts illimités avec une limite de 300 emails/jour.</p>
+            </details>
+
+            <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
               Notre recommandation
             </h2>
             <p>
-              Pour <strong>95 % des cas</strong>, HubSpot CRM gratuit reste le
+              Pour <strong>95 % des cas</strong>, <Link href="/crm/hubspot-crm" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">HubSpot CRM gratuit</Link> reste le
               meilleur choix : contacts et utilisateurs illimités, fonctionnalités
               riches, montée en gamme propre. Pour les{" "}
-              <strong>e-commerçants français</strong>, Brevo est imbattable grâce à
+              <strong>e-commerçants français</strong>, <Link href="/crm/brevo" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">Brevo</Link> est imbattable grâce à
               sa délivrabilité email et son SMS natif. Pour les{" "}
               <strong>petites équipes B2B</strong> qui veulent toute une suite
-              gratuite, Zoho CRM (3 utilisateurs) reste pertinent.
+              gratuite, <Link href="/crm/zoho-crm" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">Zoho CRM</Link> (3 utilisateurs) reste pertinent.
+            </p>
+            <p>
+              Si vous avez des compétences techniques et que vous souhaitez héberger
+              vos données vous-même, consultez notre guide des{" "}
+              <Link href="/crm-open-source" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">CRM open source</Link>.
+              Et si vous êtes une startup en forte croissance, notre sélection{" "}
+              <Link href="/crm-startup" className="text-violet-600 hover:text-violet-700 underline underline-offset-2">CRM pour startup</Link>{" "}
+              vous aidera à trouver l&apos;outil qui scale avec votre équipe.
             </p>
           </div>
         }
